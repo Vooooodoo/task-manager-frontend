@@ -1,3 +1,11 @@
+import React from 'react';
+import {
+  Route,
+  Switch,
+  Redirect,
+  useHistory,
+} from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute';
 import GlobalStyle from '../GlobalStyle';
 import SignUp from '../SignUp';
 import SignIn from '../SignIn';
@@ -7,8 +15,20 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <SignUp />
-      <SignIn />
+      <Switch>
+        <ProtectedRoute
+          exact path="/"
+          component={SignUp}
+        />
+
+        <Route path="/sign-up">
+          <SignUp />
+        </Route>
+
+        <Route path="/sign-in">
+          <SignIn />
+        </Route>
+      </Switch>
       <Footer />
     </>
   );
