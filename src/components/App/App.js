@@ -1,13 +1,15 @@
-import Button from '@material-ui/core/Button';
 import GlobalStyle from '../GlobalStyle';
+import SignUp from '../SignUp';
+import SignIn from '../SignIn';
+import Footer from '../Footer';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Button size='large' variant='contained' color='primary'>
-        Hello World
-      </Button>
+      <SignUp />
+      <SignIn />
+      <Footer />
     </>
   );
 }
