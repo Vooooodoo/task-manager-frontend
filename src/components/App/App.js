@@ -20,14 +20,14 @@ function App() {
           exact path="/"
           component={SignUp}
         />
-
-        <Route path="/sign-up">
-          <SignUp />
-        </Route>
-
-        <Route path="/sign-in">
-          <SignIn />
-        </Route>
+        <Route
+          path="/sign-up"
+          component={SignUp}
+        />
+        <Route
+          path="/sign-in"
+          component={SignIn}
+        />
       </Switch>
       <Footer />
     </>

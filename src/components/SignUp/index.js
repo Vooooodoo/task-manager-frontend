@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import RouterLink from '../RouterLink';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -103,9 +103,10 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link className="router-link" to="/sign-in">
-                Already have an account? Sign in
-              </Link>
+              <RouterLink
+                route="/sign-in"
+                text="Already have an account? Sign in"
+              />
             </Grid>
           </Grid>
         </form>
