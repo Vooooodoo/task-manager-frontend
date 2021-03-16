@@ -36,7 +36,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <section className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -110,7 +110,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </section>
     </Container>
   );
 }
