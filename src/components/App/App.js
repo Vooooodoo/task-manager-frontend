@@ -5,10 +5,9 @@ import {
   Redirect,
   useHistory,
 } from 'react-router-dom';
+import routes from '../../routes';
 import ProtectedRoute from '../ProtectedRoute';
 import GlobalStyle from '../GlobalStyle';
-import SignUp from '../SignUp';
-import SignIn from '../SignIn';
 import Footer from '../Footer';
 
 function App() {
@@ -18,16 +17,11 @@ function App() {
       <Switch>
         <ProtectedRoute
           exact path="/"
-          component={SignUp}
+          component={Footer}
         />
-        <Route
-          path="/sign-up"
-          component={SignUp}
-        />
-        <Route
-          path="/sign-in"
-          component={SignIn}
-        />
+        {routes.map(({ path, component }, key) => (
+          <Route exact path={path} component={component} key={key} />
+        ))}
       </Switch>
       <Footer />
     </>
