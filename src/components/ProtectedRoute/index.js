@@ -14,3 +14,7 @@ function ProtectedRoute({ component: Component, ...props }) {
 }
 
 export default ProtectedRoute;
+
+// будет единый компонент ProtectedRoute а уже внутри него описать логику редиректа и рендера
+// кокрентный роут можно не хардкодить, а указать в качестве пропса, куда редиректить,
+// тем самы можно будет убрать поле isProtected из объекта с роутами
