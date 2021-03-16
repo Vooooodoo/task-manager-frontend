@@ -11,5 +11,15 @@ const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
   }
+
+  .router-link {
+    text-decoration: none;
+    color: #3f51b5;
+    font-size: 14px;
+  }
+
+  .router-link:hover {
+    text-decoration: underline;
+  }
 `
 export default GlobalStyle;
