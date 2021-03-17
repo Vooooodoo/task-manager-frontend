@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import mainRoutes from './main';
+import accountRoutes from './account';
 import authRoutes from './auth';
-import notFoundRoute from './notFound';
 import ProtectedRoute from '../components/ProtectedRoute';
 
 function Router() {
-  const routes = [...mainRoutes, ...authRoutes];
+  const routes = [...accountRoutes, ...authRoutes];
 
   return (
     <>

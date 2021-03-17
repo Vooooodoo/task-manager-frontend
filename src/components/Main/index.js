@@ -5,12 +5,13 @@ const StyledMain = styled.main`
   display: flex;
   justify-content: center;
   color: black;
+  font-size: 50px;
 `
 
 function Main() {
   return (
     <StyledMain>
-      <h1>Follow the white rabbit...</h1>
+      <h1>Main</h1>
     </StyledMain>
   );
 }

@@ -5,14 +5,15 @@ const StyledMain = styled.main`
   display: flex;
   justify-content: center;
   color: black;
+  font-size: 50px;
 `
 
-function PageNotFound() {
+function Profile() {
   return (
     <StyledMain>
-      <h1>Page Not Found 404</h1>
+      <h1>Profile</h1>
     </StyledMain>
-  )
+  );
 }
 
-export default PageNotFound;
+export default Profile;

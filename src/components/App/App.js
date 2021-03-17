@@ -11,10 +11,9 @@ function App(props) {
       <GlobalStyle />
       <Switch>
         <Router />
-        <Route path="*">
-          {props.isLoggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+        <Route>
+          {props.isLoggedIn ? <Redirect to="/main" /> : <Redirect to="/sign-in" />}
         </Route>
-        //! добавить редирект на главную если loggedIn === true
       </Switch>
       <Footer />
     </>
