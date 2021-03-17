@@ -2,29 +2,27 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import mainRoutes from './main';
 import authRoutes from './auth';
+import notFoundRoute from './notFound';
 import ProtectedRoute from '../components/ProtectedRoute';
 
 function Router() {
-  const routes = [...mainRoutes, ...authRoutes];
+  const routes = [...mainRoutes, ...authRoutes, ...notFoundRoute];
 
   return (
     <>
-      {
-        routes.map(({ path, component, isProtected }, key) => (
-          isProtected
-            ? (<ProtectedRoute
-                key={key}
-                exact path={path}
-                component={component}
-              />)
-            : (<Route
-                key={key}
-                path={path}
-                component={component}
-              />)
-        ))
-      }
-
+      {routes.map(({ path, component, isProtected }, key) => (
+        isProtected
+        ? <ProtectedRoute
+            key={key}
+            exact path={path}
+            component={component}
+          />
+        : <Route
+            key={key}
+            path={path}
+            component={component}
+          />
+      ))}
     </>
   );
 }

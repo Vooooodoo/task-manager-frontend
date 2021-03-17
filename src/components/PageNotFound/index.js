@@ -7,12 +7,12 @@ const StyledMain = styled.main`
   color: black;
 `
 
-function Main() {
+function PageNotFound() {
   return (
     <StyledMain>
-      <h1>Follow the white rabbit...</h1>
+      <h1>Page Not Found 404</h1>
     </StyledMain>
-  );
+  )
 }
 
-export default Main;
+export default PageNotFound;
