@@ -6,7 +6,7 @@ import notFoundRoute from './notFound';
 import ProtectedRoute from '../components/ProtectedRoute';
 
 function Router() {
-  const routes = [...mainRoutes, ...authRoutes, ...notFoundRoute];
+  const routes = [...mainRoutes, ...authRoutes];
 
   return (
     <>
