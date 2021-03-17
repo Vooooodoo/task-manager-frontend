@@ -12,16 +12,16 @@ function Router() {
     <>
       {routes.map(({ path, component, isProtected }, key) => (
         isProtected
-        ? <ProtectedRoute
-            key={key}
-            exact path={path}
-            component={component}
-          />
-        : <Route
-            key={key}
-            path={path}
-            component={component}
-          />
+          ? <ProtectedRoute
+              key={key}
+              exact path={path}
+              component={component}
+            />
+          : <Route
+              key={key}
+              path={path}
+              component={component}
+            />
       ))}
     </>
   );
