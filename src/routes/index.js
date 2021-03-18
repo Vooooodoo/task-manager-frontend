@@ -1,9 +1,8 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Switch } from 'react-router-dom';
 import accountRoutes from './account';
 import authRoutes from './auth';
-import ProtectedRoute from '../components/ProtectedRoute';
+import CustomRoute from '../components/ProtectedRoute';
 
 const routes = [...accountRoutes, ...authRoutes];
 
@@ -11,17 +10,11 @@ function Router() {
   return (
     <Switch>
       {routes.map((rout, key) => (
-        rout.isProtected
-          ? <ProtectedRoute
-              key={key}
-              path={rout.path}
-              component={rout.component}
-            />
-          : <Route
-              key={key}
-              path={rout.path}
-              component={rout.component}
-            />
+        <CustomRoute
+          key={key}
+          path={rout.path}
+          component={rout.component}
+        />
       ))}
     </Switch>
   );
