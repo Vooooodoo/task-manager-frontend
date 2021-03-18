@@ -11,9 +11,6 @@ function App(props) {
       <GlobalStyle />
       <Switch>
         <Router />
-        <Route>
-          {props.isLoggedIn ? <Redirect to="/main" /> : <Redirect to="/sign-in" />}
-        </Route>
       </Switch>
       <Footer />
     </>

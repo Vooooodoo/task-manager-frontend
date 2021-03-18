@@ -7,19 +7,21 @@ import ProtectedRoute from '../components/ProtectedRoute';
 function Router() {
   const routes = [...accountRoutes, ...authRoutes];
 
+  //! свитч почему то не воспринимает компонент ProtectedRoute
+  //! и рендерит не один при совпадении роута, а сразу два
   return (
     <>
-      {routes.map(({ path, component, isProtected }, key) => (
-        isProtected
+      {routes.map((prop, key) => (
+        prop.isProtected
           ? <ProtectedRoute
               key={key}
-              exact path={path}
-              component={component}
+              path={prop.path}
+              component={prop.component}
             />
           : <Route
               key={key}
-              path={path}
-              component={component}
+              path={prop.path}
+              component={prop.component}
             />
       ))}
     </>
@@ -27,12 +29,3 @@ function Router() {
 }
 
 export default Router;
-
-
-
-// тут возвращать уже все отмапленные компоненты и вставлять этот компонент уже в App,
-// т.е. в этом файле будет компонент который возвращает фрагмент внутри которого результат мэпа,
-// а объекты разбить на файлы в зависимости от функционала и импортировать их сюда,
-// итого будет несколько объектов auth, main и т.п.
-
-
