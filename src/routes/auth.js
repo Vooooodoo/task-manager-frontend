@@ -3,6 +3,7 @@
 // с помощью метода map() и деструктуризации объекта
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
+import NotFound from '../components/NotFound';
 
 const authRoutes = [
   {
@@ -12,6 +13,10 @@ const authRoutes = [
   {
     path: '/sign-in',
     component: SignIn,
+  },
+  {
+    path: '/',
+    component: NotFound,
   },
 ];
 

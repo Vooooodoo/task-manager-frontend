@@ -23,12 +23,6 @@ function Router(props) {
               component={rout.component}
             />
       ))}
-      <Route path="/">
-        {props.isLoggedIn
-          ? <Redirect to="/main" />
-          : <Redirect to="/sign-in" />
-        }
-      </Route>
     </Switch>
   );
 }
