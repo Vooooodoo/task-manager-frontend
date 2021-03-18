@@ -7,8 +7,6 @@ import ProtectedRoute from '../components/ProtectedRoute';
 function Router() {
   const routes = [...accountRoutes, ...authRoutes];
 
-  //! свитч почему то не воспринимает компонент ProtectedRoute
-  //! и рендерит не один при совпадении роута, а сразу два
   return (
     <>
       {routes.map((prop, key) => (
