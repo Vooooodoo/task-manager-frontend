@@ -1,8 +1,8 @@
 import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  isLoggedIn: true,
-}
+  isLoggedIn: false,
+};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -10,7 +10,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isLoggedIn: action.payload,
-      }
+      };
   }
 
   return state;

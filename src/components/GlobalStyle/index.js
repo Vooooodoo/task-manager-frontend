@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -11,5 +11,6 @@ const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
   }
-`
+`;
+
 export default GlobalStyle;

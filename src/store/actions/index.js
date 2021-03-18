@@ -1,10 +1,8 @@
-import * as actionTypes from '../constants/actionTypes'
+import * as actionTypes from '../constants/actionTypes';
 
-const setIsLoggedIn = isLoggedIn => ({
+const setIsLoggedIn = (isLoggedIn) => ({
   type: actionTypes.SET_IS_LOGGED_IN,
   payload: isLoggedIn,
 });
 
-export {
-  setIsLoggedIn,
-};
+export { setIsLoggedIn };

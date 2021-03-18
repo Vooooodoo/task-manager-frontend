@@ -6,7 +6,7 @@ const StyledMain = styled.main`
   justify-content: center;
   color: black;
   font-size: 50px;
-`
+`;
 
 function Main() {
   return (

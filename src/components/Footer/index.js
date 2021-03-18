@@ -13,14 +13,18 @@ const StyledFooter = styled.footer`
   padding: 16px;
   box-sizing: border-box;
   margin: 0 auto;
-`
+`;
 
 function Footer() {
   return (
     <StyledFooter>
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="https://github.com/Vooooodoo" target="_blank">
+        <Link
+          color="inherit"
+          href="https://github.com/Vooooodoo"
+          target="_blank"
+        >
           Andrukhanenko Roman
         </Link>{' '}
         {new Date().getFullYear()}

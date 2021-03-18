@@ -7,13 +7,13 @@ import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  (<Provider store={store}>
+  <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </React.StrictMode>
-  </Provider>),
+  </Provider>,
   document.getElementById('root')
 );
 
