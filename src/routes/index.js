@@ -7,7 +7,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 
 const routes = [...accountRoutes, ...authRoutes];
 
-function Router(props) {
+function Router() {
   return (
     <Switch>
       {routes.map((rout, key) => (
@@ -27,8 +27,4 @@ function Router(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  isLoggedIn: state.isLoggedIn,
-});
-
-export default connect(mapStateToProps)(Router);
+export default Router;
