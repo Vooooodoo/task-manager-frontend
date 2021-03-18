@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import accountRoutes from './account';
 import authRoutes from './auth';
-import CustomRoute from '../components/ProtectedRoute';
+import CustomRoute from '../components/CustomRoute';
 
 const routes = [...accountRoutes, ...authRoutes];
 
