@@ -1,29 +1,40 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import accountRoutes from './account';
 import authRoutes from './auth';
 import ProtectedRoute from '../components/ProtectedRoute';
 
-function Router() {
-  const routes = [...accountRoutes, ...authRoutes];
+const routes = [...accountRoutes, ...authRoutes];
 
+function Router(props) {
   return (
-    <>
-      {routes.map((prop, key) => (
-        prop.isProtected
+    <Switch>
+      {routes.map((rout, key) => (
+        rout.isProtected
           ? <ProtectedRoute
               key={key}
-              path={prop.path}
-              component={prop.component}
+              path={rout.path}
+              component={rout.component}
             />
           : <Route
               key={key}
-              path={prop.path}
-              component={prop.component}
+              path={rout.path}
+              component={rout.component}
             />
       ))}
-    </>
+      <Route path="/">
+        {props.isLoggedIn
+          ? <Redirect to="/main" />
+          : <Redirect to="/sign-in" />
+        }
+      </Route>
+    </Switch>
   );
 }
 
-export default Router;
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn,
+});
+
+export default connect(mapStateToProps)(Router);
