@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { setIsLoggedIn } from '../../store/auth';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   button: {
     marginLeft: '30px',
-  }
+  },
 });
 
 const StyledMain = styled.main`
@@ -31,26 +29,13 @@ const StyledButton = styled(Button)`
 `;
 
 function Main(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
     <StyledMain>
       <h1>Main</h1>
-      <StyledButton
-        className={classes.button}
-        type="button"
-        variant="contained"
-        color="primary"
-        onClick={() => props.onSetIsLoggedIn(false)}
-      >
-        Sign Out
-      </StyledButton>
     </StyledMain>
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onSetIsLoggedIn: (isLoggedIn) => dispatch(setIsLoggedIn(isLoggedIn)),
-});
-
-export default connect(null, mapDispatchToProps)(Main);
+export default Main;

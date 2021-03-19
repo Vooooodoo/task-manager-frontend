@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
   }
+
+  body {
+    margin: 0;
+  }
 `;
 
 export default GlobalStyle;
