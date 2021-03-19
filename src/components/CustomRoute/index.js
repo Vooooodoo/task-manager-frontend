@@ -25,7 +25,7 @@ function CustomRoute({ component: Component, ...props }) {
 }
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: state.isLoggedIn,
+  isLoggedIn: state.auth.isLoggedIn,
 });
 
 export default connect(mapStateToProps)(CustomRoute);
