@@ -13,7 +13,7 @@ const StyledLink = styled(Link)`
 `;
 
 function RouterLink(props) {
-  return (<StyledLink to={props.route}>{props.text}</StyledLink>);
+  return (<StyledLink className={props.class } to={props.route}>{props.text}</StyledLink>);
 }
 
 export default RouterLink;

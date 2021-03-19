@@ -5,12 +5,10 @@ const accountRoutes = [
   {
     path: '/main',
     component: Main,
-    isProtected: true,
   },
   {
     path: '/profile',
     component: Profile,
-    isProtected: true,
   },
 ];
 
