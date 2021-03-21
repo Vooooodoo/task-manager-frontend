@@ -54,6 +54,7 @@ export default function SignUp() {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                type="text"
                 autoFocus
               />
             </Grid>
@@ -65,6 +66,7 @@ export default function SignUp() {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
+                type="text"
                 autoComplete="lname"
               />
             </Grid>
@@ -76,6 +78,7 @@ export default function SignUp() {
                 id="email"
                 label="Email Address"
                 name="email"
+                type="email"
                 autoComplete="email"
               />
             </Grid>
