@@ -104,14 +104,10 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <RouterLink
-                route="/sign-in"
-                text="Already have an account? Sign in"
-              />
-            </Grid>
-          </Grid>
+          <RouterLink
+            route="/sign-in"
+            text="Already have an account? Sign in"
+          />
         </form>
       </section>
     </Container>
