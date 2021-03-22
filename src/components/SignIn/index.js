@@ -49,6 +49,7 @@ function SignIn() {
         <form className={classes.form} noValidate>
           <Input
             id="email"
+            type="email"
             label="Email Address"
             minLength="2"
             isFocus
@@ -56,6 +57,7 @@ function SignIn() {
           <Input
             id="password"
             label="Password"
+            type="password"
             minLength="8"
           />
           <FormControlLabel

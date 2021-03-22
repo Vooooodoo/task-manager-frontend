@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 function Input({
-  id, label, isFocus, minLength, pattern,
+  id, label, isFocus, minLength, pattern, type,
 }) {
   const [validationMessage, setValidationMessage] = React.useState('');
   const [isInputValid, setIsInputValid] = React.useState(true);
@@ -24,13 +24,13 @@ function Input({
       id={id}
       label={label}
       name={id}
-      type={id}
+      type={type}
       autoFocus={isFocus}
       inputProps={{
         maxLength: 40,
         minLength,
+        pattern,
       }}
-      pattern={pattern}
       required
       variant="outlined"
       margin="normal"
