@@ -26,9 +26,10 @@ function Footer() {
           target="_blank"
         >
           Andrukhanenko Roman
-        </Link>{' '}
+        </Link>
+        {' '}
         {new Date().getFullYear()}
-        {'.'}
+        .
       </Typography>
     </StyledFooter>
   );

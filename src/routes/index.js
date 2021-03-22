@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import accountRoutes from './account';

@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -10,7 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import RouterLink from '../RouterLink';
+import Input from '../Input';
 
+// стоковый способ стилизации Material UI компонентов
+// единый объект с классами в котором описываем стили конкретного компонента
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -45,28 +47,16 @@ function SignIn() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
+          <Input
             id="email"
             label="Email Address"
-            name="email"
-            type="email"
-            autoComplete="email"
-            autoFocus
+            minLength="2"
+            isFocus
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
+          <Input
             id="password"
-            autoComplete="current-password"
+            label="Password"
+            minLength="8"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -81,10 +71,7 @@ function SignIn() {
           >
             Sign In
           </Button>
-          <RouterLink
-            route="/sign-up"
-            text="Don't have an account? Sign Up"
-          />
+          <RouterLink route="/sign-up" text="Don't have an account? Sign Up" />
         </form>
       </section>
     </Container>

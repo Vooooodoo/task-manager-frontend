@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setIsLoggedIn } from '../../store/auth';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { setIsLoggedIn } from '../../store/auth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header(props) {
+function Header({ isLoggedIn, onSetIsLoggedIn }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -48,9 +48,9 @@ function Header(props) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          Task Manager
+          Trollo
         </Typography>
-        {props.isLoggedIn && (
+        {isLoggedIn && (
           <div>
             <IconButton
               aria-label="account of current user"
@@ -78,7 +78,7 @@ function Header(props) {
             >
               <MenuItem onClick={handleClose}>Main</MenuItem>
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={() => props.onSetIsLoggedIn(false)}>
+              <MenuItem onClick={() => onSetIsLoggedIn(false)}>
                 Sign Out
               </MenuItem>
             </Menu>

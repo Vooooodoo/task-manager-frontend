@@ -1,15 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-
-// стоковый способ стилизации Material UI компонентов
-// единый объект с классами в котором описываем стили конкретного компонента
-const useStyles = makeStyles({
-  button: {
-    marginLeft: '30px',
-  },
-});
+// import Button from '@material-ui/core/Button';
 
 const StyledMain = styled.main`
   display: flex;
@@ -22,13 +13,14 @@ const StyledMain = styled.main`
 // способ стилизации Material UI компонентов, с помощью сторонней библиотеки Styled Components
 //! но почему то не все свойства можно стилизовать таким образом
 //! марджины например стилизуются только стоковым методом makeStyles()
-//! хотя если переопределить марджины стоковым метотодом, то они начнут меняться с помощью Styled Components
-const StyledButton = styled(Button)`
-  width: 100px;
-  height: 50px;
-`;
+//! хотя если переопределить марджины стоковым метотодом,
+//! то они начнут меняться с помощью Styled Components
+// const StyledButton = styled(Button)`
+//   width: 100px;
+//   height: 50px;
+// `;
 
-function Main(props) {
+function Main() {
   // const classes = useStyles();
 
   return (
