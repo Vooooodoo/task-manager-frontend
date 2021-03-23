@@ -41,7 +41,7 @@ function Profile({ allUsers }) {
           <AccountCircle />
         </Avatar>
         <Typography component="h2" variant="h5">
-          User name
+          {authorizedUser.firstName}
         </Typography>
         <form className={classes.form} noValidate>
           <Input

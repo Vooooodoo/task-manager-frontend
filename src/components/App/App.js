@@ -7,6 +7,7 @@ import Header from '../Header';
 import Router from '../../routes';
 import Footer from '../Footer';
 
+// добавим кастомную переменную в глобальный объект theme
 const theme = createMuiTheme({
   whiteColor: 'white',
 });

@@ -1,6 +1,6 @@
 import Main from '../components/Main';
-import Profile from '../components/Profile';
 import Board from '../components/Board';
+import Profile from '../components/Profile';
 
 const accountRoutes = [
   {

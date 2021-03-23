@@ -14,7 +14,7 @@ import { setIsLoggedIn } from '../../store/auth';
 
 // стоковый способ стилизации Material UI компонентов
 // единый объект с классами в котором описываем стили конкретного компонента
-// также есть доступ к глобальому объекту theme
+// также есть доступ к глобальному объекту theme
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
