@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
+  homeButton: {
     marginRight: theme.spacing(1),
   },
   title: {
     flexGrow: 1,
   },
-  routerLink: {
+  routerMenuLink: {
     textDecoration: 'none',
     color: '#000000DE',
     width: '100%',
@@ -30,6 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
   routerMenuItem: {
     padding: '0',
+  },
+  routerHomeLink: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  whiteColor: {
+    color: '#fff',
   },
 }));
 
@@ -51,11 +58,13 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
       <Toolbar>
         <IconButton
           edge="start"
-          className={classes.menuButton}
+          className={classes.homeButton}
           color="inherit"
           aria-label="menu"
         >
-          <HomeIcon />
+          <Link className={classes.routerHomeLink} to="/main">
+            <HomeIcon className={classes.whiteColor} />
+          </Link>
         </IconButton>
         <Typography variant="h6" className={classes.title}>
           Trollo
@@ -88,7 +97,7 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
             >
               <MenuItem className={classes.routerMenuItem}>
                 <Link
-                  className={classes.routerLink}
+                  className={classes.routerMenuLink}
                   onClick={handleClose}
                   to="/main"
                 >
@@ -97,7 +106,7 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
               </MenuItem>
               <MenuItem className={classes.routerMenuItem}>
                 <Link
-                  className={classes.routerLink}
+                  className={classes.routerMenuLink}
                   onClick={handleClose}
                   to="/profile"
                 >
