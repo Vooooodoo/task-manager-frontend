@@ -3,7 +3,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import * as actionTypes from './constants/actionTypes';
 
 const initialState = {
-  users: [
+  allUsers: [
     {
       id: 1,
       firstName: 'Albert',
@@ -19,7 +19,7 @@ const setUsers = createAction(actionTypes.SET_USERS);
 
 const usersReducer = createReducer(initialState, {
   [setUsers]: (state, action) => {
-    state.users = action.payload;
+    state.allUsers = action.payload;
   },
 });
 
