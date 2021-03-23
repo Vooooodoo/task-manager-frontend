@@ -11,8 +11,6 @@ import Container from '@material-ui/core/Container';
 import RouterLink from '../RouterLink';
 import Input from '../Input';
 
-// стоковый способ стилизации Material UI компонентов
-// единый объект с классами в котором описываем стили конкретного компонента
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),

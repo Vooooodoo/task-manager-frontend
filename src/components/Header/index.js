@@ -12,6 +12,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { setIsLoggedIn } from '../../store/auth';
 
+// стоковый способ стилизации Material UI компонентов
+// единый объект с классами в котором описываем стили конкретного компонента
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   whiteColor: {
-    color: '#fff',
+    color: theme.whiteColor,
   },
 }));
 
