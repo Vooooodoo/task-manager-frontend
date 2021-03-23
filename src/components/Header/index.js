@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   title: {
     flexGrow: 1,
@@ -45,7 +45,7 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
           color="inherit"
           aria-label="menu"
         >
-          <MenuIcon />
+          <HomeIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
           Trollo
