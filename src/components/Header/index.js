@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -20,6 +21,15 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  routerLink: {
+    textDecoration: 'none',
+    color: '#000000DE',
+    width: '100%',
+    padding: '6px 16px',
+  },
+  routerMenuItem: {
+    padding: '0',
   },
 }));
 
@@ -76,8 +86,24 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Main</MenuItem>
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem className={classes.routerMenuItem}>
+                <Link
+                  className={classes.routerLink}
+                  onClick={handleClose}
+                  to="/main"
+                >
+                  Main
+                </Link>
+              </MenuItem>
+              <MenuItem className={classes.routerMenuItem}>
+                <Link
+                  className={classes.routerLink}
+                  onClick={handleClose}
+                  to="/profile"
+                >
+                  Profile
+                </Link>
+              </MenuItem>
               <MenuItem onClick={() => onSetIsLoggedIn(false)}>
                 Sign Out
               </MenuItem>
