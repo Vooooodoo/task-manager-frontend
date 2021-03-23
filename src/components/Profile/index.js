@@ -83,6 +83,7 @@ function Profile() {
             minLength={validationConsts.INPUT_MIN_LENGTH}
             maxLength={validationConsts.TEXTAREA_INPUT_MAX_LENGTH}
             multiline
+            rows={4}
           />
           <Button
             type="submit"

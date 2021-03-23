@@ -11,6 +11,7 @@ function Input({
   type,
   multiline,
   isRequired,
+  rows,
 }) {
   const [validationMessage, setValidationMessage] = React.useState('');
   const [isInputValid, setIsInputValid] = React.useState(true);
@@ -44,6 +45,7 @@ function Input({
       variant="outlined"
       margin="normal"
       fullWidth
+      rows={rows}
       onChange={handleInputChange}
     />
   );
