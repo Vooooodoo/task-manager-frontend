@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import RouterLink from '../RouterLink';
 import Input from '../Input';
+import * as validationConsts from '../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,14 +50,18 @@ function SignIn() {
             id="email"
             type="email"
             label="Email Address"
-            minLength="2"
+            minLength={validationConsts.INPUT_MIN_LENGTH}
+            maxLength={validationConsts.INPUT_MAX_LENGTH}
             isFocus
+            isRequired
           />
           <Input
             id="password"
             label="Password"
             type="password"
-            minLength="8"
+            minLength={validationConsts.PASSWORD_INPUT_MIN_LENGTH}
+            maxLength={validationConsts.INPUT_MAX_LENGTH}
+            isRequired
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

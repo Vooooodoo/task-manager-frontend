@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import RouterLink from '../RouterLink';
 import Input from '../Input';
+import * as validationConsts from '../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,9 +51,11 @@ export default function SignUp() {
                 id="firstName"
                 type="text"
                 label="First Name"
-                minLength="2"
-                pattern="^[a-zA-Z\s\-]+$"
+                minLength={validationConsts.INPUT_MIN_LENGTH}
+                maxLength={validationConsts.INPUT_MAX_LENGTH}
+                pattern={validationConsts.NAME_INPUT_PATTERN}
                 isFocus
+                isRequired
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -60,8 +63,10 @@ export default function SignUp() {
                 id="lastName"
                 type="text"
                 label="Last Name"
-                minLength="2"
-                pattern="^[a-zA-Z\s\-]+$"
+                minLength={validationConsts.INPUT_MIN_LENGTH}
+                maxLength={validationConsts.INPUT_MAX_LENGTH}
+                pattern={validationConsts.NAME_INPUT_PATTERN}
+                isRequired
               />
             </Grid>
             <Grid item xs={12}>
@@ -69,7 +74,9 @@ export default function SignUp() {
                 id="email"
                 type="email"
                 label="Email Address"
-                minLength="2"
+                minLength={validationConsts.INPUT_MIN_LENGTH}
+                maxLength={validationConsts.INPUT_MAX_LENGTH}
+                isRequired
               />
             </Grid>
             <Grid item xs={12}>
@@ -77,7 +84,9 @@ export default function SignUp() {
                 id="password"
                 label="Password"
                 type="password"
-                minLength="8"
+                minLength={validationConsts.PASSWORD_INPUT_MIN_LENGTH}
+                maxLength={validationConsts.INPUT_MAX_LENGTH}
+                isRequired
               />
             </Grid>
           </Grid>
