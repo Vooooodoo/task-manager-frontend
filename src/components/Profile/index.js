@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -29,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Profile({ allUsers }) {
+function Profile() {
   const classes = useStyles();
+  const allUsers = useSelector((state) => state.users.allUsers);
   const authorizedUser = allUsers.find((item) => item.id === 1);
 
   return (
@@ -106,8 +107,4 @@ function Profile({ allUsers }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  allUsers: state.users.allUsers,
-});
-
-export default connect(mapStateToProps)(Profile);
+export default Profile;

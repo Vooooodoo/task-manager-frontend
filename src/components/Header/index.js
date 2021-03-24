@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -43,10 +43,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header({ isLoggedIn, onSetIsLoggedIn }) {
+function Header() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -116,7 +118,7 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
                   Profile
                 </Link>
               </MenuItem>
-              <MenuItem onClick={() => onSetIsLoggedIn(false)}>
+              <MenuItem onClick={() => dispatch(setIsLoggedIn(false))}>
                 Sign Out
               </MenuItem>
             </Menu>
@@ -127,12 +129,4 @@ function Header({ isLoggedIn, onSetIsLoggedIn }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  isLoggedIn: state.auth.isLoggedIn,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSetIsLoggedIn: (isLoggedIn) => dispatch(setIsLoggedIn(isLoggedIn)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
