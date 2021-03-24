@@ -9,7 +9,12 @@ import Footer from '../Footer';
 
 // добавим кастомную переменную в глобальный объект theme
 const theme = createMuiTheme({
-  whiteColor: 'white',
+  mainContainerMarginTop: '64px',
+  customHover: {
+    cursor: 'pointer',
+    opacity: '.8',
+  },
+  customTransition: '.2s linear',
 });
 
 function App() {

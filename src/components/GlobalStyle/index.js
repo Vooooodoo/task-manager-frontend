@@ -4,7 +4,6 @@ const GlobalStyle = createGlobalStyle`
   html {
     min-width: 320px;
     font-family: 'Roboto', Arial, sans-serif;
-    color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;

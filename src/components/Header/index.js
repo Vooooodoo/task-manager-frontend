@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   whiteColor: {
-    color: theme.whiteColor,
+    color: 'white',
   },
 }));
 
