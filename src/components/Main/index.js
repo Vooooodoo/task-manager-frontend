@@ -12,20 +12,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginBottom: theme.spacing(3),
   },
-  board: {
-    backgroundColor: theme.palette.secondary.main,
-    backgroundClip: 'content-box',
-    minHeight: '200px',
-    borderRadius: '8px',
-    transition: theme.customTransition,
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.dark,
-      cursor: 'pointer',
-    },
-  },
-  boardTitle: {
-    color: 'white',
-    margin: theme.spacing(2, 0, 0, 2),
+  boardsList: {
+    listStyle: 'none',
+    padding: '0',
   },
 }));
 
@@ -60,7 +49,7 @@ function Main() {
         <Typography className={classes.title} component="h1" variant="h2">
           Boards
         </Typography>
-        <Grid container spacing={4}>
+        <Grid className={classes.boardsList} container component="ul" spacing={4}>
           {boards.map((board) => (
             <BoardCard id={board.id} name={board.name} />
           ))}

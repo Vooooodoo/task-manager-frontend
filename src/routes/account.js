@@ -8,7 +8,7 @@ const accountRoutes = [
     component: Main,
   },
   {
-    path: '/board',
+    path: '/board/:id',
     component: Board,
   },
   {

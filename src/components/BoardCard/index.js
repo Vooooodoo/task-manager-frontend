@@ -24,7 +24,7 @@ function BoardCard({ id, name }) {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.board} item key={id} xs={12} sm={6} md={4}>
+    <Grid className={classes.board} component="li" item key={id} xs={12} sm={6} md={4}>
       <Typography className={classes.title} component="h2" variant="h5">
         {name}
       </Typography>
