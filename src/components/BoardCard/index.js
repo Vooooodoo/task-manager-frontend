@@ -36,7 +36,6 @@ function BoardCard({ id, name }) {
       className={classes.board}
       component="li"
       item
-      key={id}
       xs={12}
       sm={6}
       md={4}

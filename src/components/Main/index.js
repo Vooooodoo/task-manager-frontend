@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import BoardCard from '../BoardCard';
+import AddBoardCard from '../AddBoardCard';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -49,10 +50,16 @@ function Main() {
         <Typography className={classes.title} component="h1" variant="h2">
           Boards
         </Typography>
-        <Grid className={classes.boardsList} container component="ul" spacing={4}>
+        <Grid
+          className={classes.boardsList}
+          container
+          component="ul"
+          spacing={4}
+        >
           {boards.map((board) => (
-            <BoardCard id={board.id} name={board.name} />
+            <BoardCard id={board.id} name={board.name} key={board.id} />
           ))}
+          <AddBoardCard key="0" />
         </Grid>
       </Container>
     </Container>
