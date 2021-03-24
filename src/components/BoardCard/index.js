@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     backgroundClip: 'content-box',
     minHeight: '200px',
-    borderRadius: '8px',
     transition: theme.customTransition,
     '&:hover': {
       backgroundColor: theme.palette.secondary.dark,
