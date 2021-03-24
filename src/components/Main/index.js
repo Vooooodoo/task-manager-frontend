@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import BoardCard from '../BoardCard';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -61,18 +62,7 @@ function Main() {
         </Typography>
         <Grid container spacing={4}>
           {boards.map((board) => (
-            <Grid
-              className={classes.board}
-              item
-              key={board.id}
-              xs={12}
-              sm={6}
-              md={4}
-            >
-              <Typography className={classes.boardTitle} component="h2" variant="h5">
-                {board.name}
-              </Typography>
-            </Grid>
+            <BoardCard id={board.id} name={board.name} />
           ))}
         </Grid>
       </Container>

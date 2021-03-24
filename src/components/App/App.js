@@ -7,7 +7,7 @@ import Header from '../Header';
 import Router from '../../routes';
 import Footer from '../Footer';
 
-// добавим кастомную переменную в глобальный объект theme
+// добавим кастомные переменные в глобальный объект theme
 const theme = createMuiTheme({
   mainContainerMarginTop: '64px',
   customHover: {
