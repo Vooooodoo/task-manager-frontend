@@ -22,11 +22,13 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     padding: '0',
   },
-  createBoardInput: {
-    margin: theme.spacing(2),
+  createBoardPopup: {
+    padding: theme.spacing(2),
+    maxWidth: theme.spacing(30),
+    boxSizing: 'border-box',
   },
-  createBoardConfrimBtn: {
-    margin: theme.spacing(2),
+  createBoardInput: {
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -71,6 +73,7 @@ function Main() {
               vertical: 'center',
               horizontal: 'center',
             }}
+            PaperProps={{ className: classes.createBoardPopup }}
           >
             <TextField
               name="boardName"
@@ -78,18 +81,21 @@ function Main() {
               type="text"
               autoFocus
               inputProps={{
-                maxLength: 5,
+                maxLength: 20,
                 minLength: 2,
               }}
               variant="outlined"
               color="secondary"
               placeholder="Add board title"
+              size="small"
+              fullWidth
             />
             <Button
               className={classes.createBoardConfrimBtn}
               type="button"
               variant="contained"
               color="secondary"
+              fullWidth
             >
               Create Board
             </Button>
