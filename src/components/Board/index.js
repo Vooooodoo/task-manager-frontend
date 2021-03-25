@@ -28,8 +28,8 @@ function Board() {
   const boardColumns = board.columns;
 
   return (
-    <Container className={classes.main} component="main" maxWidth="false">
-      <Container component="section" maxWidth="false" disableGutters>
+    <Container className={classes.main} component="main" maxWidth={false}>
+      <Container component="section" maxWidth={false} disableGutters>
         <Typography className={classes.title} component="h1" variant="h4">
           {board.name}
         </Typography>
