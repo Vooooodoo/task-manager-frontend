@@ -50,13 +50,8 @@ function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleMenu = (evt) => setAnchorEl(evt.currentTarget);
+  const handleClose = () => setAnchorEl(null);
 
   return (
     <AppBar position="static">
