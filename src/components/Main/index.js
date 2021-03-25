@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import BoardCard from '../BoardCard';
 import AddBoardCard from '../AddBoardCard';
+// import { setBoards } from '../../store/boards';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -21,28 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Main() {
   const classes = useStyles();
-  const boards = [
-    {
-      id: 1,
-      name: 'One',
-    },
-    {
-      id: 2,
-      name: 'Two',
-    },
-    {
-      id: 3,
-      name: 'Three',
-    },
-    {
-      id: 4,
-      name: 'Four',
-    },
-    {
-      id: 5,
-      name: 'Five',
-    },
-  ];
+  const boards = useSelector((state) => state.boards.allBoards);
+  // const dispatch = useDispatch(); не забудь этот импортнуть хук
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
