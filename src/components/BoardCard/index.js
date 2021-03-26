@@ -19,14 +19,21 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: 'white',
-    margin: theme.spacing(2, 0, 0, 2),
+    margin: theme.spacing(2),
     paddingTop: theme.spacing(2),
+    overflow: 'hidden',
   },
   routerLink: {
+    position: 'relative',
     display: 'block',
     textDecoration: 'none',
     height: '100%',
     marginTop: theme.spacing(-2),
+  },
+  deleteBtn: {
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
   },
   deleteIcon: {
     color: theme.iconColor,
@@ -42,10 +49,8 @@ function BoardCard({ id, name }) {
         <Typography className={classes.title} component="h2" variant="h5">
           {name}
         </Typography>
-        <IconButton>
-          <Link className={classes.routerHomeLink} to="/main">
-            <DeleteIcon className={classes.deleteIcon} />
-          </Link>
+        <IconButton className={classes.deleteBtn}>
+          <DeleteIcon className={classes.deleteIcon} />
         </IconButton>
       </Link>
     </Grid>
