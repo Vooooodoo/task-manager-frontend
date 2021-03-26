@@ -4,6 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Popover from '@material-ui/core/Popover';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,19 +32,30 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     marginTop: theme.spacing(-2),
   },
-  deleteBtn: {
+  delBoardBtn: {
     position: 'absolute',
     top: theme.spacing(3),
     right: theme.spacing(2),
   },
-  deleteIcon: {
+  delBoardIcon: {
     color: theme.iconColor,
+  },
+  delBoardPopup: {
+    padding: theme.spacing(2),
+  },
+  delBoardPopupTitle: {
+    marginBottom: theme.spacing(1),
   },
 }));
 
 function BoardCard({ id, name }) {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const popupId = open ? 'simple-popover' : undefined;
 
+  const handleDelBtnClick = (evt) => setAnchorEl(evt.currentTarget);
+  const handlePopoverClose = () => setAnchorEl(null);
   const deleteBoard = () => {
     console.log('Hello!');
   };
@@ -54,9 +67,37 @@ function BoardCard({ id, name }) {
           {name}
         </Typography>
       </Link>
-      <IconButton className={classes.deleteBtn} onClick={deleteBoard}>
-        <DeleteIcon className={classes.deleteIcon} />
+      <IconButton className={classes.delBoardBtn} onClick={handleDelBtnClick}>
+        <DeleteIcon className={classes.delBoardIcon} />
       </IconButton>
+      <Popover
+        id={popupId}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handlePopoverClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 8,
+          horizontal: 145,
+        }}
+        PaperProps={{ className: classes.delBoardPopup }}
+      >
+        <Typography className={classes.delBoardPopupTitle} component="h3" variant="h6">
+          Are you sure?
+        </Typography>
+        <Button
+          type="button"
+          variant="contained"
+          color="secondary"
+          fullWidth
+          onClick={deleteBoard}
+        >
+          Yes!
+        </Button>
+      </Popover>
     </Grid>
   );
 }
