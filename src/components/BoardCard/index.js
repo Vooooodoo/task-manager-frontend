@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   board: {
+    position: 'relative',
     backgroundColor: theme.palette.secondary.main,
     backgroundClip: 'content-box',
     minHeight: theme.spacing(25),
@@ -24,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   routerLink: {
-    position: 'relative',
     display: 'block',
     textDecoration: 'none',
     height: '100%',
@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
   deleteBtn: {
     position: 'absolute',
-    top: theme.spacing(1),
-    right: theme.spacing(1),
+    top: theme.spacing(3),
+    right: theme.spacing(2),
   },
   deleteIcon: {
     color: theme.iconColor,
@@ -43,16 +43,20 @@ const useStyles = makeStyles((theme) => ({
 function BoardCard({ id, name }) {
   const classes = useStyles();
 
+  const deleteBoard = () => {
+    console.log('Hello!');
+  };
+
   return (
     <Grid className={classes.board} component="li" item xs={12} sm={6} md={4}>
       <Link className={classes.routerLink} to={`/board/${id}`}>
         <Typography className={classes.title} component="h2" variant="h5">
           {name}
         </Typography>
-        <IconButton className={classes.deleteBtn}>
-          <DeleteIcon className={classes.deleteIcon} />
-        </IconButton>
       </Link>
+      <IconButton className={classes.deleteBtn} onClick={deleteBoard}>
+        <DeleteIcon className={classes.deleteIcon} />
+      </IconButton>
     </Grid>
   );
 }
