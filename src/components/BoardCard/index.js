@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,6 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { setBoards } from '../../store/boards';
 
 const useStyles = makeStyles((theme) => ({
   board: {
@@ -44,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   delBoardPopupTitle: {
+    marginTop: theme.spacing(-0.7),
     marginBottom: theme.spacing(1),
   },
 }));
@@ -53,11 +56,17 @@ function BoardCard({ id, name }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const popupId = open ? 'simple-popover' : undefined;
+  const boards = useSelector((state) => state.boards.allBoards);
+  const dispatch = useDispatch();
 
   const handleDelBtnClick = (evt) => setAnchorEl(evt.currentTarget);
   const handlePopoverClose = () => setAnchorEl(null);
-  const deleteBoard = () => {
-    console.log('Hello!');
+
+  const deleteBoard = (boardId) => {
+    const newBoards = boards.filter((board) => board.id !== boardId);
+
+    dispatch(setBoards(newBoards));
+    handlePopoverClose();
   };
 
   return (
@@ -85,7 +94,11 @@ function BoardCard({ id, name }) {
         }}
         PaperProps={{ className: classes.delBoardPopup }}
       >
-        <Typography className={classes.delBoardPopupTitle} component="h3" variant="h6">
+        <Typography
+          className={classes.delBoardPopupTitle}
+          component="h3"
+          variant="h6"
+        >
           Are you sure?
         </Typography>
         <Button
@@ -93,7 +106,7 @@ function BoardCard({ id, name }) {
           variant="contained"
           color="secondary"
           fullWidth
-          onClick={deleteBoard}
+          onClick={() => deleteBoard(id)}
         >
           Yes!
         </Button>
