@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  whiteColor: {
-    color: 'white',
+  homeIcon: {
+    color: theme.iconColor,
   },
 }));
 
@@ -63,7 +63,7 @@ function Header() {
           aria-label="menu"
         >
           <Link className={classes.routerHomeLink} to="/main">
-            <HomeIcon className={classes.whiteColor} />
+            <HomeIcon className={classes.homeIcon} />
           </Link>
         </IconButton>
         <Typography variant="h6" className={classes.title}>

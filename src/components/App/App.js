@@ -15,6 +15,7 @@ const theme = createMuiTheme({
     opacity: '.8',
   },
   customTransition: '.2s linear',
+  iconColor: 'white',
 });
 
 function App() {
