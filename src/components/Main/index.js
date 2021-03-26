@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import BoardCard from '../BoardCard';
 import AddBoardCard from '../AddBoardCard';
-// import { setBoards } from '../../store/boards';
+import { setBoards } from '../../store/boards';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     padding: '0',
   },
-  createBoardPopup: {
+  newBoardPopup: {
     padding: theme.spacing(2),
     maxWidth: theme.spacing(30),
     boxSizing: 'border-box',
   },
-  createBoardInput: {
+  newBoardInput: {
     marginBottom: theme.spacing(2),
   },
 }));
@@ -35,14 +35,32 @@ const useStyles = makeStyles((theme) => ({
 function Main() {
   const classes = useStyles();
   const boards = useSelector((state) => state.boards.allBoards);
-  // const dispatch = useDispatch(); не забудь этот импортнуть хук
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [newBoardInputValue, setNewBoardInputValue] = React.useState('');
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   const handleAddBtnClick = (evt) => setAnchorEl(evt.currentTarget);
   const handlePopoverClose = () => setAnchorEl(null);
+  const handleNewBoardInputChange = (evt) => setNewBoardInputValue(evt.target.value);
+  const handleNewBoardBtnClick = () => {
+    const trimmedInputValue = newBoardInputValue.trim();
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+    if (trimmedInputValue) {
+      const boardId = Date.now();
+      const newBoard = {
+        id: boardId,
+        name: newBoardInputValue,
+        columns: [],
+      };
+      const newBoards = [newBoard, ...boards];
+
+      dispatch(setBoards(newBoards));
+      handlePopoverClose();
+      setNewBoardInputValue('');
+    }
+  };
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
@@ -73,16 +91,15 @@ function Main() {
               vertical: 'center',
               horizontal: 'center',
             }}
-            PaperProps={{ className: classes.createBoardPopup }}
+            PaperProps={{ className: classes.newBoardPopup }}
           >
             <TextField
               name="boardName"
-              className={classes.createBoardInput}
+              className={classes.newBoardInput}
               type="text"
               autoFocus
               inputProps={{
                 maxLength: 20,
-                minLength: 2,
               }}
               variant="outlined"
               color="secondary"
@@ -90,13 +107,14 @@ function Main() {
               size="small"
               autoComplete="off"
               fullWidth
+              onChange={handleNewBoardInputChange}
             />
             <Button
-              className={classes.createBoardConfrimBtn}
               type="button"
               variant="contained"
               color="secondary"
               fullWidth
+              onClick={handleNewBoardBtnClick}
             >
               Create Board
             </Button>
