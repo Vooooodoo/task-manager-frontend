@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BoardCard from '../BoardCard';
 import AddBoardCard from '../AddBoardCard';
 import { setBoards } from '../../store/boards';
+import * as validationConsts from '../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -44,6 +45,7 @@ function Main() {
   const handleAddBtnClick = (evt) => setAnchorEl(evt.currentTarget);
   const handlePopoverClose = () => setAnchorEl(null);
   const handleNewBoardInputChange = (evt) => setNewBoardInputValue(evt.target.value);
+
   const handleNewBoardBtnClick = () => {
     const trimmedInputValue = newBoardInputValue.trim();
 
@@ -99,7 +101,7 @@ function Main() {
               type="text"
               autoFocus
               inputProps={{
-                maxLength: 20,
+                maxLength: validationConsts.BOARD_NAME_MAX_LENGTH,
               }}
               variant="outlined"
               color="secondary"
