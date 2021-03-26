@@ -18,14 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BoardCard({ id, handleAddBtnClick }) {
+function BoardCard({ handleAddBtnClick }) {
   const classes = useStyles();
 
   return (
     <Grid className={classes.board} component="li" item xs={12} sm={6} md={4}>
       <Button
         className={classes.addButton}
-        aria-describedby={id}
         onClick={handleAddBtnClick}
       >
         <AddIcon fontSize="large" />

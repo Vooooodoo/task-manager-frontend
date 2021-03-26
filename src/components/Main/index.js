@@ -59,7 +59,7 @@ function Main() {
           {boards.map((board) => (
             <BoardCard id={board.id} name={board.name} key={board.id} />
           ))}
-          <AddBoardCard key="0" id={id} handleAddBtnClick={handleAddBtnClick} />
+          <AddBoardCard key="0" handleAddBtnClick={handleAddBtnClick} />
           <Popover
             id={id}
             open={open}
@@ -88,6 +88,7 @@ function Main() {
               color="secondary"
               placeholder="Add board title"
               size="small"
+              autoComplete="off"
               fullWidth
             />
             <Button
