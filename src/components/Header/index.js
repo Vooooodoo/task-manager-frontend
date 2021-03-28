@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -11,37 +10,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { setIsLoggedIn } from '../../store/auth';
-
-// стоковый способ стилизации Material UI компонентов
-// единый объект с классами в котором описываем стили конкретного компонента
-// также есть доступ к глобальному объекту theme
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  homeButton: {
-    marginRight: theme.spacing(1),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  routerMenuLink: {
-    textDecoration: 'none',
-    color: '#000000DE',
-    width: '100%',
-    padding: '6px 16px',
-  },
-  routerMenuItem: {
-    padding: '0',
-  },
-  routerHomeLink: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  homeIcon: {
-    color: theme.iconColor,
-  },
-}));
+import useStyles from './style';
 
 function Header() {
   const classes = useStyles();

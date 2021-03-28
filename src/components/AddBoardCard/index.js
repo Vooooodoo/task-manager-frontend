@@ -2,23 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './style';
 
-const useStyles = makeStyles((theme) => ({
-  board: {
-    backgroundColor: 'grey',
-    backgroundClip: 'content-box',
-    minHeight: theme.spacing(25),
-    transition: theme.customTransition,
-    '&:hover': theme.customHover,
-  },
-  addButton: {
-    width: '100%',
-    height: '100%',
-  },
-}));
-
-function BoardCard({ handleAddBtnClick }) {
+function AddBoardCard({ handleAddBtnClick }) {
   const classes = useStyles();
 
   return (
@@ -33,4 +19,4 @@ function BoardCard({ handleAddBtnClick }) {
   );
 }
 
-export default BoardCard;
+export default AddBoardCard;

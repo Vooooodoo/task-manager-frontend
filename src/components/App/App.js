@@ -1,22 +1,12 @@
 import React from 'react';
 // глобальный провайдер объекта theme из библиотеки Material UI,
 // таким образом можно добавить кастомные переменные в этот объект или переопределить дефолтные
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './style';
 import GlobalStyle from '../GlobalStyle';
 import Header from '../Header';
 import Router from '../../routes';
 import Footer from '../Footer';
-
-// добавим кастомные переменные в глобальный объект theme
-const theme = createMuiTheme({
-  mainContainerMarginTop: '64px',
-  customHover: {
-    cursor: 'pointer',
-    opacity: '.8',
-  },
-  customTransition: '.2s linear',
-  iconColor: 'white',
-});
 
 function App() {
   return (

@@ -4,21 +4,8 @@ import { useSelector } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import BoardCard from '../BoardCard';
-
-const useStyles = makeStyles((theme) => ({
-  main: {
-    marginTop: theme.mainContainerMarginTop,
-  },
-  title: {
-    marginBottom: theme.spacing(3),
-  },
-  boardsList: {
-    listStyle: 'none',
-    padding: '0',
-  },
-}));
+import useStyles from './style';
 
 function Board() {
   const classes = useStyles();

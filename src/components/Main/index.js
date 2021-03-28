@@ -6,32 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Popover from '@material-ui/core/Popover';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import BoardCard from '../BoardCard';
 import AddBoardCard from '../AddBoardCard';
 import { setBoards } from '../../store/boards';
 import * as validationConsts from '../../utils/constants';
-
-const useStyles = makeStyles((theme) => ({
-  main: {
-    marginTop: theme.mainContainerMarginTop,
-  },
-  title: {
-    marginBottom: theme.spacing(3),
-  },
-  boardsList: {
-    listStyle: 'none',
-    padding: '0',
-  },
-  newBoardPopup: {
-    padding: theme.spacing(2),
-    maxWidth: theme.spacing(30),
-    boxSizing: 'border-box',
-  },
-  newBoardInput: {
-    marginBottom: theme.spacing(2),
-  },
-}));
+import useStyles from './style';
 
 function Main() {
   const classes = useStyles();

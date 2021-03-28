@@ -1,19 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-
-const StyledFooter = styled.footer`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 444px;
-  min-height: 65px;
-  padding: 64px;
-  box-sizing: border-box;
-  margin: 0 auto;
-`;
+import StyledFooter from './style';
 
 function Footer() {
   return (
