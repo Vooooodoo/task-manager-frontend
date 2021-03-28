@@ -11,14 +11,6 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     padding: '0',
   },
-  createBoardPopup: {
-    padding: theme.spacing(2),
-    maxWidth: theme.spacing(30),
-    boxSizing: 'border-box',
-  },
-  createBoardInput: {
-    marginBottom: theme.spacing(2),
-  },
 }));
 
 export default useStyles;
