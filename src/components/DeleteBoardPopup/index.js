@@ -7,7 +7,7 @@ import { setBoards } from '../../store/boards';
 import useStyles from './style';
 
 function DeleteBoardPopup({
-  id, isOpen, anchorEl, onClose, delBoardId,
+  id, delBoardId, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
   const boards = useSelector((state) => state.boards.allBoards);
