@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  board: {
+  boardCard: {
     position: 'relative',
     backgroundColor: theme.palette.secondary.main,
     backgroundClip: 'content-box',

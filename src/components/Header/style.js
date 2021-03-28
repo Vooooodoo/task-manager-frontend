@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  homeButton: {
+  homeBtn: {
     marginRight: theme.spacing(1),
   },
   title: {

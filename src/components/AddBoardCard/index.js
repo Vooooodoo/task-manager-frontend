@@ -8,9 +8,9 @@ function AddBoardCard({ handleAddBtnClick }) {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.board} component="li" item xs={12} sm={6} md={4}>
+    <Grid className={classes.addBoardCard} component="li" item xs={12} sm={6} md={4}>
       <Button
-        className={classes.addButton}
+        className={classes.addBtn}
         onClick={handleAddBtnClick}
       >
         <AddIcon fontSize="large" />

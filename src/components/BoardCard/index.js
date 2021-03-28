@@ -29,7 +29,7 @@ function BoardCard({ id, name }) {
   };
 
   return (
-    <Grid className={classes.board} component="li" item xs={12} sm={6} md={4}>
+    <Grid className={classes.boardCard} component="li" item xs={12} sm={6} md={4}>
       <Link className={classes.routerLink} to={`/board/${id}`}>
         <Typography className={classes.title} component="h2" variant="h5">
           {name}

@@ -27,7 +27,7 @@ function Header() {
       <Toolbar>
         <IconButton
           edge="start"
-          className={classes.homeButton}
+          className={classes.homeBtn}
           color="inherit"
           aria-label="menu"
         >
