@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   delBoardPopupTitle: {
+    textAlign: 'center',
     marginTop: theme.spacing(-0.7),
     marginBottom: theme.spacing(1),
   },

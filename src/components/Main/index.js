@@ -17,29 +17,29 @@ function Main() {
   const boards = useSelector((state) => state.boards.allBoards);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [newBoardInputValue, setNewBoardInputValue] = React.useState('');
+  const [createBoardInputValue, setCreateBoardInputValue] = React.useState('');
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
   const handleAddBtnClick = (evt) => setAnchorEl(evt.currentTarget);
   const handlePopoverClose = () => setAnchorEl(null);
-  const handleNewBoardInputChange = (evt) => setNewBoardInputValue(evt.target.value);
+  const handleCreateBoardInputChange = (evt) => setCreateBoardInputValue(evt.target.value);
 
-  const handleNewBoardBtnClick = () => {
-    const trimmedInputValue = newBoardInputValue.trim();
+  const createBoard = () => {
+    const trimmedInputValue = createBoardInputValue.trim();
 
     if (trimmedInputValue) {
       const boardId = Date.now();
       const newBoard = {
         id: boardId,
-        name: newBoardInputValue,
+        name: createBoardInputValue,
         columns: [],
       };
       const newBoards = [newBoard, ...boards];
 
       dispatch(setBoards(newBoards));
       handlePopoverClose();
-      setNewBoardInputValue('');
+      setCreateBoardInputValue('');
     }
   };
 
@@ -72,11 +72,11 @@ function Main() {
               vertical: 'center',
               horizontal: 'center',
             }}
-            PaperProps={{ className: classes.newBoardPopup }}
+            PaperProps={{ className: classes.createBoardPopup }}
           >
             <TextField
               name="boardName"
-              className={classes.newBoardInput}
+              className={classes.createBoardInput}
               type="text"
               autoFocus
               inputProps={{
@@ -88,14 +88,14 @@ function Main() {
               size="small"
               autoComplete="off"
               fullWidth
-              onChange={handleNewBoardInputChange}
+              onChange={handleCreateBoardInputChange}
             />
             <Button
               type="button"
               variant="contained"
               color="secondary"
               fullWidth
-              onClick={handleNewBoardBtnClick}
+              onClick={createBoard}
             >
               Create Board
             </Button>

@@ -67,7 +67,7 @@ function BoardCard({ id, name }) {
           fullWidth
           onClick={() => deleteBoard(id)}
         >
-          Yes!
+          Delete board
         </Button>
       </Popover>
     </Grid>

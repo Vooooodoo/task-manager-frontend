@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     padding: '0',
   },
-  newBoardPopup: {
+  createBoardPopup: {
     padding: theme.spacing(2),
     maxWidth: theme.spacing(30),
     boxSizing: 'border-box',
   },
-  newBoardInput: {
+  createBoardInput: {
     marginBottom: theme.spacing(2),
   },
 }));
