@@ -32,14 +32,6 @@ const useStyles = makeStyles((theme) => ({
   delBoardIcon: {
     color: theme.iconColor,
   },
-  delBoardPopup: {
-    padding: theme.spacing(2),
-  },
-  delBoardPopupTitle: {
-    textAlign: 'center',
-    marginTop: theme.spacing(-0.7),
-    marginBottom: theme.spacing(1),
-  },
 }));
 
 export default useStyles;

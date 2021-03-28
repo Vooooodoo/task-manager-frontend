@@ -1,75 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Popover from '@material-ui/core/Popover';
-import Button from '@material-ui/core/Button';
-import { setBoards } from '../../store/boards';
+import DeleteBoardPopup from '../DeleteBoardPopup';
 import useStyles from './style';
 
 function BoardCard({ id, name }) {
   const classes = useStyles();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const popupId = open ? 'simple-popover' : undefined;
-  const boards = useSelector((state) => state.boards.allBoards);
-  const dispatch = useDispatch();
+  const isDeleteBoardPopupOpen = Boolean(anchorEl);
+  const deleteBoardPopupId = isDeleteBoardPopupOpen
+    ? 'simple-popover'
+    : undefined;
 
-  const handleDelBtnClick = (evt) => setAnchorEl(evt.currentTarget);
-  const handlePopoverClose = () => setAnchorEl(null);
-
-  const deleteBoard = (boardId) => {
-    const newBoards = boards.filter((board) => board.id !== boardId);
-
-    dispatch(setBoards(newBoards));
-    handlePopoverClose();
-  };
+  const openDeleteBoardPopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeDeleteBoardPopup = () => setAnchorEl(null);
 
   return (
-    <Grid className={classes.boardCard} component="li" item xs={12} sm={6} md={4}>
+    <Grid
+      className={classes.boardCard}
+      component="li"
+      item
+      xs={12}
+      sm={6}
+      md={4}
+    >
       <Link className={classes.routerLink} to={`/board/${id}`}>
         <Typography className={classes.title} component="h2" variant="h5">
           {name}
         </Typography>
       </Link>
-      <IconButton className={classes.delBoardBtn} onClick={handleDelBtnClick}>
+      <IconButton
+        className={classes.delBoardBtn}
+        onClick={openDeleteBoardPopup}
+      >
         <DeleteIcon className={classes.delBoardIcon} />
       </IconButton>
-      <Popover
-        id={popupId}
-        open={open}
+      <DeleteBoardPopup
+        id={deleteBoardPopupId}
+        delBoardId={id}
+        isOpen={isDeleteBoardPopupOpen}
         anchorEl={anchorEl}
-        onClose={handlePopoverClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 8,
-          horizontal: 145,
-        }}
-        PaperProps={{ className: classes.delBoardPopup }}
-      >
-        <Typography
-          className={classes.delBoardPopupTitle}
-          component="h3"
-          variant="h6"
-        >
-          Are you sure?
-        </Typography>
-        <Button
-          type="button"
-          variant="contained"
-          color="secondary"
-          fullWidth
-          onClick={() => deleteBoard(id)}
-        >
-          Delete board
-        </Button>
-      </Popover>
+        onClose={closeDeleteBoardPopup}
+      />
     </Grid>
   );
 }

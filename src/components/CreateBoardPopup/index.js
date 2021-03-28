@@ -8,7 +8,7 @@ import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
 function CreateBoardPopup({
-  onClose, id, isOpen, anchorEl,
+  id, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
   const boards = useSelector((state) => state.boards.allBoards);
