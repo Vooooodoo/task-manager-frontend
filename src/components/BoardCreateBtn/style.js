@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  boardCreateCard: {
+  container: {
     backgroundColor: 'grey',
     backgroundClip: 'content-box',
     minHeight: theme.spacing(25),

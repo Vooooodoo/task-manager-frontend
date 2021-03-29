@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import BoardCard from '../BoardCard';
-import BoardCreateCard from '../BoardCreateCard';
+import BoardCreateBtn from '../BoardCreateBtn';
 import useStyles from './style';
 
 function Main() {
@@ -26,7 +26,7 @@ function Main() {
           {boards.map((board) => (
             <BoardCard id={board.id} key={board.id} name={board.name} />
           ))}
-          <BoardCreateCard key="0" />
+          <BoardCreateBtn key="0" />
         </Grid>
       </Container>
     </Container>

@@ -2,10 +2,10 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
-import BoardCreatePopup from '../BoardCreatePopup';
+import TaskListCreatePopup from '../TaskListCreatePopup';
 import useStyles from './style';
 
-function BoardCreateCard() {
+function BoardCreateBtn() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardCreatePopupOpen = Boolean(anchorEl);
@@ -18,7 +18,7 @@ function BoardCreateCard() {
 
   return (
     <Grid
-      className={classes.boardCreateCard}
+      className={classes.container}
       component="li"
       item
       xs={12}
@@ -28,7 +28,7 @@ function BoardCreateCard() {
       <Button className={classes.createBtn} onClick={openBoardCreatePopup}>
         <AddIcon fontSize="large" />
       </Button>
-      <BoardCreatePopup
+      <TaskListCreatePopup
         id={boardCreatePopupId}
         isOpen={isBoardCreatePopupOpen}
         anchorEl={anchorEl}
@@ -38,4 +38,4 @@ function BoardCreateCard() {
   );
 }
 
-export default BoardCreateCard;
+export default BoardCreateBtn;

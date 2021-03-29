@@ -6,8 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import BoardCard from '../BoardCard';
 import BoardNameEditPopup from '../BoardNameEditPopup';
+import TaskListCreateBtn from '../TaskListCreateBtn';
 import useStyles from './style';
 
 function Board() {
@@ -16,7 +16,7 @@ function Board() {
   const allBoards = useSelector((state) => state.boards.allBoards);
   const boardId = Number(routParams.id);
   const board = allBoards.find((item) => item.id === boardId);
-  const boardColumns = board.columns;
+  // const boardColumns = board.columns;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);
   const boardNameEditPopupId = isBoardNameEditPopupOpen
@@ -45,11 +45,21 @@ function Board() {
           anchorEl={anchorEl}
           onClose={closeBoardNameEditPopup}
         />
-        <Grid className={classes.boardsList} container spacing={2}>
-          {boardColumns.map((column) => (
-            <BoardCard id={column.id} name={column.name} key={column.id} />
-          ))}
-          {/* <AddBoardColumn key="0" /> */}
+        <Grid
+          className={classes.boardsList}
+          component="ul"
+          container
+          spacing={2}
+        >
+          {/* {boardColumns.map((column) => (
+            <TaskList id={column.id} name={column.name} key={column.id} />
+          ))} */}
+          <TaskListCreateBtn key="0" />
+          <TaskListCreateBtn key="0" />
+          <TaskListCreateBtn key="0" />
+          <TaskListCreateBtn key="0" />
+          <TaskListCreateBtn key="0" />
+          <TaskListCreateBtn key="0" />
         </Grid>
       </Container>
     </Container>
