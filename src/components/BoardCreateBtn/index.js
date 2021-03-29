@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
-import TaskListCreatePopup from '../TaskListCreatePopup';
+import BoardCreatePopup from '../BoardCreatePopup';
 import useStyles from './style';
 
 function BoardCreateBtn() {
@@ -28,7 +28,7 @@ function BoardCreateBtn() {
       <Button className={classes.createBtn} onClick={openBoardCreatePopup}>
         <AddIcon fontSize="large" />
       </Button>
-      <TaskListCreatePopup
+      <BoardCreatePopup
         id={boardCreatePopupId}
         isOpen={isBoardCreatePopupOpen}
         anchorEl={anchorEl}
