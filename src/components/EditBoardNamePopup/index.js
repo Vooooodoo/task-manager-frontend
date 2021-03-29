@@ -7,8 +7,8 @@ import { setBoards } from '../../store/boards';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
-function CreateBoardPopup({
-  id, isOpen, anchorEl, onClose,
+function EditBoardNamePopup({
+  id, boardId, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
   const boards = useSelector((state) => state.boards.allBoards);
@@ -18,17 +18,18 @@ function CreateBoardPopup({
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const createBoard = () => {
+  const editBoardName = () => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const boardId = Date.now();
-      const newBoard = {
-        id: boardId,
-        name: inputValue,
-        columns: [],
-      };
-      const newBoards = [newBoard, ...boards];
+      const newBoards = boards.map((board) => {
+        if (board.id === boardId) {
+          // не мутируем объект внутри массива, а возвращаем новый
+          return { ...board, name: inputValue };
+        }
+
+        return board;
+      });
 
       dispatch(setBoards(newBoards));
       onClose();
@@ -50,10 +51,10 @@ function CreateBoardPopup({
         vertical: 'center',
         horizontal: 'center',
       }}
-      PaperProps={{ className: classes.paper }}
+      PaperProps={{ className: classes.createBoardPopup }}
     >
       <TextField
-        className={classes.input}
+        className={classes.createBoardInput}
         name="boardName"
         type="text"
         autoFocus
@@ -62,7 +63,7 @@ function CreateBoardPopup({
         }}
         variant="outlined"
         color="secondary"
-        placeholder="Add board title"
+        placeholder="Change board name"
         size="small"
         autoComplete="off"
         fullWidth
@@ -73,12 +74,12 @@ function CreateBoardPopup({
         variant="contained"
         color="secondary"
         fullWidth
-        onClick={createBoard}
+        onClick={editBoardName}
       >
-        Create Board
+        Change Name
       </Button>
     </Popover>
   );
 }
 
-export default CreateBoardPopup;
+export default EditBoardNamePopup;

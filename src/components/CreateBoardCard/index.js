@@ -18,14 +18,14 @@ function CreateBoardCard() {
 
   return (
     <Grid
-      className={classes.addBoardCard}
+      className={classes.createBoardCard}
       component="li"
       item
       xs={12}
       sm={6}
       md={4}
     >
-      <Button className={classes.addBtn} onClick={openCreateBoardPopup}>
+      <Button className={classes.createBtn} onClick={openCreateBoardPopup}>
         <AddIcon fontSize="large" />
       </Button>
       <CreateBoardPopup

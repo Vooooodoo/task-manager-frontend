@@ -5,12 +5,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.mainContainerMarginTop,
   },
   title: {
+    display: 'inline',
     marginBottom: theme.spacing(3),
   },
   boardsList: {
     listStyle: 'none',
     padding: '0',
   },
+  // editBoardNameBtn: {
+  //   display: 'inline',
+  // },
 }));
 
 export default useStyles;
