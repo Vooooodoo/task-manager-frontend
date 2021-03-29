@@ -13,15 +13,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  routerMenuLink: {
-    textDecoration: 'none',
-    color: '#000000DE',
-    width: '100%',
-    padding: '6px 16px',
-  },
-  routerMenuItem: {
-    padding: '0',
-  },
   routerHomeLink: {
     display: 'flex',
     alignItems: 'center',

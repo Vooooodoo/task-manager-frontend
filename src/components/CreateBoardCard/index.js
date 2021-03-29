@@ -7,7 +7,6 @@ import useStyles from './style';
 
 function CreateBoardCard() {
   const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isCreateBoardPopupOpen = Boolean(anchorEl);
   const createBoardPopupId = isCreateBoardPopupOpen

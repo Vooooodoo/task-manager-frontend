@@ -9,7 +9,6 @@ import useStyles from './style';
 
 function BoardCard({ id, name }) {
   const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isDeleteBoardPopupOpen = Boolean(anchorEl);
   const deleteBoardPopupId = isDeleteBoardPopupOpen
