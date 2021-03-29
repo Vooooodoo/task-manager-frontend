@@ -7,7 +7,7 @@ import { setBoards } from '../../store/boards';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
-function EditBoardNamePopup({
+function BoardNameEditPopup({
   id, boardId, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
@@ -63,7 +63,7 @@ function EditBoardNamePopup({
         }}
         variant="outlined"
         color="secondary"
-        placeholder="Change board name"
+        placeholder="Edit board name"
         size="small"
         autoComplete="off"
         fullWidth
@@ -76,10 +76,10 @@ function EditBoardNamePopup({
         fullWidth
         onClick={editBoardName}
       >
-        Change Name
+        Edit Name
       </Button>
     </Popover>
   );
 }
 
-export default EditBoardNamePopup;
+export default BoardNameEditPopup;

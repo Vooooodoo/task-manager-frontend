@@ -7,7 +7,7 @@ import { setBoards } from '../../store/boards';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
-function CreateBoardPopup({
+function BoardCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
@@ -81,4 +81,4 @@ function CreateBoardPopup({
   );
 }
 
-export default CreateBoardPopup;
+export default BoardCreatePopup;

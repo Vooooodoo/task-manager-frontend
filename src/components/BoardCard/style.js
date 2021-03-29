@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     marginTop: theme.spacing(-2),
   },
-  delBoardBtn: {
+  boardDelBtn: {
     position: 'absolute',
     top: theme.spacing(3),
     right: theme.spacing(2),
   },
-  delBoardIcon: {
+  boardDelIcon: {
     color: theme.iconColor,
   },
 }));

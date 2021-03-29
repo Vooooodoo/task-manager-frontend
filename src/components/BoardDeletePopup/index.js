@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import { setBoards } from '../../store/boards';
 import useStyles from './style';
 
-function DeleteBoardPopup({
+function BoardDeletePopup({
   id, delBoardId, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
@@ -53,4 +53,4 @@ function DeleteBoardPopup({
   );
 }
 
-export default DeleteBoardPopup;
+export default BoardDeletePopup;

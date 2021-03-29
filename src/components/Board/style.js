@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     padding: '0',
   },
-  // editBoardNameBtn: {
+  // boardNameEditBtn: {
   //   display: 'inline',
   // },
 }));

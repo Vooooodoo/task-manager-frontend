@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import BoardCard from '../BoardCard';
-import EditBoardNamePopup from '../EditBoardNamePopup';
+import BoardNameEditPopup from '../BoardNameEditPopup';
 import useStyles from './style';
 
 function Board() {
@@ -18,13 +18,13 @@ function Board() {
   const board = allBoards.find((item) => item.id === boardId);
   const boardColumns = board.columns;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const isEditBoardNamePopupOpen = Boolean(anchorEl);
-  const editBoardNamePopupId = isEditBoardNamePopupOpen
+  const isBoardNameEditPopupOpen = Boolean(anchorEl);
+  const boardNameEditPopupId = isBoardNameEditPopupOpen
     ? 'simple-popover'
     : undefined;
 
-  const openEditBoardNamePopup = (evt) => setAnchorEl(evt.currentTarget);
-  const closeEditBoardNamePopup = () => setAnchorEl(null);
+  const openBoardNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeBoardNameEditPopup = () => setAnchorEl(null);
 
   return (
     <Container className={classes.main} component="main" maxWidth={false}>
@@ -34,16 +34,16 @@ function Board() {
         </Typography>
         <IconButton
           className={classes.editBoardNameBtn}
-          onClick={openEditBoardNamePopup}
+          onClick={openBoardNameEditPopup}
         >
           <EditIcon />
         </IconButton>
-        <EditBoardNamePopup
-          id={editBoardNamePopupId}
+        <BoardNameEditPopup
+          id={boardNameEditPopupId}
           boardId={boardId}
-          isOpen={isEditBoardNamePopupOpen}
+          isOpen={isBoardNameEditPopupOpen}
           anchorEl={anchorEl}
-          onClose={closeEditBoardNamePopup}
+          onClose={closeBoardNameEditPopup}
         />
         <Grid className={classes.boardsList} container spacing={2}>
           {boardColumns.map((column) => (

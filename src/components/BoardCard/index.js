@@ -4,19 +4,19 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import DeleteBoardPopup from '../DeleteBoardPopup';
+import BoardDeletePopup from '../BoardDeletePopup';
 import useStyles from './style';
 
 function BoardCard({ id, name }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const isDeleteBoardPopupOpen = Boolean(anchorEl);
-  const deleteBoardPopupId = isDeleteBoardPopupOpen
+  const isBoardDeletePopupOpen = Boolean(anchorEl);
+  const boardDeletePopupId = isBoardDeletePopupOpen
     ? 'simple-popover'
     : undefined;
 
-  const openDeleteBoardPopup = (evt) => setAnchorEl(evt.currentTarget);
-  const closeDeleteBoardPopup = () => setAnchorEl(null);
+  const openBoardDeletePopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeBoardDeletePopup = () => setAnchorEl(null);
 
   return (
     <Grid
@@ -33,17 +33,17 @@ function BoardCard({ id, name }) {
         </Typography>
       </Link>
       <IconButton
-        className={classes.delBoardBtn}
-        onClick={openDeleteBoardPopup}
+        className={classes.boardDelBtn}
+        onClick={openBoardDeletePopup}
       >
-        <DeleteIcon className={classes.delBoardIcon} />
+        <DeleteIcon className={classes.boardDelIcon} />
       </IconButton>
-      <DeleteBoardPopup
-        id={deleteBoardPopupId}
+      <BoardDeletePopup
+        id={boardDeletePopupId}
         delBoardId={id}
-        isOpen={isDeleteBoardPopupOpen}
+        isOpen={isBoardDeletePopupOpen}
         anchorEl={anchorEl}
-        onClose={closeDeleteBoardPopup}
+        onClose={closeBoardDeletePopup}
       />
     </Grid>
   );
