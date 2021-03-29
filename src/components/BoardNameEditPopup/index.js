@@ -11,7 +11,8 @@ function BoardNameEditPopup({
   id, boardId, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
-  const boards = useSelector((state) => state.boards.allBoards);
+  const allBoards = useSelector((state) => state.boards.allBoards);
+  const board = allBoards.find((item) => item.id === boardId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -22,13 +23,13 @@ function BoardNameEditPopup({
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newBoards = boards.map((board) => {
-        if (board.id === boardId) {
+      const newBoards = allBoards.map((item) => {
+        if (item.id === boardId) {
           // не мутируем объект внутри массива, а возвращаем новый
           return { ...board, name: inputValue };
         }
 
-        return board;
+        return item;
       });
 
       dispatch(setBoards(newBoards));
@@ -44,17 +45,17 @@ function BoardNameEditPopup({
       anchorEl={anchorEl}
       onClose={onClose}
       anchorOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
+        vertical: 'bottom',
+        horizontal: 'right',
       }}
       transformOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
+        vertical: 5,
+        horizontal: 10,
       }}
-      PaperProps={{ className: classes.createBoardPopup }}
+      PaperProps={{ className: classes.paper }}
     >
       <TextField
-        className={classes.createBoardInput}
+        className={classes.input}
         name="boardName"
         type="text"
         autoFocus
@@ -67,6 +68,7 @@ function BoardNameEditPopup({
         size="small"
         autoComplete="off"
         fullWidth
+        defaultValue={board.name}
         onChange={handleInputChange}
       />
       <Button

@@ -33,7 +33,7 @@ function Board() {
           {board.name}
         </Typography>
         <IconButton
-          className={classes.editBoardNameBtn}
+          className={classes.boardNameEditBtn}
           onClick={openBoardNameEditPopup}
         >
           <EditIcon />

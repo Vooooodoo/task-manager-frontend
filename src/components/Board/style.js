@@ -12,9 +12,10 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     padding: '0',
   },
-  // boardNameEditBtn: {
-  //   display: 'inline',
-  // },
+  boardNameEditBtn: {
+    marginBottom: theme.spacing(2),
+    color: 'black',
+  },
 }));
 
 export default useStyles;
