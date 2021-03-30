@@ -30,7 +30,7 @@ function TaskListCreatePopup({
           const taskListId = Date.now();
           const newTaskList = {
             id: taskListId,
-            name: inputValue,
+            name: trimmedInputValue,
             items: [],
           };
           const newBoardColumns = [...board.columns, newTaskList];

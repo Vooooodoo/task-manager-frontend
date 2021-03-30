@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@material-ui/core/Popover';
 import TextField from '@material-ui/core/TextField';
@@ -7,28 +8,43 @@ import { setBoards } from '../../store/boards';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
-function BoardCreatePopup({
-  id, isOpen, anchorEl, onClose,
+function TaskListNameEditPopup({
+  id, taskListId, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
-  const boards = useSelector((state) => state.boards.allBoards);
+  const routParams = useParams();
+  const boardId = Number(routParams.id);
+  const allBoards = useSelector((state) => state.boards.allBoards);
+  const board = allBoards.find((item) => item.id === boardId);
+  const { columns } = board;
+  const taskList = columns.find((item) => item.id === taskListId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const createBoard = () => {
+  const editTaskListName = (listId) => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const boardId = Date.now();
-      const newBoard = {
-        id: boardId,
-        name: trimmedInputValue,
-        columns: [],
-      };
-      const newBoards = [newBoard, ...boards];
+      const newTaskList = columns.map((item) => {
+        if (item.id === listId) {
+          return { ...item, name: trimmedInputValue };
+        }
+
+        return item;
+      });
+
+      const newBoards = allBoards.map((item) => {
+        if (item.id === boardId) {
+          const newBoardColumns = [...item.columns, newTaskList];
+
+          return { ...item, columns: newBoardColumns };
+        }
+
+        return item;
+      });
 
       dispatch(setBoards(newBoards));
       onClose();
@@ -54,7 +70,7 @@ function BoardCreatePopup({
     >
       <TextField
         className={classes.input}
-        name="boardName"
+        name="taskListName"
         type="text"
         autoFocus
         inputProps={{
@@ -62,10 +78,11 @@ function BoardCreatePopup({
         }}
         variant="outlined"
         color="secondary"
-        placeholder="Add board title"
+        placeholder="Edit list name"
         size="small"
         autoComplete="off"
         fullWidth
+        defaultValue={taskList.name}
         onChange={handleInputChange}
       />
       <Button
@@ -73,12 +90,12 @@ function BoardCreatePopup({
         variant="contained"
         color="secondary"
         fullWidth
-        onClick={createBoard}
+        onClick={() => editTaskListName(taskListId)}
       >
-        Create Board
+        Edit Name
       </Button>
     </Popover>
   );
 }
 
-export default BoardCreatePopup;
+export default TaskListNameEditPopup;

@@ -1,22 +1,21 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-// import AddIcon from '@material-ui/icons/Add';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 // import BoardDeletePopup from '../BoardDeletePopup';
-// import BoardNameEditPopup from '../BoardNameEditPopup';
+import TaskListNameEditPopup from '../TaskListNameEditPopup';
 import useStyles from './style';
 
-function TaskList({ name }) {
+function TaskList({ id, name }) {
   const classes = useStyles();
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const isTaskListNameEditPopupOpen = Boolean(anchorEl);
-  // const taskListNameEditPopupId = isTaskListNameEditPopupOpen
-  //   ? 'simple-popover'
-  //   : undefined;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const isTaskListNameEditPopupOpen = Boolean(anchorEl);
+  const taskListNameEditPopupId = isTaskListNameEditPopupOpen
+    ? 'simple-popover'
+    : undefined;
 
-  // const openTaskListNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
-  // const closeTaskListNameEditPopup = () => setAnchorEl(null);
+  const openTaskListNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeTaskListNameEditPopup = () => setAnchorEl(null);
 
   return (
     <Grid
@@ -29,19 +28,19 @@ function TaskList({ name }) {
       sm={6}
       xs={12}
     >
-      <Typography className={classes.title} component="h3" variant="h5">
+      <Button
+        className={classes.nameEditBtn}
+        onClick={openTaskListNameEditPopup}
+      >
         {name}
-      </Typography>
-      {/* <BoardNameEditPopup
+      </Button>
+      <TaskListNameEditPopup
         id={taskListNameEditPopupId}
+        taskListId={id}
         isOpen={isTaskListNameEditPopupOpen}
         anchorEl={anchorEl}
         onClose={closeTaskListNameEditPopup}
-      /> */}
-      {/* <Button className={classes.createBtn} onClick={}>
-        <AddIcon className={classes.createIcon} />
-        Add a list
-      </Button> */}
+      />
       {/* <IconButton
         className={classes.boardNameEditBtn}
         onClick={openBoardNameEditPopup}

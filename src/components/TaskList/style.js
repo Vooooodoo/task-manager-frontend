@@ -10,14 +10,14 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  title: {
+  nameEditBtn: {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'start',
     color: 'white',
-    margin: theme.spacing(0, 2),
-    marginRight: '0',
-    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+    textTransform: 'none',
+    fontSize: '16px',
   },
 }));
 

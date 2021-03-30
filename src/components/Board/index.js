@@ -52,7 +52,11 @@ function Board() {
           spacing={2}
         >
           {boardColumns.map((column) => (
-            <TaskList id={column.id} name={column.name} key={column.id} />
+            <TaskList
+              id={column.id}
+              name={column.name}
+              key={column.id}
+            />
           ))}
           <TaskListCreateBtn key="0" />
         </Grid>

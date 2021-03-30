@@ -29,7 +29,7 @@ function BoardNameEditPopup({
       const newBoards = allBoards.map((item) => {
         if (item.id === boardId) {
           // не мутируем объект внутри массива, а возвращаем новый
-          return { ...item, name: inputValue };
+          return { ...item, name: trimmedInputValue };
         }
 
         return item;
