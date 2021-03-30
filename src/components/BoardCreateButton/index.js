@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import BoardCreatePopup from '../BoardCreatePopup';
 import useStyles from './style';
 
-function BoardCreateBtn() {
+function BoardCreateButton() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardCreatePopupOpen = Boolean(anchorEl);
@@ -38,4 +38,4 @@ function BoardCreateBtn() {
   );
 }
 
-export default BoardCreateBtn;
+export default BoardCreateButton;
