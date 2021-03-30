@@ -28,7 +28,7 @@ function TaskListNameEditPopup({
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newTaskList = columns.map((item) => {
+      const newBoardColumns = columns.map((item) => {
         if (item.id === listId) {
           return { ...item, name: trimmedInputValue };
         }
@@ -38,8 +38,6 @@ function TaskListNameEditPopup({
 
       const newBoards = allBoards.map((item) => {
         if (item.id === boardId) {
-          const newBoardColumns = [...item.columns, newTaskList];
-
           return { ...item, columns: newBoardColumns };
         }
 
