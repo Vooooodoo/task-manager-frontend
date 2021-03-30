@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@material-ui/core/Popover';
 import TextField from '@material-ui/core/TextField';
@@ -8,9 +9,11 @@ import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
 function BoardNameEditPopup({
-  id, boardId, isOpen, anchorEl, onClose,
+  id, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
+  const routParams = useParams();
+  const boardId = Number(routParams.id);
   const allBoards = useSelector((state) => state.boards.allBoards);
   const board = allBoards.find((item) => item.id === boardId);
   const dispatch = useDispatch();
@@ -26,7 +29,7 @@ function BoardNameEditPopup({
       const newBoards = allBoards.map((item) => {
         if (item.id === boardId) {
           // не мутируем объект внутри массива, а возвращаем новый
-          return { ...board, name: inputValue };
+          return { ...item, name: inputValue };
         }
 
         return item;

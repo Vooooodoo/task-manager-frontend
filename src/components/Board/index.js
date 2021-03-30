@@ -14,8 +14,8 @@ import useStyles from './style';
 function Board() {
   const classes = useStyles();
   const routParams = useParams();
-  const allBoards = useSelector((state) => state.boards.allBoards);
   const boardId = Number(routParams.id);
+  const allBoards = useSelector((state) => state.boards.allBoards);
   const board = allBoards.find((item) => item.id === boardId);
   const boardColumns = board.columns;
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -41,7 +41,6 @@ function Board() {
         </IconButton>
         <BoardNameEditPopup
           id={boardNameEditPopupId}
-          boardId={boardId}
           isOpen={isBoardNameEditPopupOpen}
           anchorEl={anchorEl}
           onClose={closeBoardNameEditPopup}
