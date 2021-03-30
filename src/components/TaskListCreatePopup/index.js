@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@material-ui/core/Popover';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +12,9 @@ function TaskListCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
   const classes = useStyles();
-  const boards = useSelector((state) => state.boards.allBoards);
+  const routParams = useParams();
+  const boardId = Number(routParams.id);
+  const allBoards = useSelector((state) => state.boards.allBoards);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -22,13 +25,21 @@ function TaskListCreatePopup({
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const boardId = Date.now();
-      const newBoard = {
-        id: boardId,
-        name: inputValue,
-        columns: [],
-      };
-      const newBoards = [newBoard, ...boards];
+      const newBoards = allBoards.map((board) => {
+        if (board.id === boardId) {
+          const taskListId = Date.now();
+          const newTaskList = {
+            id: taskListId,
+            name: inputValue,
+            items: [],
+          };
+          const newBoardColumns = [...board.columns, newTaskList];
+
+          return { ...board, columns: newBoardColumns };
+        }
+
+        return board;
+      });
 
       dispatch(setBoards(newBoards));
       onClose();

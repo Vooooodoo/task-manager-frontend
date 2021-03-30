@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import BoardNameEditPopup from '../BoardNameEditPopup';
 import TaskListCreateBtn from '../TaskListCreateBtn';
+import TaskList from '../TaskList';
 import useStyles from './style';
 
 function Board() {
@@ -16,7 +17,7 @@ function Board() {
   const allBoards = useSelector((state) => state.boards.allBoards);
   const boardId = Number(routParams.id);
   const board = allBoards.find((item) => item.id === boardId);
-  // const boardColumns = board.columns;
+  const boardColumns = board.columns;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);
   const boardNameEditPopupId = isBoardNameEditPopupOpen
@@ -51,14 +52,9 @@ function Board() {
           container
           spacing={2}
         >
-          {/* {boardColumns.map((column) => (
+          {boardColumns.map((column) => (
             <TaskList id={column.id} name={column.name} key={column.id} />
-          ))} */}
-          <TaskListCreateBtn key="0" />
-          <TaskListCreateBtn key="0" />
-          <TaskListCreateBtn key="0" />
-          <TaskListCreateBtn key="0" />
-          <TaskListCreateBtn key="0" />
+          ))}
           <TaskListCreateBtn key="0" />
         </Grid>
       </Container>
