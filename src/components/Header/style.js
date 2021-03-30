@@ -13,10 +13,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  routerHomeLink: {
-    display: 'flex',
-    alignItems: 'center',
-  },
   homeIcon: {
     color: theme.iconColor,
   },

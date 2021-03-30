@@ -22,16 +22,16 @@ function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.homeBtn}
-          color="inherit"
-          aria-label="menu"
-        >
-          <Link className={classes.routerHomeLink} to="/main">
+        <Link to="/main">
+          <IconButton
+            edge="start"
+            className={classes.homeBtn}
+            color="inherit"
+            aria-label="menu"
+          >
             <HomeIcon className={classes.homeIcon} />
-          </Link>
-        </IconButton>
+          </IconButton>
+        </Link>
         <Typography variant="h6" className={classes.title}>
           Trollo
         </Typography>
