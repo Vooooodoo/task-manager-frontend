@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import BoardNameEditPopup from '../BoardNameEditPopup';
-import TaskListCreateBtn from '../TaskListCreateBtn';
+import TaskListCreateButton from '../TaskListCreateButton';
 import TaskList from '../TaskList';
 import useStyles from './style';
 
@@ -58,7 +58,7 @@ function Board() {
               key={column.id}
             />
           ))}
-          <TaskListCreateBtn key="0" />
+          <TaskListCreateButton key="0" />
         </Grid>
       </Container>
     </Container>

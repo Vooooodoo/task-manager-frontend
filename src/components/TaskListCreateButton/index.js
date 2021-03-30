@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import TaskListCreatePopup from '../TaskListCreatePopup';
 import useStyles from './style';
 
-function TaskListCreateBtn() {
+function TaskListCreateButton() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardCreatePopupOpen = Boolean(anchorEl);
@@ -41,4 +41,4 @@ function TaskListCreateBtn() {
   );
 }
 
-export default TaskListCreateBtn;
+export default TaskListCreateButton;
