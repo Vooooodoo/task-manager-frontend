@@ -1,17 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Popover from '@material-ui/core/Popover';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { setBoards } from '../../store/boards';
-import * as validationConsts from '../../utils/constants';
-import useStyles from './style';
+import InputPopup from '../InputPopup';
 
 function TaskListCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
-  const classes = useStyles();
   const routParams = useParams();
   const boardId = Number(routParams.id);
   const allBoards = useSelector((state) => state.boards.allBoards);
@@ -48,47 +43,17 @@ function TaskListCreatePopup({
   };
 
   return (
-    <Popover
+    <InputPopup
       id={id}
-      open={isOpen}
+      isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      anchorOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
-      }}
-      PaperProps={{ className: classes.paper }}
-    >
-      <TextField
-        className={classes.input}
-        name="taskListName"
-        type="text"
-        autoFocus
-        inputProps={{
-          maxLength: validationConsts.BOARD_NAME_MAX_LENGTH,
-        }}
-        variant="outlined"
-        color="secondary"
-        placeholder="Enter list title..."
-        size="small"
-        autoComplete="off"
-        fullWidth
-        onChange={handleInputChange}
-      />
-      <Button
-        type="button"
-        variant="contained"
-        color="secondary"
-        fullWidth
-        onClick={createTaskList}
-      >
-        Add List
-      </Button>
-    </Popover>
+      inputName="taskListName"
+      placeholder="Enter list title..."
+      btnText="Add List"
+      onChange={handleInputChange}
+      onClick={createTaskList}
+    />
   );
 }
 
