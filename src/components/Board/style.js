@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline',
     marginBottom: theme.spacing(3),
   },
-  boardsList: {
+  columnsList: {
     listStyle: 'none',
     padding: '0',
   },

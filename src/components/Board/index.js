@@ -46,17 +46,13 @@ function Board() {
           onClose={closeBoardNameEditPopup}
         />
         <Grid
-          className={classes.boardsList}
+          className={classes.columnsList}
           component="ul"
           container
-          spacing={2}
+          spacing={3}
         >
           {boardColumns.map((column) => (
-            <TaskList
-              id={column.id}
-              name={column.name}
-              key={column.id}
-            />
+            <TaskList id={column.id} name={column.name} key={column.id} />
           ))}
           <TaskListCreateButton key="0" />
         </Grid>

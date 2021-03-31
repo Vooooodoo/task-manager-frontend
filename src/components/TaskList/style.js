@@ -5,10 +5,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     backgroundClip: 'content-box',
     transition: theme.customTransition,
-    '&:hover': {
-      backgroundColor: theme.palette.success.dark,
-      cursor: 'pointer',
-    },
   },
   nameEditBtn: {
     display: 'flex',
@@ -20,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.main,
     borderRadius: '0',
     marginBottom: theme.spacing(1),
+    '&:hover': {
+      backgroundColor: theme.palette.success.dark,
+      cursor: 'pointer',
+    },
   },
   taskList: {
     listStyle: 'none',
