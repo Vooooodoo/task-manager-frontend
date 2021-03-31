@@ -2,18 +2,23 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: 'grey',
+    position: 'relative',
+    backgroundColor: theme.palette.success.main,
     backgroundClip: 'content-box',
-    minHeight: theme.spacing(25),
     transition: theme.customTransition,
     '&:hover': {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.success.dark,
+      cursor: 'pointer',
     },
   },
-  createBtn: {
+  nameEditBtn: {
+    display: 'flex',
+    justifyContent: 'start',
+    color: 'white',
     width: '100%',
     height: '100%',
-    color: 'white',
+    textTransform: 'none',
+    fontSize: '16px',
   },
 }));
 
