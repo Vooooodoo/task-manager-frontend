@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setBoards } from '../../store/boards';
 import ConfirmPopup from '../ConfirmPopup';
@@ -6,11 +7,23 @@ import ConfirmPopup from '../ConfirmPopup';
 function TaskListDeletePopup({
   id, delTaskListId, isOpen, anchorEl, onClose,
 }) {
-  const boards = useSelector((state) => state.boards.allBoards);
+  const routParams = useParams();
+  const boardId = Number(routParams.id);
+  const allBoards = useSelector((state) => state.boards.allBoards);
+  const board = allBoards.find((item) => item.id === boardId);
+  const { columns } = board;
   const dispatch = useDispatch();
 
   const deleteTaskList = (taskListId) => {
-    const newBoards = boards.filter((board) => board.id !== taskListId);
+    const newBoardColumns = columns.filter((item) => item.id !== taskListId);
+
+    const newBoards = allBoards.map((item) => {
+      if (item.id === boardId) {
+        return { ...item, columns: newBoardColumns };
+      }
+
+      return item;
+    });
 
     dispatch(setBoards(newBoards));
     onClose();
