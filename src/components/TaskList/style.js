@@ -20,14 +20,6 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none',
     fontSize: '16px',
   },
-  delBtn: {
-    position: 'absolute',
-    top: '6px',
-    right: theme.spacing(1),
-  },
-  delIcon: {
-    color: theme.iconColor,
-  },
 }));
 
 export default useStyles;

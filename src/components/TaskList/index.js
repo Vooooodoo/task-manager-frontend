@@ -1,10 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-// import BoardDeletePopup from '../BoardDeletePopup';
 import TaskListNameEditPopup from '../TaskListNameEditPopup';
+import TaskListDeleteButton from '../TaskListDeleteButton';
 import useStyles from './style';
 
 function TaskList({ id, name }) {
@@ -42,19 +40,7 @@ function TaskList({ id, name }) {
         anchorEl={anchorEl}
         onClose={closeTaskListNameEditPopup}
       />
-      <IconButton className={classes.delBtn}>
-        <DeleteIcon
-          className={classes.delIcon}
-          fontSize="small"
-        />
-      </IconButton>
-      {/* <BoardDeletePopup
-        id={boardDeletePopupId}
-        delBoardId={id}
-        isOpen={isBoardDeletePopupOpen}
-        anchorEl={anchorEl}
-        onClose={closeBoardDeletePopup}
-      /> */}
+      <TaskListDeleteButton delTaskListId={id} />
     </Grid>
   );
 }
