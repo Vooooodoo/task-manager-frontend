@@ -1,17 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Popover from '@material-ui/core/Popover';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { setBoards } from '../../store/boards';
-import * as validationConsts from '../../utils/constants';
-import useStyles from './style';
+import InputPopup from '../InputPopup';
 
 function BoardNameEditPopup({
   id, isOpen, anchorEl, onClose,
 }) {
-  const classes = useStyles();
   const routParams = useParams();
   const boardId = Number(routParams.id);
   const allBoards = useSelector((state) => state.boards.allBoards);
@@ -42,48 +37,22 @@ function BoardNameEditPopup({
   };
 
   return (
-    <Popover
+    <InputPopup
       id={id}
-      open={isOpen}
+      isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 5,
-        horizontal: 10,
-      }}
-      PaperProps={{ className: classes.paper }}
-    >
-      <TextField
-        className={classes.input}
-        name="boardName"
-        type="text"
-        autoFocus
-        inputProps={{
-          maxLength: validationConsts.BOARD_NAME_MAX_LENGTH,
-        }}
-        variant="outlined"
-        color="secondary"
-        placeholder="Edit board name"
-        size="small"
-        autoComplete="off"
-        fullWidth
-        defaultValue={board.name}
-        onChange={handleInputChange}
-      />
-      <Button
-        type="button"
-        variant="contained"
-        color="secondary"
-        fullWidth
-        onClick={editBoardName}
-      >
-        Edit Name
-      </Button>
-    </Popover>
+      inputName="boardName"
+      placeholder="Edit board name"
+      btnText="Edit Name"
+      defaultValue={board.name}
+      anchVertPos="bottom"
+      anchHorPos="right"
+      transVertPos={5}
+      transHorPos={10}
+      onChange={handleInputChange}
+      onClick={editBoardName}
+    />
   );
 }
 

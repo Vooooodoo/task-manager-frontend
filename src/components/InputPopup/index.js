@@ -14,6 +14,10 @@ function InputPopup({
   placeholder,
   btnText,
   defaultValue,
+  anchVertPos,
+  anchHorPos,
+  transVertPos,
+  transHorPos,
   onChange,
   onClick,
 }) {
@@ -26,12 +30,12 @@ function InputPopup({
       anchorEl={anchorEl}
       onClose={onClose}
       anchorOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
+        vertical: anchVertPos,
+        horizontal: anchHorPos,
       }}
       transformOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
+        vertical: transVertPos,
+        horizontal: transHorPos,
       }}
       PaperProps={{ className: classes.paper }}
     >
@@ -64,5 +68,12 @@ function InputPopup({
     </Popover>
   );
 }
+
+InputPopup.defaultProps = {
+  anchVertPos: 'center',
+  anchHorPos: 'center',
+  transVertPos: 'center',
+  transHorPos: 'center',
+};
 
 export default InputPopup;
