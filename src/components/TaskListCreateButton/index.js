@@ -8,13 +8,13 @@ import useStyles from './style';
 function TaskListCreateButton() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const isBoardCreatePopupOpen = Boolean(anchorEl);
-  const boardCreatePopupId = isBoardCreatePopupOpen
+  const isTaskListCreatePopupOpen = Boolean(anchorEl);
+  const taskListCreatePopupId = isTaskListCreatePopupOpen
     ? 'simple-popover'
     : undefined;
 
-  const openBoardCreatePopup = (evt) => setAnchorEl(evt.currentTarget);
-  const closeBoardCreatePopup = () => setAnchorEl(null);
+  const openTaskListCreatePopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeTaskListCreatePopup = () => setAnchorEl(null);
 
   return (
     <Grid
@@ -27,15 +27,15 @@ function TaskListCreateButton() {
       sm={6}
       xs={12}
     >
-      <Button className={classes.createBtn} onClick={openBoardCreatePopup}>
+      <Button className={classes.createBtn} onClick={openTaskListCreatePopup}>
         <AddIcon className={classes.createIcon} />
         Add a list
       </Button>
       <TaskListCreatePopup
-        id={boardCreatePopupId}
-        isOpen={isBoardCreatePopupOpen}
+        id={taskListCreatePopupId}
+        isOpen={isTaskListCreatePopupOpen}
         anchorEl={anchorEl}
-        onClose={closeBoardCreatePopup}
+        onClose={closeTaskListCreatePopup}
       />
     </Grid>
   );
