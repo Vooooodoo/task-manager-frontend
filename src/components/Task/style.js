@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'start',
     color: 'white',
     width: '100%',
-    height: '100%',
     textTransform: 'none',
     fontSize: '16px',
   },

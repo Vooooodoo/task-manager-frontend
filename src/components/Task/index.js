@@ -5,7 +5,7 @@ import TaskTextEditPopup from '../TaskTextEditPopup';
 // import TaskDeleteButton from '../TaskDeleteButton';
 import useStyles from './style';
 
-function Task({ id, text }) {
+function Task({ taskId, taskListId, text }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isTaskListNameEditPopupOpen = Boolean(anchorEl);
@@ -23,7 +23,8 @@ function Task({ id, text }) {
       </Button>
       <TaskTextEditPopup
         id={taskListNameEditPopupId}
-        taskListId={id}
+        taskId={taskId}
+        taskListId={taskListId}
         isOpen={isTaskListNameEditPopupOpen}
         anchorEl={anchorEl}
         onClose={closeTaskTextEditPopup}

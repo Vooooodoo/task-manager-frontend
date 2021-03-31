@@ -11,8 +11,8 @@ function TaskListNameEditPopup({
   const boardId = Number(routParams.id);
   const allBoards = useSelector((state) => state.boards.allBoards);
   const board = allBoards.find((item) => item.id === boardId);
-  const { columns } = board;
-  const taskList = columns.find((item) => item.id === taskListId);
+  const boardColumns = board.columns;
+  const taskList = boardColumns.find((item) => item.id === taskListId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -23,7 +23,7 @@ function TaskListNameEditPopup({
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newBoardColumns = columns.map((item) => {
+      const newBoardColumns = boardColumns.map((item) => {
         if (item.id === listId) {
           return { ...item, name: trimmedInputValue };
         }

@@ -59,7 +59,12 @@ function TaskList({ id, name }) {
         direction="column"
       >
         {taskList.items.map((task) => (
-          <Task id={task.id} text={task.text} key={task.id} />
+          <Task
+            taskId={task.id}
+            taskListId={id}
+            text={task.text}
+            key={task.id}
+          />
         ))}
         {/* <TaskCreateButton key="0" /> */}
       </Grid>

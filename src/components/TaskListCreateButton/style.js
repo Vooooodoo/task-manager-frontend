@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
   },
   createBtn: {
     width: '100%',
+    minHeight: '40px',
     color: 'white',
     backgroundColor: 'grey',
     borderRadius: '0',

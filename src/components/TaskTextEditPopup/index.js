@@ -4,28 +4,37 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setBoards } from '../../store/boards';
 import InputPopup from '../InputPopup';
 
-function TaskListNameEditPopup({
-  id, taskListId, isOpen, anchorEl, onClose,
+function TaskTextEditPopup({
+  id, taskId, taskListId, isOpen, anchorEl, onClose,
 }) {
   const routParams = useParams();
   const boardId = Number(routParams.id);
   const allBoards = useSelector((state) => state.boards.allBoards);
   const board = allBoards.find((item) => item.id === boardId);
-  const { columns } = board;
-  const taskList = columns.find((item) => item.id === taskListId);
+  const boardColumns = board.columns;
+  const taskList = boardColumns.find((item) => item.id === taskListId);
+  const task = taskList.items.find((item) => item.id === taskId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const editTaskListName = (listId) => {
+  const editTaskText = (editTaskId, listId) => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newBoardColumns = columns.map((item) => {
+      const newTaskList = taskList.items.map((item) => {
+        if (item.id === editTaskId) {
+          return { ...item, text: trimmedInputValue };
+        }
+
+        return item;
+      });
+
+      const newBoardColumns = boardColumns.map((item) => {
         if (item.id === listId) {
-          return { ...item, name: trimmedInputValue };
+          return { ...item, items: newTaskList };
         }
 
         return item;
@@ -51,14 +60,14 @@ function TaskListNameEditPopup({
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      inputName="taskListName"
-      placeholder="Edit list name"
-      btnText="Edit Name"
-      defaultValue={taskList.name}
+      inputName="taskName"
+      placeholder="Edit task text"
+      btnText="Edit Text"
+      defaultValue={task.text}
       onChange={handleInputChange}
-      onClick={() => editTaskListName(taskListId)}
+      onClick={() => editTaskText(taskId, taskListId)}
     />
   );
 }
 
-export default TaskListNameEditPopup;
+export default TaskTextEditPopup;
