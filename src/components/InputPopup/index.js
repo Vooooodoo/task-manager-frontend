@@ -13,6 +13,7 @@ function InputPopup({
   inputName,
   placeholder,
   btnText,
+  defaultValue,
   onChange,
   onClick,
 }) {
@@ -48,6 +49,7 @@ function InputPopup({
         size="small"
         autoComplete="off"
         fullWidth
+        defaultValue={defaultValue}
         onChange={onChange}
       />
       <Button
