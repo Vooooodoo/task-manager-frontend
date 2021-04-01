@@ -1,3 +1,4 @@
+const BASE_URL = 'http://localhost:4000';
 const INPUT_MIN_LENGTH = 2;
 const INPUT_MAX_LENGTH = 40;
 const TEXTAREA_INPUT_MAX_LENGTH = 400;
@@ -6,6 +7,7 @@ const NAME_INPUT_PATTERN = '^[a-zA-Zs-]+$';
 const BOARD_NAME_MAX_LENGTH = 20;
 
 export {
+  BASE_URL,
   INPUT_MIN_LENGTH,
   INPUT_MAX_LENGTH,
   TEXTAREA_INPUT_MAX_LENGTH,
