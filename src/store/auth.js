@@ -3,7 +3,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import * as actionTypes from './constants/actionTypes';
 
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
 };
 
 const setIsLoggedIn = createAction(actionTypes.SET_IS_LOGGED_IN);

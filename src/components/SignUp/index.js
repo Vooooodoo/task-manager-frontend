@@ -8,11 +8,19 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import RouterLink from '../RouterLink';
 import Input from '../Input';
+import * as auth from '../../utils/auth';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
 function SignUp() {
   const classes = useStyles();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    auth.signUp('ab', 'ba', '2@2.ru', '12345678')
+      .then((res) => console.log(res));
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -24,7 +32,7 @@ function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Input

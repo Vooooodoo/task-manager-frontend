@@ -1,21 +1,16 @@
 import axios from './api';
 
 const signUp = (firstName, lastName, email, password) => axios
-  .post('/signup', {
-    headers: {
-      Accept: 'application/json', //! узнать добавить ли он это поле к полям из инстанса или перезапишет
-    },
-    data: {
-      firstName,
-      lastName,
-      email,
-      password,
-    },
+  .post('/sign-up', {
+    firstName,
+    lastName,
+    email,
+    password,
   })
   .then((res) => res);
 
 const signIn = (email, password) => axios
-  .post('/signup', {
+  .post('/sign-in', {
     headers: {
       Accept: 'application/json',
     },
