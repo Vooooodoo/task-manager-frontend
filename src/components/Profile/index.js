@@ -6,7 +6,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Input from '../Input';
+import TextField from '@material-ui/core/TextField';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import * as auth from '../../utils/auth';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
@@ -14,6 +17,49 @@ function Profile() {
   const classes = useStyles();
   const allUsers = useSelector((state) => state.users.allUsers);
   const authorizedUser = allUsers.find((item) => item.id === 1);
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    touched,
+    errors,
+    handleBlur,
+  } = useFormik({
+    initialValues: {
+      firstName: authorizedUser.firstName,
+      lastName: authorizedUser.lastName,
+      email: authorizedUser.email,
+      password: authorizedUser.password,
+      about: authorizedUser.about,
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .min(validationConsts.INPUT_MIN_LENGTH)
+        .max(validationConsts.INPUT_MAX_LENGTH)
+        .required('First Name is a required field.'),
+      lastName: Yup.string()
+        .min(validationConsts.INPUT_MIN_LENGTH)
+        .max(validationConsts.INPUT_MAX_LENGTH)
+        .required('Last Name is a required field.'),
+      email: Yup.string()
+        .email()
+        .min(validationConsts.INPUT_MIN_LENGTH)
+        .max(validationConsts.INPUT_MAX_LENGTH)
+        .required('Email Adress is a required field.'),
+      password: Yup.string()
+        .min(validationConsts.PASSWORD_INPUT_MIN_LENGTH)
+        .max(validationConsts.INPUT_MAX_LENGTH)
+        .required('Password is a required field.'),
+      about: Yup.string()
+        .min(validationConsts.INPUT_MIN_LENGTH)
+        .max(validationConsts.TEXTAREA_INPUT_MAX_LENGTH),
+    }),
+    onSubmit: ({
+      firstName, lastName, email, password, about,
+    }) => {
+      auth.signUp(firstName, lastName, email, password, about);
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -25,53 +71,79 @@ function Profile() {
         <Typography component="h2" variant="h5">
           {authorizedUser.firstName}
         </Typography>
-        <form className={classes.form} noValidate>
-          <Input
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <TextField
+            error={Boolean(touched.firstName && errors.firstName)}
+            helperText={errors.firstName}
             id="firstName"
-            type="text"
             label="First Name"
-            minLength={validationConsts.INPUT_MIN_LENGTH}
-            maxLength={validationConsts.INPUT_MAX_LENGTH}
-            pattern={validationConsts.NAME_INPUT_PATTERN}
-            defaultValue={authorizedUser.firstName}
-            isRequired
-          />
-          <Input
-            id="lastName"
+            name="firstName"
             type="text"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={values.firstName}
+            defaultValue={authorizedUser.firstName}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <TextField
+            error={Boolean(touched.lastName && errors.lastName)}
+            helperText={errors.lastName}
+            id="lastName"
             label="Last Name"
-            minLength={validationConsts.INPUT_MIN_LENGTH}
-            maxLength={validationConsts.INPUT_MAX_LENGTH}
-            pattern={validationConsts.NAME_INPUT_PATTERN}
-            defaultValue={authorizedUser.lastName}
-            isRequired
+            name="lastName"
+            type="text"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={values.lastName}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-          <Input
+          <TextField
+            error={Boolean(touched.email && errors.email)}
+            helperText={errors.email}
             id="email"
-            type="email"
             label="Email Address"
-            minLength={validationConsts.INPUT_MIN_LENGTH}
-            maxLength={validationConsts.INPUT_MAX_LENGTH}
-            defaultValue={authorizedUser.email}
-            isRequired
+            name="email"
+            type="text"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-          <Input
+          <TextField
+            error={Boolean(touched.password && errors.password)}
+            helperText={errors.password}
             id="password"
             label="Password"
-            type="password"
-            minLength={validationConsts.PASSWORD_INPUT_MIN_LENGTH}
-            maxLength={validationConsts.INPUT_MAX_LENGTH}
-            defaultValue={authorizedUser.password}
-            isRequired
+            name="password"
+            type="text"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-          <Input
-            id="about"
+          <TextField
+            error={Boolean(touched.about && errors.about)}
+            helperText={errors.about}
+            id="password"
             label="About"
-            minLength={validationConsts.INPUT_MIN_LENGTH}
-            maxLength={validationConsts.TEXTAREA_INPUT_MAX_LENGTH}
-            defaultValue={authorizedUser.about}
+            name="about"
+            type="text"
+            variant="outlined"
+            margin="normal"
             multiline
             rows={4}
+            fullWidth
+            value={values.about}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Button
             type="submit"

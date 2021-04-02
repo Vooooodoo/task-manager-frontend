@@ -5,6 +5,7 @@ const TEXTAREA_INPUT_MAX_LENGTH = 400;
 const PASSWORD_INPUT_MIN_LENGTH = 8;
 const NAME_INPUT_PATTERN = '^[a-zA-Zs-]+$';
 const BOARD_NAME_MAX_LENGTH = 20;
+// const FIRST_NAME_INPUT_TEXT = '';
 
 export {
   BASE_URL,

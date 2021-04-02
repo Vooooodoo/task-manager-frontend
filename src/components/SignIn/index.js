@@ -5,22 +5,45 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import RouterLink from '../RouterLink';
-import Input from '../Input';
 import * as auth from '../../utils/auth';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
 function SignIn() {
   const classes = useStyles();
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-
-    auth.signIn('2@2.ru', '12345678');
-  };
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    touched,
+    errors,
+    handleBlur,
+  } = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email()
+        .min(validationConsts.INPUT_MIN_LENGTH)
+        .max(validationConsts.INPUT_MAX_LENGTH)
+        .required('Email Adress is a required field.'),
+      password: Yup.string()
+        .min(validationConsts.PASSWORD_INPUT_MIN_LENGTH)
+        .max(validationConsts.INPUT_MAX_LENGTH)
+        .required('Password is a required field.'),
+    }),
+    onSubmit: ({ email, password }) => {
+      auth.signIn(email, password);
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -33,22 +56,34 @@ function SignIn() {
           Sign in
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <Input
+          <TextField
+            error={Boolean(touched.email && errors.email)}
+            helperText={errors.email}
             id="email"
-            type="email"
             label="Email Address"
-            minLength={validationConsts.INPUT_MIN_LENGTH}
-            maxLength={validationConsts.INPUT_MAX_LENGTH}
-            isFocus
-            isRequired
+            name="email"
+            type="text"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            autoFocus
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-          <Input
+          <TextField
+            error={Boolean(touched.password && errors.password)}
+            helperText={errors.password}
             id="password"
             label="Password"
-            type="password"
-            minLength={validationConsts.PASSWORD_INPUT_MIN_LENGTH}
-            maxLength={validationConsts.INPUT_MAX_LENGTH}
-            isRequired
+            name="password"
+            type="text"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
