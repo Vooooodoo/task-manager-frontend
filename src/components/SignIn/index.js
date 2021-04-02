@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,10 +14,12 @@ import * as Yup from 'yup';
 import RouterLink from '../RouterLink';
 import * as auth from '../../utils/auth';
 import * as validationConsts from '../../utils/constants';
+import { setIsLoggedIn } from '../../store/auth';
 import useStyles from './style';
 
 function SignIn() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const {
     handleSubmit,
     handleChange,
@@ -40,8 +43,14 @@ function SignIn() {
         .max(validationConsts.INPUT_MAX_LENGTH)
         .required('Password is a required field.'),
     }),
-    onSubmit: ({ email, password }) => {
-      auth.signIn(email, password);
+    onSubmit: async ({ email, password }) => {
+      const res = await auth.signIn(email, password);
+
+      if (res.data.token) {
+        dispatch(setIsLoggedIn(true));
+      } else {
+        console.log(res.message);
+      }
     },
   });
 
