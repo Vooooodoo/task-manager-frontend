@@ -9,11 +9,18 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import RouterLink from '../RouterLink';
 import Input from '../Input';
+import * as auth from '../../utils/auth';
 import * as validationConsts from '../../utils/constants';
 import useStyles from './style';
 
 function SignIn() {
   const classes = useStyles();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    auth.signIn('2@2.ru', '12345678');
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -25,7 +32,7 @@ function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Input
             id="email"
             type="email"

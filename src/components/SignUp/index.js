@@ -18,8 +18,7 @@ function SignUp() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    auth.signUp('ab', 'ba', '2@2.ru', '12345678')
-      .then((res) => console.log(res));
+    auth.signUp('ab', 'ba', '2@2.ru', '12345678');
   };
 
   return (

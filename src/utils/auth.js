@@ -6,29 +6,25 @@ const signUp = (firstName, lastName, email, password) => axios
     lastName,
     email,
     password,
-  })
-  .then((res) => res);
+  });
 
-const signIn = (email, password) => axios
-  .post('/sign-in', {
-    headers: {
-      Accept: 'application/json',
-    },
-    data: {
+const signIn = async (email, password) => {
+  const res = await axios
+    .post('/sign-in', {
       email,
       password,
-    },
-  })
-  .then((res) => {
-    if (res.token) {
-      // eslint-disable-next-line no-undef
-      localStorage.setItem('jwt', res.token);
+    });
+  const jwt = res.data.token;
 
-      return res;
-    }
+  if (jwt) {
+    // eslint-disable-next-line no-undef
+    localStorage.setItem('jwt', jwt);
 
     return res;
-  });
+  }
+
+  return res;
+};
 
 // const checkJwt = (jwt) => {
 // return fetch(`${BASE_URL}/users/me`, {
