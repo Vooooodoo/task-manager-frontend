@@ -107,7 +107,7 @@ function Profile() {
             id="email"
             label="Email Address"
             name="email"
-            type="text"
+            type="email"
             variant="outlined"
             margin="normal"
             fullWidth
@@ -121,7 +121,7 @@ function Profile() {
             id="password"
             label="Password"
             name="password"
-            type="text"
+            type="password"
             variant="outlined"
             margin="normal"
             fullWidth

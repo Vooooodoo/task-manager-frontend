@@ -62,7 +62,7 @@ function SignIn() {
             id="email"
             label="Email Address"
             name="email"
-            type="text"
+            type="email"
             variant="outlined"
             margin="normal"
             fullWidth
@@ -77,7 +77,7 @@ function SignIn() {
             id="password"
             label="Password"
             name="password"
-            type="text"
+            type="password"
             variant="outlined"
             margin="normal"
             fullWidth

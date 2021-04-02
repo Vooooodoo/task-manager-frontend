@@ -70,7 +70,7 @@ function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                error={Boolean(touched.firstName && errors.firstName)}
+                error={Boolean(touched.lastName && errors.lastName)}
                 helperText={errors.firstName}
                 id="firstName"
                 label="First Name"
@@ -108,7 +108,7 @@ function SignUp() {
                 id="email"
                 label="Email Address"
                 name="email"
-                type="text"
+                type="email"
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -124,7 +124,7 @@ function SignUp() {
                 id="password"
                 label="Password"
                 name="password"
-                type="text"
+                type="password"
                 variant="outlined"
                 margin="normal"
                 fullWidth
