@@ -34,14 +34,26 @@ function SignIn() {
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email()
-        .min(validationConsts.INPUT_MIN_LENGTH)
-        .max(validationConsts.INPUT_MAX_LENGTH)
-        .required('Email Adress is a required field.'),
+        .email(validationConsts.INPUT_EMAIL_TEXT)
+        .min(
+          validationConsts.INPUT_MIN_LENGTH,
+          validationConsts.INPUT_MIN_LENGTH_TEXT,
+        )
+        .max(
+          validationConsts.INPUT_MAX_LENGTH,
+          validationConsts.INPUT_MAX_LENGTH_TEXT,
+        )
+        .required(validationConsts.INPUT_REQUIRED_TEXT),
       password: Yup.string()
-        .min(validationConsts.PASSWORD_INPUT_MIN_LENGTH)
-        .max(validationConsts.INPUT_MAX_LENGTH)
-        .required('Password is a required field.'),
+        .min(
+          validationConsts.PASSWORD_INPUT_MIN_LENGTH,
+          validationConsts.INPUT_MIN_LENGTH_TEXT,
+        )
+        .max(
+          validationConsts.INPUT_MAX_LENGTH,
+          validationConsts.INPUT_MAX_LENGTH_TEXT,
+        )
+        .required(validationConsts.INPUT_REQUIRED_TEXT),
     }),
     onSubmit: async ({ email, password }) => {
       const res = await auth.signIn(email, password);
