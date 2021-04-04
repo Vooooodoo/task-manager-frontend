@@ -42,7 +42,6 @@ function BoardNameEditPopup({
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      inputName="boardName"
       placeholder="Edit board name"
       btnText="Edit Name"
       defaultValue={board.name}

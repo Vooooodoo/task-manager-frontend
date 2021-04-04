@@ -10,7 +10,6 @@ function InputPopup({
   isOpen,
   anchorEl,
   onClose,
-  inputName,
   placeholder,
   btnText,
   defaultValue,
@@ -41,7 +40,6 @@ function InputPopup({
     >
       <TextField
         className={classes.input}
-        name={inputName}
         type="text"
         autoFocus
         inputProps={{

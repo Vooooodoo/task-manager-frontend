@@ -48,7 +48,6 @@ function TaskListCreatePopup({
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      inputName="taskListName"
       placeholder="Enter list title..."
       btnText="Add List"
       onChange={handleInputChange}

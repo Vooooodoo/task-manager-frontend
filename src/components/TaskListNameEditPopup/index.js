@@ -51,7 +51,6 @@ function TaskListNameEditPopup({
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      inputName="taskListName"
       placeholder="Edit list name"
       btnText="Edit Name"
       defaultValue={taskList.name}

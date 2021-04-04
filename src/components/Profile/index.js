@@ -146,7 +146,7 @@ function Profile() {
           <TextField
             error={Boolean(touched.about && errors.about)}
             helperText={errors.about}
-            id="password"
+            id="about"
             label="About"
             name="about"
             type="text"

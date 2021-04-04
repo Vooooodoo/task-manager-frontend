@@ -37,7 +37,6 @@ function BoardCreatePopup({
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      inputName="boardName"
       placeholder="Add board title"
       btnText="Create Board"
       onChange={handleInputChange}

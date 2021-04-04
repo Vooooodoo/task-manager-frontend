@@ -60,7 +60,6 @@ function TaskTextEditPopup({
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}
-      inputName="taskName"
       placeholder="Edit task text"
       btnText="Edit Text"
       defaultValue={task.text}
