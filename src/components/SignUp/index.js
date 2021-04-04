@@ -40,6 +40,10 @@ function SignUp() {
           validationConsts.INPUT_MAX_LENGTH,
           validationConsts.INPUT_MAX_LENGTH_TEXT,
         )
+        .matches(
+          validationConsts.INPUT_NAME_PATTERN,
+          validationConsts.INPUT_NAME_TEXT,
+        )
         .required(validationConsts.INPUT_REQUIRED_TEXT),
       lastName: Yup.string()
         .min(
@@ -49,6 +53,10 @@ function SignUp() {
         .max(
           validationConsts.INPUT_MAX_LENGTH,
           validationConsts.INPUT_MAX_LENGTH_TEXT,
+        )
+        .matches(
+          validationConsts.INPUT_NAME_PATTERN,
+          validationConsts.INPUT_NAME_TEXT,
         )
         .required(validationConsts.INPUT_REQUIRED_TEXT),
       email: Yup.string()
