@@ -43,7 +43,8 @@ function SignIn() {
           validationConsts.INPUT_MAX_LENGTH,
           validationConsts.INPUT_MAX_LENGTH_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT),
+        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .trim(),
       password: Yup.string()
         .min(
           validationConsts.PASSWORD_INPUT_MIN_LENGTH,
@@ -53,7 +54,8 @@ function SignIn() {
           validationConsts.INPUT_MAX_LENGTH,
           validationConsts.INPUT_MAX_LENGTH_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT),
+        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .trim(),
     }),
     onSubmit: async ({ email, password }) => {
       const res = await auth.signIn(email, password);

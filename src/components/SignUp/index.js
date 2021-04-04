@@ -44,7 +44,8 @@ function SignUp() {
           validationConsts.INPUT_NAME_PATTERN,
           validationConsts.INPUT_NAME_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT),
+        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .trim(),
       lastName: Yup.string()
         .min(
           validationConsts.INPUT_MIN_LENGTH,
@@ -58,7 +59,8 @@ function SignUp() {
           validationConsts.INPUT_NAME_PATTERN,
           validationConsts.INPUT_NAME_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT),
+        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .trim(),
       email: Yup.string()
         .email(validationConsts.INPUT_EMAIL_TEXT)
         .min(
@@ -69,7 +71,8 @@ function SignUp() {
           validationConsts.INPUT_MAX_LENGTH,
           validationConsts.INPUT_MAX_LENGTH_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT),
+        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .trim(),
       password: Yup.string()
         .min(
           validationConsts.PASSWORD_INPUT_MIN_LENGTH,
@@ -79,7 +82,8 @@ function SignUp() {
           validationConsts.INPUT_MAX_LENGTH,
           validationConsts.INPUT_MAX_LENGTH_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT),
+        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .trim(),
     }),
     // eslint-disable-next-line object-curly-newline
     onSubmit: ({ firstName, lastName, email, password }) => {
