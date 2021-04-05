@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 import * as auth from '../../utils/auth';
 import * as validationConsts from '../../utils/constants';
 import RouterLink from '../RouterLink';
+import TooltipPopup from '../TooltipPopup';
 import useStyles from './style';
 
 function SignUp() {
@@ -90,6 +91,14 @@ function SignUp() {
       auth.signUp(firstName, lastName, email, password);
     },
   });
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const isTooltipPopupPopupOpen = Boolean(anchorEl);
+  const tooltipPopupId = isTooltipPopupPopupOpen
+    ? 'simple-popover'
+    : undefined;
+
+  // const openTooltipPopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeTooltipPopup = () => setAnchorEl(null);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -183,6 +192,12 @@ function SignUp() {
             text="Already have an account? Sign in"
           />
         </form>
+        <TooltipPopup
+          id={tooltipPopupId}
+          isOpen={isTooltipPopupPopupOpen}
+          anchorEl={anchorEl}
+          onClose={closeTooltipPopup}
+        />
       </section>
     </Container>
   );
