@@ -9,18 +9,28 @@ const initialState = {
       firstName: 'Albert',
       lastName: 'Einstein',
       email: 'albert@einstein.de',
-      password: 12345678,
       about: 'Scientist.',
     },
   ],
+  authorizedUser: {
+    id: 1,
+    firstName: 'Albert',
+    lastName: 'Einstein',
+    email: 'albert@einstein.de',
+    about: 'Scientist.',
+  },
 };
 
-const setUsers = createAction(actionTypes.SET_USERS);
+const setAllUsers = createAction(actionTypes.SET_ALL_USERS);
+const setUser = createAction(actionTypes.SET_USER);
 
 const usersReducer = createReducer(initialState, {
-  [setUsers]: (state, action) => {
+  [setAllUsers]: (state, action) => {
     state.allUsers = action.payload;
+  },
+  [setUser]: (state, action) => {
+    state.authorizedUser = action.payload;
   },
 });
 
-export { usersReducer, setUsers };
+export { usersReducer, setAllUsers, setUser };

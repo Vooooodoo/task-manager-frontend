@@ -15,8 +15,7 @@ import useStyles from './style';
 
 function Profile() {
   const classes = useStyles();
-  const allUsers = useSelector((state) => state.users.allUsers);
-  const authorizedUser = allUsers.find((item) => item.id === 1);
+  const authorizedUser = useSelector((state) => state.users.authorizedUser);
   const {
     handleSubmit,
     handleChange,
@@ -28,7 +27,6 @@ function Profile() {
     initialValues: {
       firstName: authorizedUser.firstName,
       lastName: authorizedUser.lastName,
-      email: authorizedUser.email,
       about: authorizedUser.about,
     },
     validationSchema: Yup.object({
@@ -62,29 +60,6 @@ function Profile() {
         )
         .required(validationConsts.INPUT_REQUIRED_TEXT)
         .trim(),
-      email: Yup.string()
-        .email(validationConsts.INPUT_EMAIL_TEXT)
-        .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
-        )
-        .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
-        )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
-        .trim(),
-      password: Yup.string()
-        .min(
-          validationConsts.PASSWORD_INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
-        )
-        .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
-        )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
-        .trim(),
       about: Yup.string()
         .min(
           validationConsts.INPUT_MIN_LENGTH,
@@ -97,8 +72,8 @@ function Profile() {
         .trim(),
     }),
     // eslint-disable-next-line object-curly-newline
-    onSubmit: ({ firstName, lastName, email, password, about }) => {
-      auth.signUp(firstName, lastName, email, password, about);
+    onSubmit: ({ firstName, lastName, about }) => {
+      auth.signUp(firstName, lastName, about);
     },
   });
 
@@ -139,20 +114,6 @@ function Profile() {
             margin="normal"
             fullWidth
             value={values.lastName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <TextField
-            error={Boolean(touched.email && errors.email)}
-            helperText={errors.email}
-            id="email"
-            label="Email Address"
-            name="email"
-            type="email"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
           />
