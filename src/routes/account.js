@@ -4,7 +4,7 @@ import Profile from '../pages/Profile/Profile';
 
 const accountRoutes = [
   {
-    path: '/main',
+    path: '/main/',
     component: Main,
   },
   {
@@ -12,7 +12,7 @@ const accountRoutes = [
     component: Board,
   },
   {
-    path: '/profile',
+    path: '/profile/',
     component: Profile,
   },
 ];

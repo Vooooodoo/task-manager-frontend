@@ -17,7 +17,7 @@ import * as Yup from 'yup';
 import RouterLink from '../../components/RouterLink/RouterLink';
 import * as authApi from '../../api/authApi';
 import * as validationConstants from '../../utils/constants';
-import { setIsLoggedIn } from '../../store/reducers/auth';
+import { setUser } from '../../store/reducers/users';
 
 import useStyles from './SignIn.style';
 
@@ -66,7 +66,7 @@ function SignIn() {
       const res = await authApi.signIn(email, password);
 
       if (res.data.token) {
-        dispatch(setIsLoggedIn(true));
+        dispatch(setUser(res.data.userData));
       } else {
         console.log(res.message);
       }

@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import { setIsLoggedIn } from '../../../../store/reducers/auth';
+import { setUser } from '../../../../store/reducers/users';
+import { LOCAL_STORAGE_TOKEN_KEY } from '../../../../config';
 
 import useStyles from './MenuPopup.style';
 
@@ -14,8 +15,8 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
-    dispatch(setIsLoggedIn(false));
-    localStorage.removeItem('jwt');
+    dispatch(setUser({}));
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
     onClose();
   };
 

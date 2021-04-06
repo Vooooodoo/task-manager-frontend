@@ -18,9 +18,9 @@ function Header() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuPopupOpen = Boolean(anchorEl);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.users.authorizedUser);
+  const isUser = Boolean(user.id);
 
-  //! чистить стэйт, поэтому баг вылетает, когда появляется меню
   const openMenuPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeMenuPopup = () => setAnchorEl(null);
 
@@ -42,7 +42,7 @@ function Header() {
           Trollo
         </Typography>
 
-        {isLoggedIn && (
+        {isUser && (
           <>
             <IconButton
               aria-label="account of current user"

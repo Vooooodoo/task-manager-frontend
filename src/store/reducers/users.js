@@ -3,22 +3,8 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  allUsers: [
-    {
-      id: 1,
-      firstName: 'Albert',
-      lastName: 'Einstein',
-      email: 'albert@einstein.de',
-      about: 'Scientist.',
-    },
-  ],
-  authorizedUser: {
-    id: 1,
-    firstName: 'Albert',
-    lastName: 'Einstein',
-    email: 'albert@einstein.de',
-    about: 'Scientist.',
-  },
+  allUsers: [],
+  authorizedUser: {},
 };
 
 const setAllUsers = createAction(actionTypes.SET_ALL_USERS);

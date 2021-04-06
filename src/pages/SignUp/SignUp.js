@@ -18,7 +18,7 @@ import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
 
 import * as authApi from '../../api/authApi';
 import * as validationConstants from '../../utils/constants';
-import { setIsLoggedIn } from '../../store/reducers/auth';
+import { setUser } from '../../store/reducers/users';
 
 import useStyles from './SignUp.style';
 
@@ -105,7 +105,7 @@ function SignUp() {
         .signUp(firstName, lastName, email, password);
 
       if (res.data.token) {
-        dispatch(setIsLoggedIn(true));
+        dispatch(setUser(res.data.userData));
       } else {
         console.log(res.message);
       }
