@@ -1,27 +1,13 @@
-const BASE_URL = 'http://localhost:4000';
-const INPUT_MIN_LENGTH = 2;
-const INPUT_MAX_LENGTH = 40;
-const TEXTAREA_INPUT_MAX_LENGTH = 400;
-const PASSWORD_INPUT_MIN_LENGTH = 8;
-const INPUT_NAME_PATTERN = /^[a-zA-Zs-]+$/;
-const BOARD_NAME_MAX_LENGTH = 20;
-const INPUT_REQUIRED_TEXT = 'Required.';
-const INPUT_MIN_LENGTH_TEXT = 'Too short.';
-const INPUT_MAX_LENGTH_TEXT = 'Too long.';
-const INPUT_EMAIL_TEXT = 'Invalid email.';
-const INPUT_NAME_TEXT = 'Invalid name.';
-
-export {
-  BASE_URL,
-  INPUT_MIN_LENGTH,
-  INPUT_MAX_LENGTH,
-  TEXTAREA_INPUT_MAX_LENGTH,
-  PASSWORD_INPUT_MIN_LENGTH,
-  INPUT_NAME_PATTERN,
-  BOARD_NAME_MAX_LENGTH,
-  INPUT_REQUIRED_TEXT,
-  INPUT_MIN_LENGTH_TEXT,
-  INPUT_MAX_LENGTH_TEXT,
-  INPUT_EMAIL_TEXT,
-  INPUT_NAME_TEXT,
-};
+export const BASE_URL = 'http://localhost:4000';
+export const INPUT_MIN_LENGTH = 2;
+export const INPUT_MAX_LENGTH = 40;
+export const TEXTAREA_INPUT_MAX_LENGTH = 400;
+export const PASSWORD_INPUT_MIN_LENGTH = 8;
+export const INPUT_NAME_PATTERN = /^[a-zA-Zs-]+$/;
+export const BOARD_NAME_MAX_LENGTH = 20;
+export const INPUT_REQUIRED_TEXT = 'Required.';
+export const INPUT_MIN_LENGTH_TEXT = 'Too short.';
+export const INPUT_MAX_LENGTH_TEXT = 'Too long.';
+export const INPUT_EMAIL_TEXT = 'Invalid email.';
+export const INPUT_NAME_TEXT = 'Invalid name.';
+export const LOCAL_STORAGE_TOKEN_KEY = 'jwt';

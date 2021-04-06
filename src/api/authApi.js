@@ -1,4 +1,5 @@
 import axios from './axios';
+import { LOCAL_STORAGE_TOKEN_KEY } from '../utils/constants';
 
 const signUp = (firstName, lastName, email, password) => axios
   .post('/sign-up', {
@@ -18,7 +19,7 @@ const signIn = async (email, password) => {
 
   if (jwt) {
     // eslint-disable-next-line no-undef
-    localStorage.setItem('jwt', jwt);
+    localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, jwt);
 
     return res;
   }

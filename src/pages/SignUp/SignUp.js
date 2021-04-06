@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import * as authApi from '../../api/authApi';
-import * as validationConsts from '../../utils/constants';
+import * as validationConstants from '../../utils/constants';
 
 import RouterLink from '../../components/RouterLink/RouterLink';
 import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
@@ -41,59 +41,59 @@ function SignUp() {
       firstName: Yup
         .string()
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_TEXT,
         )
         .matches(
-          validationConsts.INPUT_NAME_PATTERN,
-          validationConsts.INPUT_NAME_TEXT,
+          validationConstants.INPUT_NAME_PATTERN,
+          validationConstants.INPUT_NAME_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_TEXT)
         .trim(),
       lastName: Yup
         .string()
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_TEXT,
         )
         .matches(
-          validationConsts.INPUT_NAME_PATTERN,
-          validationConsts.INPUT_NAME_TEXT,
+          validationConstants.INPUT_NAME_PATTERN,
+          validationConstants.INPUT_NAME_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_TEXT)
         .trim(),
       email: Yup
         .string()
-        .email(validationConsts.INPUT_EMAIL_TEXT)
+        .email(validationConstants.INPUT_EMAIL_TEXT)
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_TEXT)
         .trim(),
       password: Yup
         .string()
         .min(
-          validationConsts.PASSWORD_INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.PASSWORD_INPUT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_TEXT)
         .trim(),
     }),
     // eslint-disable-next-line object-curly-newline
