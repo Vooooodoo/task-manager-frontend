@@ -39,8 +39,8 @@ const signIn = async (email, password) => {
   return res;
 };
 
-const checkJwt = async (userId) => {
-  const res = await axios.get(`/users/${userId}`);
+const checkJwt = async () => {
+  const res = await axios.get('/users/me');
 
   return res;
 
