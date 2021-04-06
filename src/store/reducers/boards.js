@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import * as actionTypes from './constants/actionTypes';
+import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
   //! remove pyramid of doom
