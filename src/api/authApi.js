@@ -1,20 +1,7 @@
 import axios from './axios';
 import { LOCAL_STORAGE_TOKEN_KEY } from '../config';
 
-const signUp = (firstName, lastName, email, password) => axios
-  .post('/sign-up', {
-    firstName,
-    lastName,
-    email,
-    password,
-  });
-
-const signIn = async (email, password) => {
-  const res = await axios
-    .post('/sign-in', {
-      email,
-      password,
-    });
+const setJwtToLocalStorage = (res) => {
   const jwt = res.data.token;
 
   if (jwt) {
@@ -22,6 +9,32 @@ const signIn = async (email, password) => {
 
     return res;
   }
+
+  return res;
+};
+
+const signUp = async (firstName, lastName, email, password) => {
+  const res = await axios
+    .post('/sign-up', {
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+  setJwtToLocalStorage(res);
+
+  return res;
+};
+
+const signIn = async (email, password) => {
+  const res = await axios
+    .post('/sign-in', {
+      email,
+      password,
+    });
+
+  setJwtToLocalStorage(res);
 
   return res;
 };

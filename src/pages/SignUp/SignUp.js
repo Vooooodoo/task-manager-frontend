@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -12,16 +13,18 @@ import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import * as authApi from '../../api/authApi';
-import * as validationConstants from '../../utils/constants';
-
 import RouterLink from '../../components/RouterLink/RouterLink';
 import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
+
+import * as authApi from '../../api/authApi';
+import * as validationConstants from '../../utils/constants';
+import { setIsLoggedIn } from '../../store/reducers/auth';
 
 import useStyles from './SignUp.style';
 
 function SignUp() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const {
     handleSubmit,
@@ -97,8 +100,15 @@ function SignUp() {
         .trim(),
     }),
     // eslint-disable-next-line object-curly-newline
-    onSubmit: ({ firstName, lastName, email, password }) => {
-      authApi.signUp(firstName, lastName, email, password);
+    onSubmit: async ({ firstName, lastName, email, password }) => {
+      const res = await authApi
+        .signUp(firstName, lastName, email, password);
+
+      if (res.data.token) {
+        dispatch(setIsLoggedIn(true));
+      } else {
+        console.log(res.message);
+      }
     },
   });
 
