@@ -18,7 +18,6 @@ const signIn = async (email, password) => {
   const jwt = res.data.token;
 
   if (jwt) {
-    // eslint-disable-next-line no-undef
     localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, jwt);
 
     return res;

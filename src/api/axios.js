@@ -1,7 +1,6 @@
 import axios from 'axios';
 import * as config from '../config';
 
-// eslint-disable-next-line no-undef
 const jwt = localStorage.getItem(config.LOCAL_STORAGE_TOKEN_KEY);
 const axiosInstance = axios.create({
   baseURL: config.BASE_URL,

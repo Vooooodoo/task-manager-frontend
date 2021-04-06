@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createMuiTheme } from '@material-ui/core/styles';
 
-// добавим кастомные переменные в глобальный объект theme
+// add custom variables to the theme global object
 const theme = createMuiTheme({
   mainContainerMarginTop: '64px',
   customHover: {
