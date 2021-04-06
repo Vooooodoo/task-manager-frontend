@@ -13,6 +13,11 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const handleSignOut = () => {
+    dispatch(setIsLoggedIn(false));
+    onClose();
+  };
+
   return (
     <Menu
       id="menu-appbar"
@@ -49,7 +54,7 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
         </Link>
       </MenuItem>
 
-      <MenuItem onClick={() => dispatch(setIsLoggedIn(false))}>
+      <MenuItem onClick={handleSignOut}>
         Sign Out
       </MenuItem>
     </Menu>
