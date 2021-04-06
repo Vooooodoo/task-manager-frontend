@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import RouterLink from '../../components/RouterLink/RouterLink';
-import * as auth from '../../utils/auth';
+import * as authApi from '../../api/authApi';
 import * as validationConsts from '../../utils/constants';
 import { setIsLoggedIn } from '../../store/auth';
 
@@ -63,7 +63,7 @@ function SignIn() {
         .trim(),
     }),
     onSubmit: async ({ email, password }) => {
-      const res = await auth.signIn(email, password);
+      const res = await authApi.signIn(email, password);
 
       if (res.data.token) {
         dispatch(setIsLoggedIn(true));

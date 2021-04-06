@@ -1,4 +1,4 @@
-import axios from './api';
+import axios from './axios';
 
 const signUp = (firstName, lastName, email, password) => axios
   .post('/sign-up', {

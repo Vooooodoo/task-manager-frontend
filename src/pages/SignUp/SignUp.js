@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import * as auth from '../../utils/auth';
+import * as authApi from '../../api/authApi';
 import * as validationConsts from '../../utils/constants';
 
 import RouterLink from '../../components/RouterLink/RouterLink';
@@ -98,7 +98,7 @@ function SignUp() {
     }),
     // eslint-disable-next-line object-curly-newline
     onSubmit: ({ firstName, lastName, email, password }) => {
-      auth.signUp(firstName, lastName, email, password);
+      authApi.signUp(firstName, lastName, email, password);
     },
   });
 
