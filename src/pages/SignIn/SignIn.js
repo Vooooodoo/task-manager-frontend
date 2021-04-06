@@ -17,7 +17,7 @@ import * as Yup from 'yup';
 import RouterLink from '../../components/RouterLink/RouterLink';
 import * as authApi from '../../api/authApi';
 import * as validationConstants from '../../utils/constants';
-import { setIsLoggedIn } from '../../store/auth';
+import { setIsLoggedIn } from '../../store/reducers/auth';
 
 import useStyles from './SignIn.style';
 

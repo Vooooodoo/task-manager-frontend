@@ -1,5 +1,5 @@
 import axios from './axios';
-import { LOCAL_STORAGE_TOKEN_KEY } from '../utils/constants';
+import { LOCAL_STORAGE_TOKEN_KEY } from '../config';
 
 const signUp = (firstName, lastName, email, password) => axios
   .post('/sign-up', {

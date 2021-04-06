@@ -1,10 +1,10 @@
 import axios from 'axios';
-import * as constants from '../utils/constants';
+import * as config from '../config';
 
 // eslint-disable-next-line no-undef
-const jwt = localStorage.getItem(constants.LOCAL_STORAGE_TOKEN_KEY);
+const jwt = localStorage.getItem(config.LOCAL_STORAGE_TOKEN_KEY);
 const axiosInstance = axios.create({
-  baseURL: constants.BASE_URL,
+  baseURL: config.BASE_URL,
   timeout: 1000,
   headers: {
     //! можно ли отправлять Authorization для всех запросов?

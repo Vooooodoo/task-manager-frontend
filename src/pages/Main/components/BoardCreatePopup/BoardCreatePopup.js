@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setBoards } from '../../../../store/boards';
+import { setBoards } from '../../../../store/reducers/boards';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 function BoardCreatePopup({

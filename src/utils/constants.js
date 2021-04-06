@@ -1,5 +1,3 @@
-export const BASE_URL = 'http://localhost:4000';
-
 export const INPUT_TEXT_MIN_LENGTH = 2;
 export const INPUT_TEXT_MAX_LENGTH = 40;
 export const TEXTAREA_INPUT_MAX_LENGTH = 400;
@@ -12,5 +10,3 @@ export const INPUT_MIN_LENGTH_VALIDATION_TEXT = 'Too short.';
 export const INPUT_MAX_LENGTH_VALIDATION_TEXT = 'Too long.';
 export const INPUT_EMAIL_VALIDATION_TEXT = 'Invalid email.';
 export const INPUT_NAME_VALIDATION_TEXT = 'Invalid name.';
-
-export const LOCAL_STORAGE_TOKEN_KEY = 'jwt';

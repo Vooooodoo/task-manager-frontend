@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import { setIsLoggedIn } from '../../../../store/auth';
+import { setIsLoggedIn } from '../../../../store/reducers/auth';
 
 import useStyles from './MenuPopup.style';
 
