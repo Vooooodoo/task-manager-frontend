@@ -15,6 +15,7 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
 
   const handleSignOut = () => {
     dispatch(setIsLoggedIn(false));
+    localStorage.removeItem('jwt');
     onClose();
   };
 
