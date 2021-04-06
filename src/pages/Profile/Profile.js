@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import * as authApi from '../../api/authApi';
-import * as validationConsts from '../../utils/constants';
+import * as validationConstants from '../../utils/constants';
 
 import useStyles from './Profile.style';
 
@@ -38,44 +38,44 @@ function Profile() {
       firstName: Yup
         .string()
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
         )
         .matches(
-          validationConsts.INPUT_NAME_PATTERN,
-          validationConsts.INPUT_NAME_TEXT,
+          validationConstants.INPUT_NAME_PATTERN,
+          validationConstants.INPUT_NAME_VALIDATION_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
         .trim(),
       lastName: Yup
         .string()
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
         )
         .matches(
-          validationConsts.INPUT_NAME_PATTERN,
-          validationConsts.INPUT_NAME_TEXT,
+          validationConstants.INPUT_NAME_PATTERN,
+          validationConstants.INPUT_NAME_VALIDATION_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
         .trim(),
       about: Yup
         .string()
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
         )
         .max(
-          validationConsts.TEXTAREA_INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.TEXTAREA_INPUT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
         )
         .trim(),
     }),

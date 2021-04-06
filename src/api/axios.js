@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as constants from '../utils/constants';
 
 // eslint-disable-next-line no-undef
-const jwt = localStorage.getItem('jwt');
+const jwt = localStorage.getItem(constants.LOCAL_STORAGE_TOKEN_KEY);
 const axiosInstance = axios.create({
   baseURL: constants.BASE_URL,
   timeout: 1000,

@@ -16,7 +16,7 @@ import * as Yup from 'yup';
 
 import RouterLink from '../../components/RouterLink/RouterLink';
 import * as authApi from '../../api/authApi';
-import * as validationConsts from '../../utils/constants';
+import * as validationConstants from '../../utils/constants';
 import { setIsLoggedIn } from '../../store/auth';
 
 import useStyles from './SignIn.style';
@@ -39,27 +39,27 @@ function SignIn() {
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email(validationConsts.INPUT_EMAIL_TEXT)
+        .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
         .min(
-          validationConsts.INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
         .trim(),
       password: Yup.string()
         .min(
-          validationConsts.PASSWORD_INPUT_MIN_LENGTH,
-          validationConsts.INPUT_MIN_LENGTH_TEXT,
+          validationConstants.PASSWORD_INPUT_MIN_LENGTH,
+          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
         )
         .max(
-          validationConsts.INPUT_MAX_LENGTH,
-          validationConsts.INPUT_MAX_LENGTH_TEXT,
+          validationConstants.INPUT_TEXT_MAX_LENGTH,
+          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
         )
-        .required(validationConsts.INPUT_REQUIRED_TEXT)
+        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
         .trim(),
     }),
     onSubmit: async ({ email, password }) => {
