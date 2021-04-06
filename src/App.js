@@ -2,14 +2,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import Router from '../routes/Router/Router';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Router from './routes/Router/Router';
 
-import { checkJwt } from '../api/authApi';
-import { setUser } from '../store/reducers/users';
+import { checkJwt } from './api/authApi';
+import { setUser } from './store/reducers/users';
 
-import GlobalStyle from '../pages/GlobalStyle/GlobalStyle';
+import GlobalStyle from './pages/GlobalStyle/GlobalStyle';
 
 function App() {
   //! not perfect solution, because user may change often
