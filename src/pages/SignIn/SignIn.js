@@ -61,12 +61,14 @@ function SignIn() {
         .trim(),
     }),
     onSubmit: async ({ email, password }) => {
-      const res = await authApi.signIn(email, password);
+      try {
+        const res = await authApi.signIn(email, password);
 
-      if (res.data.token) {
-        dispatch(setUser(res.data.userData));
-      } else {
-        console.log(res.message);
+        if (res.data.token) {
+          dispatch(setUser(res.data.userData));
+        }
+      } catch (err) {
+        console.log(err.response.data.message);
       }
     },
   });

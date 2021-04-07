@@ -101,13 +101,15 @@ function SignUp() {
     }),
     // eslint-disable-next-line object-curly-newline
     onSubmit: async ({ firstName, lastName, email, password }) => {
-      const res = await authApi
-        .signUp(firstName, lastName, email, password);
+      try {
+        const res = await authApi
+          .signUp(firstName, lastName, email, password);
 
-      if (res.data.token) {
-        dispatch(setUser(res.data.userData));
-      } else {
-        console.log(res.message);
+        if (res.data.token) {
+          dispatch(setUser(res.data.userData));
+        }
+      } catch (err) {
+        console.log(err.response.data.message);
       }
     },
   });

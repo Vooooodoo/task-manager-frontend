@@ -26,7 +26,7 @@ function App() {
         localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
       }
     } catch (err) {
-      console.log('Error. Request failed:', err);
+      console.log(err.response.data.message);
     }
   };
 

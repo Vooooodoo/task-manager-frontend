@@ -43,16 +43,6 @@ const checkJwt = async () => {
   try {
     const res = await axios.get('/users/me');
 
-    if (res.status === 200) {
-      return res;
-    }
-    if (res.status === 400) {
-      throw new Error('The token was not sent or was sent in the wrong format.');
-    }
-    if (res.status === 401) {
-      throw new Error('Invalid token.');
-    }
-
     return res;
   } catch (err) {
     return err;
