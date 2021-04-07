@@ -14,9 +14,12 @@ import GlobalStyle from './pages/GlobalStyle/GlobalStyle';
 
 function App() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   //! how to replace token checker?
   const checkToken = async () => {
+    setIsLoading(true);
+
     try {
       const res = await checkJwt();
 
@@ -27,6 +30,8 @@ function App() {
       }
     } catch (err) {
       console.log(err.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -36,10 +41,16 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <Header />
-      <Router />
-      <Footer />
+      {isLoading ? (
+        <></>
+      ) : (
+        <>
+          <GlobalStyle />
+          <Header />
+          <Router />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
