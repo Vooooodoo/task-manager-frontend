@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -12,13 +12,15 @@ import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import * as authApi from '../../api/authApi';
+import axios from '../../api/axios';
 import * as validationConstants from '../../utils/constants';
+import { setUser } from '../../store/reducers/users';
 
 import useStyles from './Profile.style';
 
 function Profile() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const authorizedUser = useSelector((state) => state.users.authorizedUser);
 
   const {
@@ -80,8 +82,21 @@ function Profile() {
         .trim(),
     }),
     // eslint-disable-next-line object-curly-newline
-    onSubmit: ({ firstName, lastName, about }) => {
-      authApi.signUp(firstName, lastName, about);
+    onSubmit: async ({ firstName, lastName, about }) => {
+      try {
+        const res = await axios
+          .patch('/users/me', {
+            firstName,
+            lastName,
+            about,
+          });
+
+        if (res.data) {
+          dispatch(setUser(res.data));
+        }
+      } catch (err) {
+        console.log(err.response.data.message);
+      }
     },
   });
 
