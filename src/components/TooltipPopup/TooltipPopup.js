@@ -8,7 +8,6 @@ import useStyles from './TooltipPopup.style';
 
 function TooltipPopup({
   id,
-  delElId,
   isOpen,
   anchorEl,
   tooltipText,
@@ -20,7 +19,6 @@ function TooltipPopup({
   return (
     <Popover
       id={id}
-      delElId={delElId}
       open={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}

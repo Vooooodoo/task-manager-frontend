@@ -12,7 +12,9 @@ import Container from '@material-ui/core/Container';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
 import RouterLink from '../../components/RouterLink/RouterLink';
+
 import * as authApi from '../../api/authApi';
 import * as validationConstants from '../../utils/constants';
 import { setUser } from '../../store/reducers/users';
@@ -22,6 +24,21 @@ import useStyles from './SignIn.style';
 function SignIn() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [tooltipText, setTooltipText] = React.useState('');
+  const isTooltipPopupOpen = Boolean(anchorEl);
+  const tooltipPopupId = isTooltipPopupOpen
+    ? 'simple-popover'
+    : undefined;
+
+  const openTooltipPopup = (evt) => {
+    setAnchorEl(evt.currentTarget);
+  };
+  const closeTooltipPopup = () => {
+    setAnchorEl(null);
+    setTooltipText('');
+  };
 
   const {
     handleSubmit,
@@ -68,7 +85,8 @@ function SignIn() {
           dispatch(setUser(res.data.userData));
         }
       } catch (err) {
-        console.log(err.response.data.message);
+        setTooltipText(err.response.data.message);
+        openTooltipPopup();
       }
     },
   });
@@ -126,6 +144,16 @@ function SignIn() {
           >
             Sign In
           </Button>
+
+          <TooltipPopup
+            id={tooltipPopupId}
+            isOpen={isTooltipPopupOpen}
+            anchorEl={anchorEl}
+            tooltipText={tooltipText}
+            onClose={closeTooltipPopup}
+            onClick={closeTooltipPopup}
+          />
+
           <RouterLink route="/sign-up" text="Don't have an account? Sign Up" />
         </form>
       </section>
