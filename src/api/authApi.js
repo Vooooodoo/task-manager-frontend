@@ -40,35 +40,23 @@ const signIn = async (email, password) => {
 };
 
 const checkJwt = async () => {
-  const res = await axios.get('/users/me');
+  try {
+    const res = await axios.get('/users/me');
 
-  return res;
+    if (res.status === 200) {
+      return res;
+    }
+    if (res.status === 400) {
+      throw new Error('The token was not sent or was sent in the wrong format.');
+    }
+    if (res.status === 401) {
+      throw new Error('Invalid token.');
+    }
 
-  // return fetch(`${BASE_URL}/users/me`, {
-  //   method: 'GET',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${jwt}`,
-  //   },
-  // })
-  //   .then((res) => {
-  //     try {
-  //       if (res.status === 200) {
-  //         return res.json();
-  //       }
-  //       if (res.status === 400) {
-  //         throw new Error('Токен не передан или передан не в том формате');
-  //       }
-  //       if (res.status === 401) {
-  //         throw new Error('Переданный токен некорректен');
-  //       }
-  //     } catch (error) {
-  //       return error;
-  //     }
-  //   })
-
-  //   .then((data) => data);
+    return res;
+  } catch (err) {
+    return err;
+  }
 };
 
 export { signUp, signIn, checkJwt };
