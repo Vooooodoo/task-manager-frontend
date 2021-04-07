@@ -40,13 +40,9 @@ const signIn = async (email, password) => {
 };
 
 const checkJwt = async () => {
-  try {
-    const res = await axios.get('/users/me');
+  const res = await axios.get('/users/me');
 
-    return res;
-  } catch (err) {
-    return err;
-  }
+  return res;
 };
 
 export { signUp, signIn, checkJwt };
