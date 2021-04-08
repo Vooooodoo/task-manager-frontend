@@ -26,6 +26,66 @@ function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const validationSchema = Yup.object({
+    firstName: Yup
+      .string()
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .matches(
+        validationConstants.INPUT_NAME_PATTERN,
+        validationConstants.INPUT_NAME_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+    lastName: Yup
+      .string()
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .matches(
+        validationConstants.INPUT_NAME_PATTERN,
+        validationConstants.INPUT_NAME_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+    email: Yup
+      .string()
+      .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+    password: Yup
+      .string()
+      .min(
+        validationConstants.PASSWORD_INPUT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+  });
+
   const {
     handleSubmit,
     handleChange,
@@ -40,65 +100,7 @@ function SignUp() {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({
-      firstName: Yup
-        .string()
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .matches(
-          validationConstants.INPUT_NAME_PATTERN,
-          validationConstants.INPUT_NAME_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-      lastName: Yup
-        .string()
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .matches(
-          validationConstants.INPUT_NAME_PATTERN,
-          validationConstants.INPUT_NAME_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-      email: Yup
-        .string()
-        .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-      password: Yup
-        .string()
-        .min(
-          validationConstants.PASSWORD_INPUT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-    }),
+    validationSchema,
     // eslint-disable-next-line object-curly-newline
     onSubmit: async ({ firstName, lastName, email, password }) => {
       try {

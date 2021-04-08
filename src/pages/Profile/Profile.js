@@ -23,6 +23,52 @@ function Profile() {
   const dispatch = useDispatch();
   const authorizedUser = useSelector((state) => state.users.authorizedUser);
 
+  const validationSchema = Yup.object({
+    firstName: Yup
+      .string()
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .matches(
+        validationConstants.INPUT_NAME_PATTERN,
+        validationConstants.INPUT_NAME_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+    lastName: Yup
+      .string()
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .matches(
+        validationConstants.INPUT_NAME_PATTERN,
+        validationConstants.INPUT_NAME_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+    about: Yup
+      .string()
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.TEXTAREA_INPUT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .trim(),
+  });
+
   const {
     handleSubmit,
     handleChange,
@@ -36,51 +82,7 @@ function Profile() {
       lastName: authorizedUser.lastName,
       about: authorizedUser.about,
     },
-    validationSchema: Yup.object({
-      firstName: Yup
-        .string()
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .matches(
-          validationConstants.INPUT_NAME_PATTERN,
-          validationConstants.INPUT_NAME_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-      lastName: Yup
-        .string()
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .matches(
-          validationConstants.INPUT_NAME_PATTERN,
-          validationConstants.INPUT_NAME_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-      about: Yup
-        .string()
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.TEXTAREA_INPUT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .trim(),
-    }),
+    validationSchema,
     // eslint-disable-next-line object-curly-newline
     onSubmit: async ({ firstName, lastName, about }) => {
       try {

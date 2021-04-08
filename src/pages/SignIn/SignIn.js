@@ -32,9 +32,38 @@ function SignIn() {
     ? 'simple-popover'
     : undefined;
 
+  const validationSchema = Yup.object({
+    email: Yup
+      .string()
+      .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
+      .min(
+        validationConstants.INPUT_TEXT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+    password: Yup
+      .string()
+      .min(
+        validationConstants.PASSWORD_INPUT_MIN_LENGTH,
+        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+      )
+      .max(
+        validationConstants.INPUT_TEXT_MAX_LENGTH,
+        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+      )
+      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+      .trim(),
+  });
+
   const openTooltipPopup = (evt) => {
     setAnchorEl(evt.currentTarget);
   };
+
   const closeTooltipPopup = () => {
     setAnchorEl(null);
     setTooltipText('');
@@ -52,31 +81,7 @@ function SignIn() {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
-        .min(
-          validationConstants.INPUT_TEXT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-      password: Yup.string()
-        .min(
-          validationConstants.PASSWORD_INPUT_MIN_LENGTH,
-          validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-        )
-        .max(
-          validationConstants.INPUT_TEXT_MAX_LENGTH,
-          validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-        )
-        .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-        .trim(),
-    }),
+    validationSchema,
     onSubmit: async ({ email, password }) => {
       try {
         const res = await authApi.signIn(email, password);
