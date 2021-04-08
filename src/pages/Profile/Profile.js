@@ -124,7 +124,6 @@ function Profile() {
             margin="normal"
             fullWidth
             value={values.firstName}
-            defaultValue={authorizedUser.firstName}
             onChange={handleChange}
             onBlur={handleBlur}
           />
