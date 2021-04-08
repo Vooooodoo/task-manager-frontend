@@ -23,8 +23,7 @@ import { setUser } from '../../store/reducers/users';
 import useStyles from './SignUp.style';
 
 const validationSchema = Yup.object({
-  firstName: Yup
-    .string()
+  firstName: Yup.string()
     .min(
       validationConstants.INPUT_TEXT_MIN_LENGTH,
       validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
@@ -39,8 +38,7 @@ const validationSchema = Yup.object({
     )
     .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
     .trim(),
-  lastName: Yup
-    .string()
+  lastName: Yup.string()
     .min(
       validationConstants.INPUT_TEXT_MIN_LENGTH,
       validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
@@ -55,8 +53,7 @@ const validationSchema = Yup.object({
     )
     .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
     .trim(),
-  email: Yup
-    .string()
+  email: Yup.string()
     .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
     .min(
       validationConstants.INPUT_TEXT_MIN_LENGTH,
@@ -68,8 +65,7 @@ const validationSchema = Yup.object({
     )
     .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
     .trim(),
-  password: Yup
-    .string()
+  password: Yup.string()
     .min(
       validationConstants.PASSWORD_INPUT_MIN_LENGTH,
       validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
@@ -85,6 +81,23 @@ const validationSchema = Yup.object({
 function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [tooltipText, setTooltipText] = React.useState('');
+  const isTooltipPopupOpen = Boolean(anchorEl);
+  const tooltipPopupId = isTooltipPopupOpen
+    ? 'simple-popover'
+    : undefined;
+
+  const mainEl = React.useRef(null);
+
+  const openTooltipPopup = () => {
+    setAnchorEl(mainEl.current);
+  };
+
+  const closeTooltipPopup = () => {
+    setAnchorEl(null);
+  };
 
   const {
     handleSubmit,
@@ -104,29 +117,20 @@ function SignUp() {
     // eslint-disable-next-line object-curly-newline
     onSubmit: async ({ firstName, lastName, email, password }) => {
       try {
-        const res = await authApi
-          .signUp(firstName, lastName, email, password);
+        const res = await authApi.signUp(firstName, lastName, email, password);
 
         if (res.data.token) {
           dispatch(setUser(res.data.userData));
         }
       } catch (err) {
-        console.log(err.response.data.message);
+        setTooltipText(err.response.data.message);
+        openTooltipPopup();
       }
     },
   });
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isTooltipPopupPopupOpen = Boolean(anchorEl);
-  const tooltipPopupId = isTooltipPopupPopupOpen
-    ? 'simple-popover'
-    : undefined;
-
-  // const openTooltipPopup = (evt) => setAnchorEl(evt.currentTarget);
-  const closeTooltipPopup = () => setAnchorEl(null);
-
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" ref={mainEl}>
       <CssBaseline />
       <section className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -137,7 +141,7 @@ function SignUp() {
           Sign up
         </Typography>
 
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit} ref={mainEl}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -219,18 +223,20 @@ function SignUp() {
             Sign Up
           </Button>
 
+          <TooltipPopup
+            id={tooltipPopupId}
+            isOpen={isTooltipPopupOpen}
+            anchorEl={anchorEl}
+            tooltipText={tooltipText}
+            onClose={closeTooltipPopup}
+            onClick={closeTooltipPopup}
+          />
+
           <RouterLink
             route="/sign-in"
             text="Already have an account? Sign in"
           />
         </form>
-
-        <TooltipPopup
-          id={tooltipPopupId}
-          isOpen={isTooltipPopupPopupOpen}
-          anchorEl={anchorEl}
-          onClose={closeTooltipPopup}
-        />
       </section>
     </Container>
   );

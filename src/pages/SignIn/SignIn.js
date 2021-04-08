@@ -60,13 +60,14 @@ function SignIn() {
     ? 'simple-popover'
     : undefined;
 
-  const openTooltipPopup = (evt) => {
-    setAnchorEl(evt.currentTarget);
+  const mainEl = React.useRef(null);
+
+  const openTooltipPopup = () => {
+    setAnchorEl(mainEl.current);
   };
 
   const closeTooltipPopup = () => {
     setAnchorEl(null);
-    setTooltipText('');
   };
 
   const {
@@ -97,7 +98,7 @@ function SignIn() {
   });
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" ref={mainEl}>
       <CssBaseline />
       <section className={classes.paper}>
         <Avatar className={classes.avatar}>

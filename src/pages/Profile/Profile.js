@@ -12,6 +12,8 @@ import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
+
 import axios from '../../api/axios';
 import * as validationConstants from '../../utils/constants';
 import { setUser } from '../../store/reducers/users';
@@ -69,6 +71,21 @@ function Profile() {
   const dispatch = useDispatch();
   const authorizedUser = useSelector((state) => state.users.authorizedUser);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [tooltipText, setTooltipText] = React.useState('');
+  const isTooltipPopupOpen = Boolean(anchorEl);
+  const tooltipPopupId = isTooltipPopupOpen ? 'simple-popover' : undefined;
+
+  const mainEl = React.useRef(null);
+
+  const openTooltipPopup = () => {
+    setAnchorEl(mainEl.current);
+  };
+
+  const closeTooltipPopup = () => {
+    setAnchorEl(null);
+  };
+
   const {
     handleSubmit,
     handleChange,
@@ -80,30 +97,33 @@ function Profile() {
     initialValues: {
       firstName: authorizedUser.firstName,
       lastName: authorizedUser.lastName,
-      about: authorizedUser.about,
+      //! feels like a not the best solution
+      about: authorizedUser.about === null
+        ? ''
+        : authorizedUser.about,
     },
     validationSchema,
     // eslint-disable-next-line object-curly-newline
     onSubmit: async ({ firstName, lastName, about }) => {
       try {
-        const res = await axios
-          .patch('/users/me', {
-            firstName,
-            lastName,
-            about,
-          });
+        const res = await axios.patch('/users/me', {
+          firstName,
+          lastName,
+          about,
+        });
 
         if (res.data) {
           dispatch(setUser(res.data));
         }
       } catch (err) {
-        console.log(err.response.data.message);
+        setTooltipText(err.response.data.message);
+        openTooltipPopup();
       }
     },
   });
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" ref={mainEl}>
       <CssBaseline />
       <section className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -171,6 +191,15 @@ function Profile() {
           >
             Save
           </Button>
+
+          <TooltipPopup
+            id={tooltipPopupId}
+            isOpen={isTooltipPopupOpen}
+            anchorEl={anchorEl}
+            tooltipText={tooltipText}
+            onClose={closeTooltipPopup}
+            onClick={closeTooltipPopup}
+          />
         </form>
       </section>
     </Container>

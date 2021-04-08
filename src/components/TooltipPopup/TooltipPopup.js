@@ -32,7 +32,7 @@ function TooltipPopup({
       }}
       PaperProps={{ className: classes.paper }}
     >
-      <Typography className={classes.title} component="h3" variant="h4">
+      <Typography className={classes.title} component="h3" variant="h5">
         {tooltipText}
       </Typography>
 
