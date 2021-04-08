@@ -8,7 +8,6 @@ import useStyles from './ConfirmPopup.style';
 
 function ConfirmPopup({
   id,
-  delElId,
   isOpen,
   anchorEl,
   btnText,
@@ -20,7 +19,6 @@ function ConfirmPopup({
   return (
     <Popover
       id={id}
-      delElId={delElId}
       open={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}

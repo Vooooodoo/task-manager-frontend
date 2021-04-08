@@ -20,7 +20,6 @@ function BoardDeletePopup({
   return (
     <ConfirmPopup
       id={id}
-      delElId={delBoardId}
       isOpen={isOpen}
       anchorEl={anchorEl}
       btnText="Delete board"

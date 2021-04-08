@@ -35,7 +35,6 @@ function TaskListDeletePopup({
   return (
     <ConfirmPopup
       id={id}
-      delElId={delTaskListId}
       isOpen={isOpen}
       anchorEl={anchorEl}
       btnText="Delete list"
