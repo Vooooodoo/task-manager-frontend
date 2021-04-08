@@ -18,56 +18,56 @@ import { setUser } from '../../store/reducers/users';
 
 import useStyles from './Profile.style';
 
+const validationSchema = Yup.object({
+  firstName: Yup
+    .string()
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .matches(
+      validationConstants.INPUT_NAME_PATTERN,
+      validationConstants.INPUT_NAME_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+  lastName: Yup
+    .string()
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .matches(
+      validationConstants.INPUT_NAME_PATTERN,
+      validationConstants.INPUT_NAME_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+  about: Yup
+    .string()
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.TEXTAREA_INPUT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .trim(),
+});
+
 function Profile() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const authorizedUser = useSelector((state) => state.users.authorizedUser);
-
-  const validationSchema = Yup.object({
-    firstName: Yup
-      .string()
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .matches(
-        validationConstants.INPUT_NAME_PATTERN,
-        validationConstants.INPUT_NAME_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-    lastName: Yup
-      .string()
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .matches(
-        validationConstants.INPUT_NAME_PATTERN,
-        validationConstants.INPUT_NAME_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-    about: Yup
-      .string()
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.TEXTAREA_INPUT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .trim(),
-  });
 
   const {
     handleSubmit,
@@ -114,10 +114,10 @@ function Profile() {
           {authorizedUser.firstName}
         </Typography>
 
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
-            error={Boolean(touched.firstName && errors.firstName)}
-            helperText={errors.firstName}
+            error={touched.firstName && Boolean(errors.firstName)}
+            helperText={touched.firstName && errors.firstName}
             id="firstName"
             label="First Name"
             name="firstName"
@@ -131,8 +131,8 @@ function Profile() {
           />
 
           <TextField
-            error={Boolean(touched.lastName && errors.lastName)}
-            helperText={errors.lastName}
+            error={touched.lastName && Boolean(errors.lastName)}
+            helperText={touched.lastName && errors.lastName}
             id="lastName"
             label="Last Name"
             name="lastName"
@@ -146,8 +146,8 @@ function Profile() {
           />
 
           <TextField
-            error={Boolean(touched.about && errors.about)}
-            helperText={errors.about}
+            error={touched.about && Boolean(errors.about)}
+            helperText={touched.about && errors.about}
             id="about"
             label="About"
             name="about"

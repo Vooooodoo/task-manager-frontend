@@ -22,69 +22,69 @@ import { setUser } from '../../store/reducers/users';
 
 import useStyles from './SignUp.style';
 
+const validationSchema = Yup.object({
+  firstName: Yup
+    .string()
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .matches(
+      validationConstants.INPUT_NAME_PATTERN,
+      validationConstants.INPUT_NAME_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+  lastName: Yup
+    .string()
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .matches(
+      validationConstants.INPUT_NAME_PATTERN,
+      validationConstants.INPUT_NAME_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+  email: Yup
+    .string()
+    .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+  password: Yup
+    .string()
+    .min(
+      validationConstants.PASSWORD_INPUT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+});
+
 function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
-  const validationSchema = Yup.object({
-    firstName: Yup
-      .string()
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .matches(
-        validationConstants.INPUT_NAME_PATTERN,
-        validationConstants.INPUT_NAME_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-    lastName: Yup
-      .string()
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .matches(
-        validationConstants.INPUT_NAME_PATTERN,
-        validationConstants.INPUT_NAME_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-    email: Yup
-      .string()
-      .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-    password: Yup
-      .string()
-      .min(
-        validationConstants.PASSWORD_INPUT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-  });
 
   const {
     handleSubmit,
@@ -137,12 +137,12 @@ function SignUp() {
           Sign up
         </Typography>
 
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                error={Boolean(touched.lastName && errors.lastName)}
-                helperText={errors.firstName}
+                error={touched.firstName && Boolean(errors.firstName)}
+                helperText={touched.firstName && errors.firstName}
                 id="firstName"
                 label="First Name"
                 name="firstName"
@@ -159,8 +159,8 @@ function SignUp() {
 
             <Grid item xs={12} sm={6}>
               <TextField
-                error={Boolean(touched.lastName && errors.lastName)}
-                helperText={errors.lastName}
+                error={touched.lastName && Boolean(errors.lastName)}
+                helperText={touched.lastName && errors.lastName}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
@@ -176,8 +176,8 @@ function SignUp() {
 
             <Grid item xs={12}>
               <TextField
-                error={Boolean(touched.email && errors.email)}
-                helperText={errors.email}
+                error={touched.email && Boolean(errors.email)}
+                helperText={touched.email && errors.email}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -193,8 +193,8 @@ function SignUp() {
 
             <Grid item xs={12}>
               <TextField
-                error={Boolean(touched.password && errors.password)}
-                helperText={errors.password}
+                error={touched.password && Boolean(errors.password)}
+                helperText={touched.password && errors.password}
                 id="password"
                 label="Password"
                 name="password"

@@ -21,6 +21,34 @@ import { setUser } from '../../store/reducers/users';
 
 import useStyles from './SignIn.style';
 
+const validationSchema = Yup.object({
+  email: Yup
+    .string()
+    .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
+    .min(
+      validationConstants.INPUT_TEXT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+  password: Yup
+    .string()
+    .min(
+      validationConstants.PASSWORD_INPUT_MIN_LENGTH,
+      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
+    )
+    .max(
+      validationConstants.INPUT_TEXT_MAX_LENGTH,
+      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
+    )
+    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
+    .trim(),
+});
+
 function SignIn() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -31,34 +59,6 @@ function SignIn() {
   const tooltipPopupId = isTooltipPopupOpen
     ? 'simple-popover'
     : undefined;
-
-  const validationSchema = Yup.object({
-    email: Yup
-      .string()
-      .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
-      .min(
-        validationConstants.INPUT_TEXT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-    password: Yup
-      .string()
-      .min(
-        validationConstants.PASSWORD_INPUT_MIN_LENGTH,
-        validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-      )
-      .max(
-        validationConstants.INPUT_TEXT_MAX_LENGTH,
-        validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-      )
-      .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-      .trim(),
-  });
 
   const openTooltipPopup = (evt) => {
     setAnchorEl(evt.currentTarget);
@@ -108,10 +108,10 @@ function SignIn() {
           Sign in
         </Typography>
 
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
-            error={Boolean(touched.email && errors.email)}
-            helperText={errors.email}
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email}
             id="email"
             label="Email Address"
             name="email"
@@ -126,8 +126,8 @@ function SignIn() {
           />
 
           <TextField
-            error={Boolean(touched.password && errors.password)}
-            helperText={errors.password}
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password}
             id="password"
             label="Password"
             name="password"
