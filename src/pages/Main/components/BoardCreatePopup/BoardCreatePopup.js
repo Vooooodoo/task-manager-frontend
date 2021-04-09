@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
+import * as boardsApi from '../../../../api/boardsApi';
 import { setAllBoards } from '../../../../store/reducers/boards';
 
 function BoardCreatePopup({
@@ -15,20 +16,21 @@ function BoardCreatePopup({
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const createBoard = () => {
+  const createBoard = async () => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const boardId = Date.now();
-      const newBoard = {
-        id: boardId,
-        name: trimmedInputValue,
-      };
-      const newBoards = [newBoard, ...boards];
+      try {
+        const newBoard = await boardsApi.createBoard(trimmedInputValue);
 
-      dispatch(setAllBoards(newBoards));
-      onClose();
-      setInputValue('');
+        const newBoards = [newBoard.data, ...boards];
+
+        dispatch(setAllBoards(newBoards));
+        onClose();
+        setInputValue('');
+      } catch (err) {
+        console.log(err.response.data.message);
+      }
     }
   };
 
