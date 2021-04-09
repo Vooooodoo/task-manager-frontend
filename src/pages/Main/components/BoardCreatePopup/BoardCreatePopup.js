@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setBoards } from '../../../../store/reducers/boards';
+
 import InputPopup from '../../../../components/InputPopup/InputPopup';
+
+import { setAllBoards } from '../../../../store/reducers/boards';
 
 function BoardCreatePopup({
   id, isOpen, anchorEl, onClose,
@@ -21,11 +23,10 @@ function BoardCreatePopup({
       const newBoard = {
         id: boardId,
         name: trimmedInputValue,
-        columns: [],
       };
       const newBoards = [newBoard, ...boards];
 
-      dispatch(setBoards(newBoards));
+      dispatch(setAllBoards(newBoards));
       onClose();
       setInputValue('');
     }

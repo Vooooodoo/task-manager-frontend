@@ -1,57 +1,34 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setBoards } from '../../../../store/reducers/boards';
-
 import InputPopup from '../../../../components/InputPopup/InputPopup';
+
+import { setAllTasks } from '../../../../store/reducers/tasks';
 
 function TaskTextEditPopup({
   id, taskId, taskListId, isOpen, anchorEl, onClose,
 }) {
-  const routParams = useParams();
-  const boardId = Number(routParams.id);
-
-  const allBoards = useSelector((state) => state.boards.allBoards);
-  const board = allBoards.find((item) => item.id === boardId);
-  const boardColumns = board.columns;
-  const taskList = boardColumns.find((item) => item.id === taskListId);
-  const task = taskList.items.find((item) => item.id === taskId);
+  const allTasks = useSelector((state) => state.tasks.allTasks);
+  const task = allTasks.find((item) => item.id === taskId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const editTaskText = (editTaskId, listId) => {
+  const editTaskText = (editTaskId) => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newTaskList = taskList.items.map((item) => {
+      const newTasks = allTasks.map((item) => {
         if (item.id === editTaskId) {
-          return { ...item, text: trimmedInputValue };
+          return { ...item, name: trimmedInputValue };
         }
 
         return item;
       });
 
-      const newBoardColumns = boardColumns.map((item) => {
-        if (item.id === listId) {
-          return { ...item, items: newTaskList };
-        }
-
-        return item;
-      });
-
-      const newBoards = allBoards.map((item) => {
-        if (item.id === boardId) {
-          return { ...item, columns: newBoardColumns };
-        }
-
-        return item;
-      });
-
-      dispatch(setBoards(newBoards));
+      dispatch(setAllTasks(newTasks));
       onClose();
       setInputValue('');
     }

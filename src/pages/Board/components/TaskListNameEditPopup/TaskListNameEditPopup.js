@@ -1,32 +1,30 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setBoards } from '../../../../store/reducers/boards';
+import { setAllColumns } from '../../../../store/reducers/columns';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 function TaskListNameEditPopup({
   id, taskListId, isOpen, anchorEl, onClose,
 }) {
-  const routParams = useParams();
-  const boardId = Number(routParams.id);
+  // const routParams = useParams();
+  // const boardId = Number(routParams.id);
 
-  const allBoards = useSelector((state) => state.boards.allBoards);
-  const board = allBoards.find((item) => item.id === boardId);
-  const boardColumns = board.columns;
-  const taskList = boardColumns.find((item) => item.id === taskListId);
+  const allColumns = useSelector((state) => state.boards.allBoards);
+  const column = allColumns.find((item) => item.id === taskListId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const editTaskListName = (listId) => {
+  const editColumnName = (listId) => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newBoardColumns = boardColumns.map((item) => {
+      const newColumns = allColumns.map((item) => {
         if (item.id === listId) {
           return { ...item, name: trimmedInputValue };
         }
@@ -34,15 +32,7 @@ function TaskListNameEditPopup({
         return item;
       });
 
-      const newBoards = allBoards.map((item) => {
-        if (item.id === boardId) {
-          return { ...item, columns: newBoardColumns };
-        }
-
-        return item;
-      });
-
-      dispatch(setBoards(newBoards));
+      dispatch(setAllColumns(newColumns));
       onClose();
       setInputValue('');
     }
@@ -56,9 +46,9 @@ function TaskListNameEditPopup({
       onClose={onClose}
       placeholder="Edit list name"
       btnText="Edit Name"
-      defaultValue={taskList.name}
+      defaultValue={column.name}
       onChange={handleInputChange}
-      onClick={() => editTaskListName(taskListId)}
+      onClick={() => editColumnName(taskListId)}
     />
   );
 }

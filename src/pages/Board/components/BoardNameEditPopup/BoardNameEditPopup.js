@@ -2,8 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setBoards } from '../../../../store/reducers/boards';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
+
+import { setAllBoards } from '../../../../store/reducers/boards';
 
 function BoardNameEditPopup({
   id, isOpen, anchorEl, onClose,
@@ -32,7 +33,7 @@ function BoardNameEditPopup({
         return item;
       });
 
-      dispatch(setBoards(newBoards));
+      dispatch(setAllBoards(newBoards));
       onClose();
       setInputValue('');
     }

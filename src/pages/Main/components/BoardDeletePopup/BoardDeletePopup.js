@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setBoards } from '../../../../store/reducers/boards';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
+
+import { setAllBoards } from '../../../../store/reducers/boards';
 
 function BoardDeletePopup({
   id, delBoardId, isOpen, anchorEl, onClose,
@@ -13,7 +14,7 @@ function BoardDeletePopup({
   const deleteBoard = (boardId) => {
     const newBoards = boards.filter((board) => board.id !== boardId);
 
-    dispatch(setBoards(newBoards));
+    dispatch(setAllBoards(newBoards));
     onClose();
   };
 

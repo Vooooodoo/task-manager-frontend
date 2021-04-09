@@ -1,17 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setBoards } from '../../../../store/reducers/boards';
+import { setAllColumns } from '../../../../store/reducers/columns';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 function TaskListCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
-  const routParams = useParams();
-  const boardId = Number(routParams.id);
+  // const routParams = useParams();
+  // const boardId = Number(routParams.id);
 
-  const allBoards = useSelector((state) => state.boards.allBoards);
+  const columns = useSelector((state) => state.columns.allColumns);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -22,23 +22,14 @@ function TaskListCreatePopup({
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const newBoards = allBoards.map((board) => {
-        if (board.id === boardId) {
-          const taskListId = Date.now();
-          const newTaskList = {
-            id: taskListId,
-            name: trimmedInputValue,
-            items: [],
-          };
-          const newBoardColumns = [...board.columns, newTaskList];
+      const columnId = Date.now();
+      const newColumn = {
+        id: columnId,
+        name: trimmedInputValue,
+      };
+      const newColumns = [...columns, newColumn];
 
-          return { ...board, columns: newBoardColumns };
-        }
-
-        return board;
-      });
-
-      dispatch(setBoards(newBoards));
+      dispatch(setAllColumns(newColumns));
       onClose();
       setInputValue('');
     }
