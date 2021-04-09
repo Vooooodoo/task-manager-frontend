@@ -141,7 +141,7 @@ function SignUp() {
           Sign up
         </Typography>
 
-        <form className={classes.form} onSubmit={handleSubmit} ref={mainEl}>
+        <form className={classes.form} onSubmit={handleSubmit} ref={mainEl} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField

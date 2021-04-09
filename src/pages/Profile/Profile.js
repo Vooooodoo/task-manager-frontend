@@ -134,7 +134,7 @@ function Profile() {
           {authorizedUser.firstName}
         </Typography>
 
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             error={touched.firstName && Boolean(errors.firstName)}
             helperText={touched.firstName && errors.firstName}
