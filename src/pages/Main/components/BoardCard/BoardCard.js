@@ -31,7 +31,7 @@ function BoardCard({ id, name }) {
       sm={6}
       md={4}
     >
-      <Link className={classes.routerLink} to={`/board/${id}`}>
+      <Link className={classes.routerLink} to={`/boards/${id}`}>
         <Typography className={classes.title} component="h2" variant="h5">
           {name}
         </Typography>
