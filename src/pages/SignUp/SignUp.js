@@ -119,9 +119,7 @@ function SignUp() {
       try {
         const res = await authApi.signUp(firstName, lastName, email, password);
 
-        if (res.data.token) {
-          dispatch(setUser(res.data.userData));
-        }
+        dispatch(setUser(res.data.userData));
       } catch (err) {
         setTooltipText(err.response.data.message);
         openTooltipPopup();

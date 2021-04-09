@@ -23,7 +23,7 @@ function BoardCreatePopup({
       try {
         const newBoard = await boardsApi.createBoard(trimmedInputValue);
 
-        const newBoards = [newBoard.data, ...boards];
+        const newBoards = [...boards, newBoard.data];
 
         dispatch(setAllBoards(newBoards));
         onClose();

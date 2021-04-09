@@ -112,9 +112,7 @@ function Profile() {
           about,
         });
 
-        if (res.data) {
-          dispatch(setUser(res.data));
-        }
+        dispatch(setUser(res.data));
       } catch (err) {
         setTooltipText(err.response.data.message);
         openTooltipPopup();
