@@ -1,37 +1,40 @@
 import React from 'react';
-// import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { setAllColumns } from '../../../../store/reducers/columns';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
+
+import * as columnsApi from '../../../../api/columnsApi';
+import { setAllColumns } from '../../../../store/reducers/columns';
 
 function TaskListCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
-  // const routParams = useParams();
-  // const boardId = Number(routParams.id);
-
   const columns = useSelector((state) => state.columns.allColumns);
   const dispatch = useDispatch();
+
+  const routParams = useParams();
+  const boardId = Number(routParams.id);
 
   const [inputValue, setInputValue] = React.useState('');
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const createTaskList = () => {
+  const createTaskList = async () => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
-      const columnId = Date.now();
-      const newColumn = {
-        id: columnId,
-        name: trimmedInputValue,
-      };
-      const newColumns = [...columns, newColumn];
+      try {
+        const newColumn = await columnsApi.createColumn(boardId, trimmedInputValue);
 
-      dispatch(setAllColumns(newColumns));
-      onClose();
-      setInputValue('');
+        const newColumns = [...columns, newColumn.data];
+
+        dispatch(setAllColumns(newColumns));
+        onClose();
+        setInputValue('');
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 

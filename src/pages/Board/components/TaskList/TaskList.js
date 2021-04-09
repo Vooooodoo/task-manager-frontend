@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
@@ -15,13 +15,13 @@ import useStyles from './TaskList.style';
 function TaskList({ id, name }) {
   const classes = useStyles();
 
-  const routParams = useParams();
-  const boardId = Number(routParams.id);
+  // const routParams = useParams();
+  // const boardId = Number(routParams.id);
 
-  const allBoards = useSelector((state) => state.boards.allBoards);
-  const board = allBoards.find((item) => item.id === boardId);
-  const boardColumns = board.columns;
-  const taskList = boardColumns.find((item) => item.id === id);
+  const allTasks = useSelector((state) => state.tasks.allTasks);
+  // const board = allTasks.find((item) => item.id === boardId);
+  // const boardColumns = board.columns;
+  // const taskList = boardColumns.find((item) => item.id === id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isTaskListNameEditPopupOpen = Boolean(anchorEl);
@@ -67,7 +67,7 @@ function TaskList({ id, name }) {
         spacing={1}
         direction="column"
       >
-        {taskList.items.map((task) => (
+        {allTasks.map((task) => (
           <Task
             taskId={task.id}
             taskListId={id}

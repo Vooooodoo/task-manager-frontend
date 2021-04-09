@@ -1,16 +1,20 @@
 import axios from './axios';
 
-const createColumn = async (name) => {
+const createColumn = async (id, name) => {
   const res = await axios
     .post('/columns', {
+      id,
       name,
     });
 
   return res;
 };
 
-const getColumns = async () => {
-  const res = await axios.get('/columns');
+const getColumns = async (id) => {
+  const res = await axios
+    .get('/columns', {
+      params: { id },
+    });
 
   return res;
 };

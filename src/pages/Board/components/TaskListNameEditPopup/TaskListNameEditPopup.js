@@ -12,7 +12,7 @@ function TaskListNameEditPopup({
   // const routParams = useParams();
   // const boardId = Number(routParams.id);
 
-  const allColumns = useSelector((state) => state.boards.allBoards);
+  const allColumns = useSelector((state) => state.columns.allColumns);
   const column = allColumns.find((item) => item.id === taskListId);
   const dispatch = useDispatch();
 

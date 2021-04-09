@@ -43,7 +43,7 @@ function Board() {
     setIsLoading(true);
 
     try {
-      const boardColumns = await columnsApi.getColumns();
+      const boardColumns = await columnsApi.getColumns(boardId);
 
       dispatch(setAllColumns(boardColumns.data));
     } catch (err) {
