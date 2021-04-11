@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
+import * as tasksApi from '../../../../api/tasksApi';
 import { setAllTasks } from '../../../../store/reducers/tasks';
 
 function TaskTextEditPopup({
-  id, taskId, columnId, isOpen, anchorEl, onClose,
+  id, taskId, isOpen, anchorEl, onClose,
 }) {
   const allTasks = useSelector((state) => state.tasks.allTasks);
   const task = allTasks.find((item) => item.id === taskId);
@@ -16,12 +17,14 @@ function TaskTextEditPopup({
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const editTaskText = (editTaskId) => {
+  const editTaskText = async () => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
+      await tasksApi.updateTaskText(taskId, trimmedInputValue);
+
       const newTasks = allTasks.map((item) => {
-        if (item.id === editTaskId) {
+        if (item.id === taskId) {
           return { ...item, name: trimmedInputValue };
         }
 
@@ -44,7 +47,7 @@ function TaskTextEditPopup({
       btnText="Edit Text"
       defaultValue={task.text}
       onChange={handleInputChange}
-      onClick={() => editTaskText(taskId, columnId)}
+      onClick={editTaskText}
     />
   );
 }

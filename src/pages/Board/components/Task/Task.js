@@ -8,7 +8,7 @@ import TaskTextEditPopup from '../TaskTextEditPopup/TaskTextEditPopup';
 
 import useStyles from './Task.style';
 
-function Task({ taskId, columnId, text }) {
+function Task({ taskId, text }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,7 +29,6 @@ function Task({ taskId, columnId, text }) {
       <TaskTextEditPopup
         id={columnNameEditPopupId}
         taskId={taskId}
-        columnId={columnId}
         isOpen={isColumnNameEditPopupOpen}
         anchorEl={anchorEl}
         onClose={closeTaskTextEditPopup}

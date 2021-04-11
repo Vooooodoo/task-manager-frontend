@@ -19,6 +19,15 @@ const getColumns = async (boardId) => {
   return res;
 };
 
+const updateColumnName = async (columnId, name) => {
+  const res = await axios.patch('/columns', {
+    columnId,
+    name,
+  });
+
+  return res;
+};
+
 const removeColumn = async (columnId) => {
   const res = await axios
     .delete('/columns', {
@@ -28,4 +37,9 @@ const removeColumn = async (columnId) => {
   return res;
 };
 
-export { createColumn, getColumns, removeColumn };
+export {
+  createColumn,
+  getColumns,
+  updateColumnName,
+  removeColumn,
+};

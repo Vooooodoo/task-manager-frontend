@@ -81,7 +81,6 @@ function Column({ id, name }) {
         {tasks.map((task) => (
           <Task
             taskId={task.id}
-            columnId={id}
             text={task.text}
             key={task.id}
           />

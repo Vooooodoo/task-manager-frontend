@@ -15,6 +15,15 @@ const getBoards = async () => {
   return res;
 };
 
+const updateBoardName = async (boardId, name) => {
+  const res = await axios.patch('/boards', {
+    boardId,
+    name,
+  });
+
+  return res;
+};
+
 const removeBoard = async (boardId) => {
   const res = await axios
     .delete('/boards', {
@@ -24,4 +33,9 @@ const removeBoard = async (boardId) => {
   return res;
 };
 
-export { createBoard, getBoards, removeBoard };
+export {
+  createBoard,
+  getBoards,
+  updateBoardName,
+  removeBoard,
+};

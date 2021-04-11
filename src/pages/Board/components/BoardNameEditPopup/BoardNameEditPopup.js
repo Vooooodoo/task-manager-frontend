@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
+import * as boardsApi from '../../../../api/boardsApi';
 import { setAllBoards } from '../../../../store/reducers/boards';
 
 function BoardNameEditPopup({
@@ -20,10 +21,12 @@ function BoardNameEditPopup({
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const editBoardName = () => {
+  const editBoardName = async () => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
+      await boardsApi.updateBoardName(boardId, trimmedInputValue);
+
       const newBoards = allBoards.map((item) => {
         if (item.id === boardId) {
           // не мутируем объект внутри массива, а возвращаем новый

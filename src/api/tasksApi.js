@@ -19,6 +19,15 @@ const getTasks = async (columnId) => {
   return res;
 };
 
+const updateTaskText = async (taskId, text) => {
+  const res = await axios.patch('/tasks', {
+    taskId,
+    text,
+  });
+
+  return res;
+};
+
 const removeTask = async (taskId) => {
   const res = await axios
     .delete('/tasks', {
@@ -28,4 +37,9 @@ const removeTask = async (taskId) => {
   return res;
 };
 
-export { createTask, getTasks, removeTask };
+export {
+  createTask,
+  getTasks,
+  updateTaskText,
+  removeTask,
+};
