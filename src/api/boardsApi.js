@@ -15,10 +15,10 @@ const getBoards = async () => {
   return res;
 };
 
-const removeBoard = async (id) => {
+const removeBoard = async (boardId) => {
   const res = await axios
     .delete('/boards', {
-      data: { id },
+      data: { boardId },
     });
 
   return res;

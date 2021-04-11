@@ -8,7 +8,7 @@ import TaskCreatePopup from '../TaskCreatePopup/TaskCreatePopup';
 
 import useStyles from './TaskCreateButton.style';
 
-function TaskCreateButton() {
+function TaskCreateButton({ columnId }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,8 +17,8 @@ function TaskCreateButton() {
     ? 'simple-popover'
     : undefined;
 
-  const openColumnCreatePopup = (evt) => setAnchorEl(evt.currentTarget);
-  const closeColumnCreatePopup = () => setAnchorEl(null);
+  const openTaskCreatePopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeTaskCreatePopup = () => setAnchorEl(null);
 
   return (
     <Grid
@@ -31,16 +31,17 @@ function TaskCreateButton() {
       sm={6}
       xs={12}
     >
-      <Button className={classes.createBtn} onClick={openColumnCreatePopup}>
+      <Button className={classes.createBtn} onClick={openTaskCreatePopup}>
         <AddIcon className={classes.createIcon} />
-        Add a list
+        Add a card
       </Button>
 
       <TaskCreatePopup
         id={columnCreatePopupId}
+        columnId={columnId}
         isOpen={isColumnCreatePopupOpen}
         anchorEl={anchorEl}
-        onClose={closeColumnCreatePopup}
+        onClose={closeTaskCreatePopup}
       />
     </Grid>
   );

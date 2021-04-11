@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
+import * as columnsApi from '../../../../api/columnsApi';
 import { setAllColumns } from '../../../../store/reducers/columns';
 
 function ColumnDeletePopup({
@@ -11,11 +12,17 @@ function ColumnDeletePopup({
   const columns = useSelector((state) => state.columns.allColumns);
   const dispatch = useDispatch();
 
-  const deleteColumn = (columnId) => {
-    const newColumns = columns.filter((board) => board.id !== columnId);
+  const deleteColumn = async (columnId) => {
+    try {
+      await columnsApi.removeColumn(columnId);
 
-    dispatch(setAllColumns(newColumns));
-    onClose();
+      const newColumns = columns.filter((column) => column.id !== columnId);
+
+      dispatch(setAllColumns(newColumns));
+      onClose();
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
   };
 
   return (

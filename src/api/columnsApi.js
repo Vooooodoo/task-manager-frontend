@@ -1,28 +1,28 @@
 import axios from './axios';
 
-const createColumn = async (id, name) => {
+const createColumn = async (boardId, name) => {
   const res = await axios
     .post('/columns', {
-      id,
+      boardId,
       name,
     });
 
   return res;
 };
 
-const getColumns = async (id) => {
+const getColumns = async (boardId) => {
   const res = await axios
     .get('/columns', {
-      params: { id },
+      params: { boardId },
     });
 
   return res;
 };
 
-const removeColumn = async (id) => {
+const removeColumn = async (columnId) => {
   const res = await axios
     .delete('/columns', {
-      data: { id },
+      data: { columnId },
     });
 
   return res;
