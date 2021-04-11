@@ -10,44 +10,15 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
 import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
 import RouterLink from '../../components/RouterLink/RouterLink';
 
 import * as authApi from '../../api/authApi';
-import * as validationConstants from '../../utils/constants';
+import { signInValidationSchema } from '../../utils/validation';
 import { setUser } from '../../store/reducers/users';
 
 import useStyles from './SignIn.style';
-
-const validationSchema = Yup.object({
-  email: Yup
-    .string()
-    .email(validationConstants.INPUT_EMAIL_VALIDATION_TEXT)
-    .min(
-      validationConstants.INPUT_TEXT_MIN_LENGTH,
-      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-    )
-    .max(
-      validationConstants.INPUT_TEXT_MAX_LENGTH,
-      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-    )
-    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-    .trim(),
-  password: Yup
-    .string()
-    .min(
-      validationConstants.PASSWORD_INPUT_MIN_LENGTH,
-      validationConstants.INPUT_MIN_LENGTH_VALIDATION_TEXT,
-    )
-    .max(
-      validationConstants.INPUT_TEXT_MAX_LENGTH,
-      validationConstants.INPUT_MAX_LENGTH_VALIDATION_TEXT,
-    )
-    .required(validationConstants.INPUT_REQUIRED_VALIDATION_TEXT)
-    .trim(),
-});
 
 function SignIn() {
   const classes = useStyles();
@@ -82,7 +53,7 @@ function SignIn() {
       email: '',
       password: '',
     },
-    validationSchema,
+    signInValidationSchema,
     onSubmit: async ({ email, password }) => {
       try {
         const res = await authApi.signIn(email, password);
@@ -158,7 +129,10 @@ function SignIn() {
             onClick={closeTooltipPopup}
           />
 
-          <RouterLink route="/sign-up" text="Don't have an account? Sign Up" />
+          <RouterLink
+            route="/sign-up"
+            text="Don't have an account? Sign Up"
+          />
         </form>
       </section>
     </Container>
