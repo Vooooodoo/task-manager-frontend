@@ -14,7 +14,7 @@ import * as Yup from 'yup';
 
 import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
 
-import axios from '../../api/axios';
+import * as usersApi from '../../api/usersApi';
 import * as validationConstants from '../../utils/constants';
 import { setUser } from '../../store/reducers/users';
 
@@ -106,11 +106,7 @@ function Profile() {
     // eslint-disable-next-line object-curly-newline
     onSubmit: async ({ firstName, lastName, about }) => {
       try {
-        const res = await axios.patch('/users/me', {
-          firstName,
-          lastName,
-          about,
-        });
+        const res = await usersApi.updateUserInfo(firstName, lastName, about);
 
         dispatch(setUser(res.data));
       } catch (err) {
