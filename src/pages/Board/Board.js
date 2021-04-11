@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import BoardNameEditPopup from './components/BoardNameEditPopup/BoardNameEditPopup';
 import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButton';
@@ -60,7 +61,7 @@ function Board() {
   return (
     <>
       {isLoading ? (
-        <></>
+        <CircularProgress color="secondary" />
       ) : (
         <Container className={classes.main} component="main" maxWidth={false}>
           <Container component="section" maxWidth={false} disableGutters>
