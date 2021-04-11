@@ -1,7 +1,7 @@
-import axios from './axios';
+import axiosInstance from './axiosInstance';
 
 const createBoard = async (name) => {
-  const res = await axios
+  const res = await axiosInstance
     .post('/boards', {
       name,
     });
@@ -10,13 +10,13 @@ const createBoard = async (name) => {
 };
 
 const getBoards = async () => {
-  const res = await axios.get('/boards');
+  const res = await axiosInstance.get('/boards');
 
   return res;
 };
 
 const updateBoardName = async (boardId, name) => {
-  const res = await axios.patch('/boards', {
+  const res = await axiosInstance.patch('/boards', {
     boardId,
     name,
   });
@@ -25,7 +25,7 @@ const updateBoardName = async (boardId, name) => {
 };
 
 const removeBoard = async (boardId) => {
-  const res = await axios
+  const res = await axiosInstance
     .delete('/boards', {
       data: { boardId },
     });

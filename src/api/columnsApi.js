@@ -1,7 +1,7 @@
-import axios from './axios';
+import axiosInstance from './axiosInstance';
 
 const createColumn = async (boardId, name) => {
-  const res = await axios
+  const res = await axiosInstance
     .post('/columns', {
       boardId,
       name,
@@ -11,7 +11,7 @@ const createColumn = async (boardId, name) => {
 };
 
 const getColumns = async (boardId) => {
-  const res = await axios
+  const res = await axiosInstance
     .get('/columns', {
       params: { boardId },
     });
@@ -20,7 +20,7 @@ const getColumns = async (boardId) => {
 };
 
 const updateColumnName = async (columnId, name) => {
-  const res = await axios.patch('/columns', {
+  const res = await axiosInstance.patch('/columns', {
     columnId,
     name,
   });
@@ -29,7 +29,7 @@ const updateColumnName = async (columnId, name) => {
 };
 
 const removeColumn = async (columnId) => {
-  const res = await axios
+  const res = await axiosInstance
     .delete('/columns', {
       data: { columnId },
     });

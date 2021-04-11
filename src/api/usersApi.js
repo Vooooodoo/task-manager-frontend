@@ -1,7 +1,7 @@
-import axios from './axios';
+import axiosInstance from './axiosInstance';
 
 const updateUserInfo = async (firstName, lastName, about) => {
-  const res = await axios.patch('/users/me', {
+  const res = await axiosInstance.patch('/users/me', {
     firstName,
     lastName,
     about,
