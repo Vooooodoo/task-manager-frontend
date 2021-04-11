@@ -6,14 +6,14 @@ import { setAllColumns } from '../../../../store/reducers/columns';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
-function TaskListNameEditPopup({
-  id, taskListId, isOpen, anchorEl, onClose,
+function ColumnNameEditPopup({
+  id, columnId, isOpen, anchorEl, onClose,
 }) {
   // const routParams = useParams();
   // const boardId = Number(routParams.id);
 
   const allColumns = useSelector((state) => state.columns.allColumns);
-  const column = allColumns.find((item) => item.id === taskListId);
+  const column = allColumns.find((item) => item.id === columnId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -48,9 +48,9 @@ function TaskListNameEditPopup({
       btnText="Edit Name"
       defaultValue={column.name}
       onChange={handleInputChange}
-      onClick={() => editColumnName(taskListId)}
+      onClick={() => editColumnName(columnId)}
     />
   );
 }
 
-export default TaskListNameEditPopup;
+export default ColumnNameEditPopup;

@@ -6,7 +6,7 @@ import InputPopup from '../../../../components/InputPopup/InputPopup';
 import { setAllTasks } from '../../../../store/reducers/tasks';
 
 function TaskTextEditPopup({
-  id, taskId, taskListId, isOpen, anchorEl, onClose,
+  id, taskId, columnId, isOpen, anchorEl, onClose,
 }) {
   const allTasks = useSelector((state) => state.tasks.allTasks);
   const task = allTasks.find((item) => item.id === taskId);
@@ -44,7 +44,7 @@ function TaskTextEditPopup({
       btnText="Edit Text"
       defaultValue={task.text}
       onChange={handleInputChange}
-      onClick={() => editTaskText(taskId, taskListId)}
+      onClick={() => editTaskText(taskId, columnId)}
     />
   );
 }

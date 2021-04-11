@@ -5,14 +5,14 @@ import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import { setAllColumns } from '../../../../store/reducers/columns';
 
-function TaskListDeletePopup({
-  id, delTaskListId, isOpen, anchorEl, onClose,
+function ColumnDeletePopup({
+  id, delColumnId, isOpen, anchorEl, onClose,
 }) {
   const columns = useSelector((state) => state.columns.allColumns);
   const dispatch = useDispatch();
 
-  const deleteTaskList = (taskListId) => {
-    const newColumns = columns.filter((board) => board.id !== taskListId);
+  const deleteColumn = (columnId) => {
+    const newColumns = columns.filter((board) => board.id !== columnId);
 
     dispatch(setAllColumns(newColumns));
     onClose();
@@ -25,9 +25,9 @@ function TaskListDeletePopup({
       anchorEl={anchorEl}
       btnText="Delete list"
       onClose={onClose}
-      onClick={() => deleteTaskList(delTaskListId)}
+      onClick={() => deleteColumn(delColumnId)}
     />
   );
 }
 
-export default TaskListDeletePopup;
+export default ColumnDeletePopup;

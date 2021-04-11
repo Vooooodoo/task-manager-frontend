@@ -4,11 +4,10 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 
-import TaskCreatePopup from '../TaskCreatePopup/TaskCreatePopup';
+import ColumnCreatePopup from '../ColumnCreatePopup/ColumnCreatePopup';
+import useStyles from './ColumnCreateButton.style';
 
-import useStyles from './TaskCreateButton.style';
-
-function TaskCreateButton() {
+function ColumnCreateButton() {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,7 +35,7 @@ function TaskCreateButton() {
         Add a list
       </Button>
 
-      <TaskCreatePopup
+      <ColumnCreatePopup
         id={columnCreatePopupId}
         isOpen={isColumnCreatePopupOpen}
         anchorEl={anchorEl}
@@ -46,4 +45,4 @@ function TaskCreateButton() {
   );
 }
 
-export default TaskCreateButton;
+export default ColumnCreateButton;

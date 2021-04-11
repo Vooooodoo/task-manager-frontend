@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import TaskListNameEditPopup from '../TaskListNameEditPopup/TaskListNameEditPopup';
-import TaskListDeleteButton from '../TaskListDeleteButton/TaskListDeleteButton';
+import ColumnNameEditPopup from '../ColumnNameEditPopup/ColumnNameEditPopup';
+import ColumnDeleteButton from '../ColumnDeleteButton/ColumnDeleteButton';
 // import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
-import useStyles from './TaskList.style';
+import useStyles from './Column.style';
 
-function TaskList({ id, name }) {
+function Column({ id, name }) {
   const classes = useStyles();
 
   // const routParams = useParams();
@@ -21,16 +21,16 @@ function TaskList({ id, name }) {
   const allTasks = useSelector((state) => state.tasks.allTasks);
   // const board = allTasks.find((item) => item.id === boardId);
   // const boardColumns = board.columns;
-  // const taskList = boardColumns.find((item) => item.id === id);
+  // const column = boardColumns.find((item) => item.id === id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const isTaskListNameEditPopupOpen = Boolean(anchorEl);
-  const taskListNameEditPopupId = isTaskListNameEditPopupOpen
+  const isColumnNameEditPopupOpen = Boolean(anchorEl);
+  const columnNameEditPopupId = isColumnNameEditPopupOpen
     ? 'simple-popover'
     : undefined;
 
-  const openTaskListNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
-  const closeTaskListNameEditPopup = () => setAnchorEl(null);
+  const openColumnNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
+  const closeColumnNameEditPopup = () => setAnchorEl(null);
 
   return (
     <Grid
@@ -45,23 +45,23 @@ function TaskList({ id, name }) {
     >
       <Button
         className={classes.nameEditBtn}
-        onClick={openTaskListNameEditPopup}
+        onClick={openColumnNameEditPopup}
       >
         {name}
       </Button>
 
-      <TaskListNameEditPopup
-        id={taskListNameEditPopupId}
-        taskListId={id}
-        isOpen={isTaskListNameEditPopupOpen}
+      <ColumnNameEditPopup
+        id={columnNameEditPopupId}
+        columnId={id}
+        isOpen={isColumnNameEditPopupOpen}
         anchorEl={anchorEl}
-        onClose={closeTaskListNameEditPopup}
+        onClose={closeColumnNameEditPopup}
       />
 
-      <TaskListDeleteButton delTaskListId={id} />
+      <ColumnDeleteButton delColumnId={id} />
 
       <Grid
-        className={classes.taskList}
+        className={classes.column}
         component="ul"
         container
         spacing={1}
@@ -70,7 +70,7 @@ function TaskList({ id, name }) {
         {allTasks.map((task) => (
           <Task
             taskId={task.id}
-            taskListId={id}
+            columnId={id}
             text={task.text}
             key={task.id}
           />
@@ -81,4 +81,4 @@ function TaskList({ id, name }) {
   );
 }
 
-export default TaskList;
+export default Column;

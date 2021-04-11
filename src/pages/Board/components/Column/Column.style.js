@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  taskList: {
+  column: {
     listStyle: 'none',
     padding: '0',
   },

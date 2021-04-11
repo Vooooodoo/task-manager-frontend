@@ -9,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 import BoardNameEditPopup from './components/BoardNameEditPopup/BoardNameEditPopup';
-import TaskListCreateButton from './components/TaskListCreateButton/TaskListCreateButton';
-import TaskList from './components/TaskList/TaskList';
+import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButton';
+import Column from './components/Column/Column';
 
 import * as columnsApi from '../../api/columnsApi';
 import { setAllColumns } from '../../store/reducers/columns';
@@ -89,9 +89,9 @@ function Board() {
               spacing={3}
             >
               {columns.map((column) => (
-                <TaskList id={column.id} name={column.name} key={column.id} />
+                <Column id={column.id} name={column.name} key={column.id} />
               ))}
-              <TaskListCreateButton key="0" />
+              <ColumnCreateButton key="0" />
             </Grid>
           </Container>
         </Container>

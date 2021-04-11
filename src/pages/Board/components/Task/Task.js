@@ -8,12 +8,12 @@ import TaskTextEditPopup from '../TaskTextEditPopup/TaskTextEditPopup';
 
 import useStyles from './Task.style';
 
-function Task({ taskId, taskListId, text }) {
+function Task({ taskId, columnId, text }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const isTaskListNameEditPopupOpen = Boolean(anchorEl);
-  const taskListNameEditPopupId = isTaskListNameEditPopupOpen
+  const isColumnNameEditPopupOpen = Boolean(anchorEl);
+  const columnNameEditPopupId = isColumnNameEditPopupOpen
     ? 'simple-popover'
     : undefined;
 
@@ -27,15 +27,15 @@ function Task({ taskId, taskListId, text }) {
       </Button>
 
       <TaskTextEditPopup
-        id={taskListNameEditPopupId}
+        id={columnNameEditPopupId}
         taskId={taskId}
-        taskListId={taskListId}
-        isOpen={isTaskListNameEditPopupOpen}
+        columnId={columnId}
+        isOpen={isColumnNameEditPopupOpen}
         anchorEl={anchorEl}
         onClose={closeTaskTextEditPopup}
       />
 
-      {/* <TaskDeleteButton delTaskListId={id} /> */}
+      {/* <TaskDeleteButton delColumnId={id} /> */}
     </Grid>
   );
 }

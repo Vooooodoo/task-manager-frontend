@@ -7,7 +7,7 @@ import InputPopup from '../../../../components/InputPopup/InputPopup';
 import * as columnsApi from '../../../../api/columnsApi';
 import { setAllColumns } from '../../../../store/reducers/columns';
 
-function TaskListCreatePopup({
+function ColumnCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
   const columns = useSelector((state) => state.columns.allColumns);
@@ -20,7 +20,7 @@ function TaskListCreatePopup({
 
   const handleInputChange = (evt) => setInputValue(evt.target.value);
 
-  const createTaskList = async () => {
+  const createColumn = async () => {
     const trimmedInputValue = inputValue.trim();
 
     if (trimmedInputValue) {
@@ -47,9 +47,9 @@ function TaskListCreatePopup({
       placeholder="Enter list title..."
       btnText="Add List"
       onChange={handleInputChange}
-      onClick={createTaskList}
+      onClick={createColumn}
     />
   );
 }
 
-export default TaskListCreatePopup;
+export default ColumnCreatePopup;
