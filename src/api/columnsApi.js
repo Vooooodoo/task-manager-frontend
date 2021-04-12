@@ -10,7 +10,7 @@ const createColumn = async (boardId, name) => {
   return res;
 };
 
-const getColumns = async (boardId) => {
+const getBoardColumns = async (boardId) => {
   const res = await axiosInstance
     .get('/columns', {
       params: { id: boardId },
@@ -39,7 +39,7 @@ const removeColumn = async (id) => {
 
 export {
   createColumn,
-  getColumns,
+  getBoardColumns,
   updateColumnName,
   removeColumn,
 };

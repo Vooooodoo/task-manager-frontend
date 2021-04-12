@@ -25,9 +25,10 @@ function Board() {
   const routParams = useParams();
   const boardId = Number(routParams.id);
 
+  //! get current board from server by boardId
   const userBoards = useSelector((state) => state.boards.userBoards);
   const board = userBoards.find((item) => item.id === boardId);
-  const columns = useSelector((state) => state.boards.boardColumns);
+  const boardColumns = useSelector((state) => state.boards.boardColumns);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);
@@ -40,13 +41,13 @@ function Board() {
   const openBoardNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeBoardNameEditPopup = () => setAnchorEl(null);
 
-  const getColumns = async () => {
+  const getBoardColumns = async () => {
     setIsLoading(true);
 
     try {
-      const boardColumns = await columnsApi.getColumns(boardId);
+      const columns = await columnsApi.getBoardColumns(boardId);
 
-      dispatch(setBoardColumns(boardColumns.data));
+      dispatch(setBoardColumns(columns.data));
     } catch (err) {
       console.log(err.response.data.message);
     } finally {
@@ -55,7 +56,7 @@ function Board() {
   };
 
   React.useEffect(() => {
-    getColumns();
+    getBoardColumns();
   }, []);
 
   return (
@@ -90,7 +91,7 @@ function Board() {
               spacing={3}
               wrap="nowrap"
             >
-              {columns.map((column) => (
+              {boardColumns.map((column) => (
                 <Column id={column.id} name={column.name} key={column.id} />
               ))}
               <ColumnCreateButton key="0" />

@@ -13,7 +13,7 @@ import useStyles from './Main.style';
 function Main() {
   const classes = useStyles();
 
-  const boards = useSelector((state) => state.boards.userBoards);
+  const userBoards = useSelector((state) => state.boards.userBoards);
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
@@ -28,7 +28,7 @@ function Main() {
           container
           spacing={4}
         >
-          {boards.map((board) => (
+          {userBoards.map((board) => (
             <BoardCard id={board.id} key={board.id} name={board.name} />
           ))}
           <BoardCreateButton key="0" />

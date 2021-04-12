@@ -29,9 +29,9 @@ function Column({ id, name }) {
   const openColumnNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeColumnNameEditPopup = () => setAnchorEl(null);
 
-  const getTasks = async () => {
+  const getColumnTasks = async () => {
     try {
-      const columnTasks = await tasksApi.getTasks(id);
+      const columnTasks = await tasksApi.getColumnTasks(id);
 
       dispatch(setColumnTasks(columnTasks.data));
     } catch (err) {
@@ -40,7 +40,7 @@ function Column({ id, name }) {
   };
 
   React.useEffect(() => {
-    getTasks();
+    getColumnTasks();
   }, []);
 
   return (

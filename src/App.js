@@ -37,23 +37,19 @@ function App() {
     }
   };
 
-  const getBoards = async () => {
-    setIsLoading(true);
-
+  const getUserBoards = async () => {
     try {
-      const userBoards = await boardsApi.getBoards();
+      const boards = await boardsApi.getUserBoards();
 
-      dispatch(setUserBoards(userBoards.data));
+      dispatch(setUserBoards(boards.data));
     } catch (err) {
       console.log(err.response.data.message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   React.useEffect(() => {
     checkToken();
-    getBoards();
+    getUserBoards();
   }, []);
 
   return (

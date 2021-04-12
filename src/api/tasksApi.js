@@ -10,7 +10,7 @@ const createTask = async (columnId, text) => {
   return res;
 };
 
-const getTasks = async (columnId) => {
+const getColumnTasks = async (columnId) => {
   const res = await axiosInstance
     .get('/tasks', {
       params: { id: columnId },
@@ -39,7 +39,7 @@ const removeTask = async (id) => {
 
 export {
   createTask,
-  getTasks,
+  getColumnTasks,
   updateTaskText,
   removeTask,
 };

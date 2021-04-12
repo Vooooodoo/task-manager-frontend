@@ -9,7 +9,7 @@ const createBoard = async (name) => {
   return res;
 };
 
-const getBoards = async () => {
+const getUserBoards = async () => {
   const res = await axiosInstance.get('/boards');
 
   return res;
@@ -35,7 +35,7 @@ const removeBoard = async (id) => {
 
 export {
   createBoard,
-  getBoards,
+  getUserBoards,
   updateBoardName,
   removeBoard,
 };
