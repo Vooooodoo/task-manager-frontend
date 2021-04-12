@@ -9,9 +9,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
   },
   columnsList: {
-    overflowX: 'scroll',
+    overflowX: 'auto',
     listStyle: 'none',
     padding: '0',
+    minHeight: '60vh',
   },
   boardNameEditBtn: {
     marginBottom: theme.spacing(2),

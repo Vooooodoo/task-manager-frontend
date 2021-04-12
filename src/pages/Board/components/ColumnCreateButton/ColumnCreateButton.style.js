@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: theme.spacing(7),
   },
   createBtn: {
-    width: '100%',
+    width: '288px',
     minHeight: '40px',
     color: 'white',
     backgroundColor: 'grey',

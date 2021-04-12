@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
   justify-content: center;
   max-width: 444px;
   min-height: 65px;
-  padding: 64px;
+  padding: 56px;
   box-sizing: border-box;
   margin: 0 auto;
 `;

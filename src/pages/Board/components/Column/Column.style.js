@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'start',
     color: 'white',
-    width: '100%',
+    width: '288px',
     textTransform: 'none',
     fontSize: '16px',
     backgroundColor: theme.palette.success.main,
