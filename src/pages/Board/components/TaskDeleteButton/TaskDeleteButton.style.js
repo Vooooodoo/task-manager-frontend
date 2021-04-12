@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   delBtn: {
     position: 'absolute',
-    top: '10px',
-    right: theme.spacing(1),
+    top: '1px',
+    right: '1px',
   },
   delIcon: {
     color: theme.iconColor,

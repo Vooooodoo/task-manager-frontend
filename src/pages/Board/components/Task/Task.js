@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 import TaskTextEditPopup from '../TaskTextEditPopup/TaskTextEditPopup';
-// import TaskDeleteButton from '../TaskDeleteButton/TaskDeleteButton';
+import TaskDeleteButton from '../TaskDeleteButton/TaskDeleteButton';
 
 import useStyles from './Task.style';
 
@@ -34,7 +34,7 @@ function Task({ taskId, text }) {
         onClose={closeTaskTextEditPopup}
       />
 
-      {/* <TaskDeleteButton delColumnId={id} /> */}
+      <TaskDeleteButton delTaskId={taskId} />
     </Grid>
   );
 }

@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
     width: '288px',
     textTransform: 'none',
     fontSize: '16px',
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: theme.palette.secondary.main,
     borderRadius: '0',
     marginBottom: theme.spacing(1),
     '&:hover': {
-      backgroundColor: theme.palette.success.dark,
+      backgroundColor: theme.palette.secondary.dark,
       cursor: 'pointer',
     },
   },
