@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -8,12 +8,30 @@ import Grid from '@material-ui/core/Grid';
 import BoardCard from './components/BoardCard/BoardCard';
 import BoardCreateButton from './components/BoardCreateButton/BoardCreateButton';
 
+import * as boardsApi from '../../api/boardsApi';
+import { setUserBoards } from '../../store/reducers/boards';
+
 import useStyles from './Main.style';
 
 function Main() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const userBoards = useSelector((state) => state.boards.userBoards);
+
+  const getUserBoards = async () => {
+    try {
+      const boards = await boardsApi.getUserBoards();
+
+      dispatch(setUserBoards(boards.data));
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
+
+  React.useEffect(() => {
+    getUserBoards();
+  }, []);
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
