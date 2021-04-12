@@ -3,7 +3,7 @@ import axiosInstance from './axiosInstance';
 const createTask = async (columnId, name) => {
   const res = await axiosInstance
     .post('/tasks', {
-      columnId,
+      id: columnId,
       name,
     });
 
@@ -13,25 +13,25 @@ const createTask = async (columnId, name) => {
 const getTasks = async (columnId) => {
   const res = await axiosInstance
     .get('/tasks', {
-      params: { columnId },
+      params: { id: columnId },
     });
 
   return res;
 };
 
-const updateTaskText = async (taskId, text) => {
+const updateTaskText = async (id, text) => {
   const res = await axiosInstance.patch('/tasks', {
-    taskId,
+    id,
     text,
   });
 
   return res;
 };
 
-const removeTask = async (taskId) => {
+const removeTask = async (id) => {
   const res = await axiosInstance
     .delete('/tasks', {
-      data: { taskId },
+      data: { id },
     });
 
   return res;

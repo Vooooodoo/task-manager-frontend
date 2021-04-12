@@ -3,7 +3,7 @@ import axiosInstance from './axiosInstance';
 const createColumn = async (boardId, name) => {
   const res = await axiosInstance
     .post('/columns', {
-      boardId,
+      id: boardId,
       name,
     });
 
@@ -13,25 +13,25 @@ const createColumn = async (boardId, name) => {
 const getColumns = async (boardId) => {
   const res = await axiosInstance
     .get('/columns', {
-      params: { boardId },
+      params: { id: boardId },
     });
 
   return res;
 };
 
-const updateColumnName = async (columnId, name) => {
+const updateColumnName = async (id, name) => {
   const res = await axiosInstance.patch('/columns', {
-    columnId,
+    id,
     name,
   });
 
   return res;
 };
 
-const removeColumn = async (columnId) => {
+const removeColumn = async (id) => {
   const res = await axiosInstance
     .delete('/columns', {
-      data: { columnId },
+      data: { id },
     });
 
   return res;

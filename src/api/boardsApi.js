@@ -15,19 +15,19 @@ const getBoards = async () => {
   return res;
 };
 
-const updateBoardName = async (boardId, name) => {
+const updateBoardName = async (id, name) => {
   const res = await axiosInstance.patch('/boards', {
-    boardId,
+    id,
     name,
   });
 
   return res;
 };
 
-const removeBoard = async (boardId) => {
+const removeBoard = async (id) => {
   const res = await axiosInstance
     .delete('/boards', {
-      data: { boardId },
+      data: { id },
     });
 
   return res;
