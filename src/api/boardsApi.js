@@ -15,6 +15,13 @@ const getUserBoards = async () => {
   return res;
 };
 
+//! add id params
+const getBoard = async () => {
+  const res = await axiosInstance.get('/boards');
+
+  return res;
+};
+
 const updateBoardName = async (id, name) => {
   const res = await axiosInstance.patch('/boards', {
     id,
@@ -36,6 +43,7 @@ const removeBoard = async (id) => {
 export {
   createBoard,
   getUserBoards,
+  getBoard,
   updateBoardName,
   removeBoard,
 };

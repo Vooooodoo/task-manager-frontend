@@ -14,7 +14,9 @@ import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButt
 import Column from './components/Column/Column';
 
 import * as columnsApi from '../../api/columnsApi';
-import { setBoardColumns } from '../../store/reducers/boards';
+import * as boardsApi from '../../api/boardsApi';
+
+import { setBoard, setBoardColumns } from '../../store/reducers/boards';
 
 import useStyles from './Board.style';
 
@@ -25,9 +27,7 @@ function Board() {
   const routParams = useParams();
   const boardId = Number(routParams.id);
 
-  //! get current board from server by boardId
-  const userBoards = useSelector((state) => state.boards.userBoards);
-  const board = userBoards.find((item) => item.id === boardId);
+  const board = useSelector((state) => state.boards.board);
   const boardColumns = useSelector((state) => state.boards.boardColumns);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,6 +40,16 @@ function Board() {
 
   const openBoardNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeBoardNameEditPopup = () => setAnchorEl(null);
+
+  const getBoard = async () => {
+    try {
+      const currentBoard = await boardsApi.getBoard(boardId);
+
+      dispatch(setBoard(currentBoard.data));
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
 
   const getBoardColumns = async () => {
     setIsLoading(true);
@@ -56,6 +66,7 @@ function Board() {
   };
 
   React.useEffect(() => {
+    getBoard();
     getBoardColumns();
   }, []);
 

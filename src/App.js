@@ -37,6 +37,7 @@ function App() {
     }
   };
 
+  //! for BoardNameEditPopup
   const getUserBoards = async () => {
     try {
       const boards = await boardsApi.getUserBoards();
