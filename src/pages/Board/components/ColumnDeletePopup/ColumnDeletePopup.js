@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setAllColumns } from '../../../../store/reducers/columns';
+import { setAllColumns } from '../../../../store/reducers/boards';
 
 function ColumnDeletePopup({
   id, delColumnId, isOpen, anchorEl, onClose,

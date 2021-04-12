@@ -14,7 +14,7 @@ import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButt
 import Column from './components/Column/Column';
 
 import * as columnsApi from '../../api/columnsApi';
-import { setAllColumns } from '../../store/reducers/columns';
+import { setAllColumns } from '../../store/reducers/boards';
 
 import useStyles from './Board.style';
 

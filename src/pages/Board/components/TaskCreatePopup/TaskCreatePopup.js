@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/tasks';
+import { setAllTasks } from '../../../../store/reducers/boards';
 
 function TaskCreatePopup({
   id, columnId, isOpen, anchorEl, onClose,

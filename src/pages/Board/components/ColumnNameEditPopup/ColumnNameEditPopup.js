@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setAllColumns } from '../../../../store/reducers/columns';
+import { setAllColumns } from '../../../../store/reducers/boards';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 

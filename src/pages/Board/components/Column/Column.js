@@ -10,7 +10,7 @@ import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/tasks';
+import { setAllTasks } from '../../../../store/reducers/boards';
 
 import useStyles from './Column.style';
 

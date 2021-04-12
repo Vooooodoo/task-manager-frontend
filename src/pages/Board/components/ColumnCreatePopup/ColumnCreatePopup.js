@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setAllColumns } from '../../../../store/reducers/columns';
+import { setAllColumns } from '../../../../store/reducers/boards';
 
 function ColumnCreatePopup({
   id, isOpen, anchorEl, onClose,

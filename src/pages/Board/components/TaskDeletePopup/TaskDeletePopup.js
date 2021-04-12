@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/tasks';
+import { setAllTasks } from '../../../../store/reducers/boards';
 
 function TaskDeletePopup({
   id, delTaskId, isOpen, anchorEl, onClose,
