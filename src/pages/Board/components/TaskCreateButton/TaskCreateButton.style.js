@@ -2,6 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    display: 'block',
+    width: '300px',
     backgroundColor: 'grey',
     backgroundClip: 'content-box',
     minHeight: theme.spacing(7),
@@ -9,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': theme.customHover,
   },
   createBtn: {
+    display: 'flex',
     width: '100%',
-    height: '100%',
     color: 'white',
   },
   createIcon: {
