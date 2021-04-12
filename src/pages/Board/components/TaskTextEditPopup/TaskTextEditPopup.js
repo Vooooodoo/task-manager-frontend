@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/boards';
+import { setColumnTasks } from '../../../../store/reducers/boards';
 
 function TaskTextEditPopup({
   id, taskId, isOpen, anchorEl, onClose,
 }) {
-  const allTasks = useSelector((state) => state.boards.allTasks);
-  const task = allTasks.find((item) => item.id === taskId);
+  const columnTasks = useSelector((state) => state.boards.columnTasks);
+  const task = columnTasks.find((item) => item.id === taskId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -23,7 +23,7 @@ function TaskTextEditPopup({
     if (trimmedInputValue) {
       await tasksApi.updateTaskText(taskId, trimmedInputValue);
 
-      const newTasks = allTasks.map((item) => {
+      const newTasks = columnTasks.map((item) => {
         if (item.id === taskId) {
           return { ...item, name: trimmedInputValue };
         }
@@ -31,7 +31,7 @@ function TaskTextEditPopup({
         return item;
       });
 
-      dispatch(setAllTasks(newTasks));
+      dispatch(setColumnTasks(newTasks));
       onClose();
       setInputValue('');
     }

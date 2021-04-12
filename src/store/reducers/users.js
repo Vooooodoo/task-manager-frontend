@@ -4,7 +4,7 @@ import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
   allUsers: [],
-  authorizedUser: {},
+  user: {},
 };
 
 const setAllUsers = createAction(actionTypes.SET_ALL_USERS);
@@ -15,7 +15,7 @@ const usersReducer = createReducer(initialState, {
     state.allUsers = action.payload;
   },
   [setUser]: (state, action) => {
-    state.authorizedUser = action.payload;
+    state.user = action.payload;
   },
 });
 

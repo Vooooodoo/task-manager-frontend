@@ -22,7 +22,7 @@ import useStyles from './Profile.style';
 function Profile() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const authorizedUser = useSelector((state) => state.users.authorizedUser);
+  const user = useSelector((state) => state.users.user);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [tooltipText, setTooltipText] = React.useState('');
@@ -48,12 +48,12 @@ function Profile() {
     handleBlur,
   } = useFormik({
     initialValues: {
-      firstName: authorizedUser.firstName,
-      lastName: authorizedUser.lastName,
+      firstName: user.firstName,
+      lastName: user.lastName,
       //! feels like a not the best solution
-      about: authorizedUser.about === null
+      about: user.about === null
         ? ''
-        : authorizedUser.about,
+        : user.about,
     },
     profileValidationSchema,
     // eslint-disable-next-line object-curly-newline
@@ -79,7 +79,7 @@ function Profile() {
         </Avatar>
 
         <Typography component="h2" variant="h5">
-          {authorizedUser.firstName}
+          {user.firstName}
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit} noValidate>

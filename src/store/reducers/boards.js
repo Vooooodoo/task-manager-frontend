@@ -3,30 +3,30 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  allBoards: [],
-  allColumns: [],
-  allTasks: [],
+  userBoards: [],
+  boardColumns: [],
+  columnTasks: [],
 };
 
-const setAllBoards = createAction(actionTypes.SET_ALL_BOARDS);
-const setAllColumns = createAction(actionTypes.SET_ALL_COLUMNS);
-const setAllTasks = createAction(actionTypes.SET_ALL_TASKS);
+const setUserBoards = createAction(actionTypes.SET_USER_BOARDS);
+const setBoardColumns = createAction(actionTypes.SET_BOARD_COLUMNS);
+const setColumnTasks = createAction(actionTypes.SET_COLUMN_TASKS);
 
 const boardsReducer = createReducer(initialState, {
-  [setAllBoards]: (state, action) => {
-    state.allBoards = action.payload;
+  [setUserBoards]: (state, action) => {
+    state.userBoards = action.payload;
   },
-  [setAllColumns]: (state, action) => {
-    state.allColumns = action.payload;
+  [setBoardColumns]: (state, action) => {
+    state.boardColumns = action.payload;
   },
-  [setAllTasks]: (state, action) => {
-    state.allTasks = action.payload;
+  [setColumnTasks]: (state, action) => {
+    state.columnTasks = action.payload;
   },
 });
 
 export {
   boardsReducer,
-  setAllBoards,
-  setAllColumns,
-  setAllTasks,
+  setUserBoards,
+  setBoardColumns,
+  setColumnTasks,
 };

@@ -5,13 +5,13 @@ import { useHistory } from 'react-router-dom';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as boardsApi from '../../../../api/boardsApi';
-import { setAllBoards } from '../../../../store/reducers/boards';
+import { setUserBoards } from '../../../../store/reducers/boards';
 
 function BoardCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
   const history = useHistory();
-  const boards = useSelector((state) => state.boards.allBoards);
+  const boards = useSelector((state) => state.boards.userBoards);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -27,7 +27,7 @@ function BoardCreatePopup({
 
         const newBoards = [...boards, newBoard.data];
 
-        dispatch(setAllBoards(newBoards));
+        dispatch(setUserBoards(newBoards));
         onClose();
         setInputValue('');
         history.push(`/boards/${newBoard.data.id}`);

@@ -13,7 +13,7 @@ import useStyles from './Main.style';
 function Main() {
   const classes = useStyles();
 
-  const boards = useSelector((state) => state.boards.allBoards);
+  const boards = useSelector((state) => state.boards.userBoards);
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">

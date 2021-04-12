@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setAllColumns } from '../../../../store/reducers/boards';
+import { setBoardColumns } from '../../../../store/reducers/boards';
 
 function ColumnDeletePopup({
   id, delColumnId, isOpen, anchorEl, onClose,
 }) {
-  const columns = useSelector((state) => state.boards.allColumns);
+  const columns = useSelector((state) => state.boards.boardColumns);
   const dispatch = useDispatch();
 
   const deleteColumn = async (columnId) => {
@@ -18,7 +18,7 @@ function ColumnDeletePopup({
 
       const newColumns = columns.filter((column) => column.id !== columnId);
 
-      dispatch(setAllColumns(newColumns));
+      dispatch(setBoardColumns(newColumns));
       onClose();
     } catch (err) {
       console.log(err.response.data.message);

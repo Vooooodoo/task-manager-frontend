@@ -18,7 +18,7 @@ function Header() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuPopupOpen = Boolean(anchorEl);
-  const user = useSelector((state) => state.users.authorizedUser);
+  const user = useSelector((state) => state.users.user);
   const isUser = Boolean(user.id);
 
   const openMenuPopup = (evt) => setAnchorEl(evt.currentTarget);

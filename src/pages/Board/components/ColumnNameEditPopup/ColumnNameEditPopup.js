@@ -2,15 +2,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setAllColumns } from '../../../../store/reducers/boards';
+import { setBoardColumns } from '../../../../store/reducers/boards';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 function ColumnNameEditPopup({
   id, columnId, isOpen, anchorEl, onClose,
 }) {
-  const allColumns = useSelector((state) => state.boards.allColumns);
-  const column = allColumns.find((item) => item.id === columnId);
+  const boardColumns = useSelector((state) => state.boards.boardColumns);
+  const column = boardColumns.find((item) => item.id === columnId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -23,7 +23,7 @@ function ColumnNameEditPopup({
     if (trimmedInputValue) {
       await columnsApi.updateColumnName(columnId, trimmedInputValue);
 
-      const newColumns = allColumns.map((item) => {
+      const newColumns = boardColumns.map((item) => {
         if (item.id === columnId) {
           return { ...item, name: trimmedInputValue };
         }
@@ -31,7 +31,7 @@ function ColumnNameEditPopup({
         return item;
       });
 
-      dispatch(setAllColumns(newColumns));
+      dispatch(setBoardColumns(newColumns));
       onClose();
       setInputValue('');
     }

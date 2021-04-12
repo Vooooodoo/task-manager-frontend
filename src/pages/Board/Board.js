@@ -14,7 +14,7 @@ import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButt
 import Column from './components/Column/Column';
 
 import * as columnsApi from '../../api/columnsApi';
-import { setAllColumns } from '../../store/reducers/boards';
+import { setBoardColumns } from '../../store/reducers/boards';
 
 import useStyles from './Board.style';
 
@@ -25,9 +25,9 @@ function Board() {
   const routParams = useParams();
   const boardId = Number(routParams.id);
 
-  const allBoards = useSelector((state) => state.boards.allBoards);
-  const board = allBoards.find((item) => item.id === boardId);
-  const columns = useSelector((state) => state.boards.allColumns);
+  const userBoards = useSelector((state) => state.boards.userBoards);
+  const board = userBoards.find((item) => item.id === boardId);
+  const columns = useSelector((state) => state.boards.boardColumns);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);
@@ -46,7 +46,7 @@ function Board() {
     try {
       const boardColumns = await columnsApi.getColumns(boardId);
 
-      dispatch(setAllColumns(boardColumns.data));
+      dispatch(setBoardColumns(boardColumns.data));
     } catch (err) {
       console.log(err.response.data.message);
     } finally {

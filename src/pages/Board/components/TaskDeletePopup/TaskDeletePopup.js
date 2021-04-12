@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/boards';
+import { setColumnTasks } from '../../../../store/reducers/boards';
 
 function TaskDeletePopup({
   id, delTaskId, isOpen, anchorEl, onClose,
 }) {
-  const tasks = useSelector((state) => state.boards.allTasks);
+  const tasks = useSelector((state) => state.boards.columnTasks);
   const dispatch = useDispatch();
 
   const deleteTask = async (taskId) => {
@@ -18,7 +18,7 @@ function TaskDeletePopup({
 
       const newTasks = tasks.filter((task) => task.id !== taskId);
 
-      dispatch(setAllTasks(newTasks));
+      dispatch(setColumnTasks(newTasks));
       onClose();
     } catch (err) {
       console.log(err.response.data.message);

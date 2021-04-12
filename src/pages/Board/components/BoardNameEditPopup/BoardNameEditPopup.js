@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as boardsApi from '../../../../api/boardsApi';
-import { setAllBoards } from '../../../../store/reducers/boards';
+import { setUserBoards } from '../../../../store/reducers/boards';
 
 function BoardNameEditPopup({
   id, isOpen, anchorEl, onClose,
@@ -13,8 +13,8 @@ function BoardNameEditPopup({
   const routParams = useParams();
   const boardId = Number(routParams.id);
 
-  const allBoards = useSelector((state) => state.boards.allBoards);
-  const board = allBoards.find((item) => item.id === boardId);
+  const userBoards = useSelector((state) => state.boards.userBoards);
+  const board = userBoards.find((item) => item.id === boardId);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -27,7 +27,7 @@ function BoardNameEditPopup({
     if (trimmedInputValue) {
       await boardsApi.updateBoardName(boardId, trimmedInputValue);
 
-      const newBoards = allBoards.map((item) => {
+      const newBoards = userBoards.map((item) => {
         if (item.id === boardId) {
           // не мутируем объект внутри массива, а возвращаем новый
           return { ...item, name: trimmedInputValue };
@@ -36,7 +36,7 @@ function BoardNameEditPopup({
         return item;
       });
 
-      dispatch(setAllBoards(newBoards));
+      dispatch(setUserBoards(newBoards));
       onClose();
       setInputValue('');
     }

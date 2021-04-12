@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import * as boardsApi from '../../../../api/boardsApi';
-import { setAllBoards } from '../../../../store/reducers/boards';
+import { setUserBoards } from '../../../../store/reducers/boards';
 
 function BoardDeletePopup({
   id, delBoardId, isOpen, anchorEl, onClose,
 }) {
-  const boards = useSelector((state) => state.boards.allBoards);
+  const boards = useSelector((state) => state.boards.userBoards);
   const dispatch = useDispatch();
 
   const deleteBoard = async (boardId) => {
@@ -18,7 +18,7 @@ function BoardDeletePopup({
 
       const newBoards = boards.filter((board) => board.id !== boardId);
 
-      dispatch(setAllBoards(newBoards));
+      dispatch(setUserBoards(newBoards));
       onClose();
     } catch (err) {
       console.log(err.response.data.message);

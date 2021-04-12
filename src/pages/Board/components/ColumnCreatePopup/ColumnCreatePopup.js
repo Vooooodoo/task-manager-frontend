@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setAllColumns } from '../../../../store/reducers/boards';
+import { setBoardColumns } from '../../../../store/reducers/boards';
 
 function ColumnCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
-  const columns = useSelector((state) => state.boards.allColumns);
+  const columns = useSelector((state) => state.boards.boardColumns);
   const dispatch = useDispatch();
 
   const routParams = useParams();
@@ -29,7 +29,7 @@ function ColumnCreatePopup({
 
         const newColumns = [...columns, newColumn.data];
 
-        dispatch(setAllColumns(newColumns));
+        dispatch(setBoardColumns(newColumns));
         onClose();
         setInputValue('');
       } catch (err) {

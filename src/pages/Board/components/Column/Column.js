@@ -10,7 +10,7 @@ import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/boards';
+import { setColumnTasks } from '../../../../store/reducers/boards';
 
 import useStyles from './Column.style';
 
@@ -18,7 +18,7 @@ function Column({ id, name }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const tasks = useSelector((state) => state.boards.allTasks);
+  const tasks = useSelector((state) => state.boards.columnTasks);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isColumnNameEditPopupOpen = Boolean(anchorEl);
@@ -33,7 +33,7 @@ function Column({ id, name }) {
     try {
       const columnTasks = await tasksApi.getTasks(id);
 
-      dispatch(setAllTasks(columnTasks.data));
+      dispatch(setColumnTasks(columnTasks.data));
     } catch (err) {
       console.log(err.response.data.message);
     }

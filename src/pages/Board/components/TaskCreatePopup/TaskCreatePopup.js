@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setAllTasks } from '../../../../store/reducers/boards';
+import { setColumnTasks } from '../../../../store/reducers/boards';
 
 function TaskCreatePopup({
   id, columnId, isOpen, anchorEl, onClose,
 }) {
-  const tasks = useSelector((state) => state.boards.allTasks);
+  const tasks = useSelector((state) => state.boards.columnTasks);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');
@@ -25,7 +25,7 @@ function TaskCreatePopup({
 
         const newTasks = [...tasks, newTask.data];
 
-        dispatch(setAllTasks(newTasks));
+        dispatch(setColumnTasks(newTasks));
         onClose();
         setInputValue('');
       } catch (err) {

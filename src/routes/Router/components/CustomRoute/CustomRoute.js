@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 // этот HOC принимает другой компонент в качестве пропса
 // он также может взять неограниченное число пропсов и передать их новому компоненту
 function CustomRoute({ component: Component, ...props }) {
-  const user = useSelector((state) => state.users.authorizedUser);
+  const user = useSelector((state) => state.users.user);
   const isUser = Boolean(user.id);
   //! это проверять в роутере, там где объекты описывал, как изначально делал
   //! поле с булевым значением добавить
