@@ -9,7 +9,7 @@ import InputPopup from '../../../../components/InputPopup/InputPopup';
 function ColumnNameEditPopup({
   id, columnId, isOpen, anchorEl, onClose,
 }) {
-  const allColumns = useSelector((state) => state.columns.allColumns);
+  const allColumns = useSelector((state) => state.boards.allColumns);
   const column = allColumns.find((item) => item.id === columnId);
   const dispatch = useDispatch();
 

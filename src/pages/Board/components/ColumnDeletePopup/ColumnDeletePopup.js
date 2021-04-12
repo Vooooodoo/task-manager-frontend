@@ -9,7 +9,7 @@ import { setAllColumns } from '../../../../store/reducers/boards';
 function ColumnDeletePopup({
   id, delColumnId, isOpen, anchorEl, onClose,
 }) {
-  const columns = useSelector((state) => state.columns.allColumns);
+  const columns = useSelector((state) => state.boards.allColumns);
   const dispatch = useDispatch();
 
   const deleteColumn = async (columnId) => {

@@ -9,7 +9,7 @@ import { setAllTasks } from '../../../../store/reducers/boards';
 function TaskDeletePopup({
   id, delTaskId, isOpen, anchorEl, onClose,
 }) {
-  const tasks = useSelector((state) => state.tasks.allTasks);
+  const tasks = useSelector((state) => state.boards.allTasks);
   const dispatch = useDispatch();
 
   const deleteTask = async (taskId) => {

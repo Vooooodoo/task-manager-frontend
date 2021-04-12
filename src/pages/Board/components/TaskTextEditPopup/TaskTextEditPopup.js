@@ -9,7 +9,7 @@ import { setAllTasks } from '../../../../store/reducers/boards';
 function TaskTextEditPopup({
   id, taskId, isOpen, anchorEl, onClose,
 }) {
-  const allTasks = useSelector((state) => state.tasks.allTasks);
+  const allTasks = useSelector((state) => state.boards.allTasks);
   const task = allTasks.find((item) => item.id === taskId);
   const dispatch = useDispatch();
 

@@ -27,7 +27,7 @@ function Board() {
 
   const allBoards = useSelector((state) => state.boards.allBoards);
   const board = allBoards.find((item) => item.id === boardId);
-  const columns = useSelector((state) => state.columns.allColumns);
+  const columns = useSelector((state) => state.boards.allColumns);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);

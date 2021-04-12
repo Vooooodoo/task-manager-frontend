@@ -10,7 +10,7 @@ import { setAllColumns } from '../../../../store/reducers/boards';
 function ColumnCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
-  const columns = useSelector((state) => state.columns.allColumns);
+  const columns = useSelector((state) => state.boards.allColumns);
   const dispatch = useDispatch();
 
   const routParams = useParams();

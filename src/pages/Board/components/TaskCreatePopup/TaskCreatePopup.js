@@ -9,7 +9,7 @@ import { setAllTasks } from '../../../../store/reducers/boards';
 function TaskCreatePopup({
   id, columnId, isOpen, anchorEl, onClose,
 }) {
-  const tasks = useSelector((state) => state.tasks.allTasks);
+  const tasks = useSelector((state) => state.boards.allTasks);
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = React.useState('');

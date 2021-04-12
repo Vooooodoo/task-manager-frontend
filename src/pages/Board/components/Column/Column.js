@@ -18,7 +18,7 @@ function Column({ id, name }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const tasks = useSelector((state) => state.tasks.allTasks);
+  const tasks = useSelector((state) => state.boards.allTasks);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isColumnNameEditPopupOpen = Boolean(anchorEl);
