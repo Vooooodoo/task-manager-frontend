@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
@@ -9,6 +10,7 @@ import { setAllBoards } from '../../../../store/reducers/boards';
 function BoardCreatePopup({
   id, isOpen, anchorEl, onClose,
 }) {
+  const history = useHistory();
   const boards = useSelector((state) => state.boards.allBoards);
   const dispatch = useDispatch();
 
@@ -28,6 +30,7 @@ function BoardCreatePopup({
         dispatch(setAllBoards(newBoards));
         onClose();
         setInputValue('');
+        history.push(`/boards/${newBoard.data.id}`);
       } catch (err) {
         console.log(err.response.data.message);
       }

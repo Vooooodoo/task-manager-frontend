@@ -1,10 +1,10 @@
 import axiosInstance from './axiosInstance';
 
-const createTask = async (columnId, name) => {
+const createTask = async (columnId, text) => {
   const res = await axiosInstance
     .post('/tasks', {
       id: columnId,
-      name,
+      text,
     });
 
   return res;
