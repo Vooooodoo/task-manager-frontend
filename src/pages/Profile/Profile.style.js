@@ -8,8 +8,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   avatar: {
+    position: 'relative',
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    width: '100px',
+    height: '100px',
+  },
+  fileInput: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    cursor: 'pointer',
   },
   form: {
     marginTop: theme.spacing(1),

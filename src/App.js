@@ -6,8 +6,10 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Router from './routes/Router/Router';
 
+import * as boardsApi from './api/boardsApi';
 import { checkJwt } from './api/authApi';
 import { setUser } from './store/reducers/users';
+import { setAllBoards } from './store/reducers/boards';
 import { LOCAL_STORAGE_TOKEN_KEY } from './config';
 
 import GlobalStyle from './pages/GlobalStyle/GlobalStyle';
@@ -35,8 +37,23 @@ function App() {
     }
   };
 
+  const getBoards = async () => {
+    setIsLoading(true);
+
+    try {
+      const userBoards = await boardsApi.getBoards();
+
+      dispatch(setAllBoards(userBoards.data));
+    } catch (err) {
+      console.log(err.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   React.useEffect(() => {
     checkToken();
+    getBoards();
   }, []);
 
   return (

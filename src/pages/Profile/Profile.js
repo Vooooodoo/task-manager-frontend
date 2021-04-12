@@ -74,6 +74,7 @@ function Profile() {
       <CssBaseline />
       <section className={classes.paper}>
         <Avatar className={classes.avatar}>
+          <input className={classes.fileInput} type="file" name="file" />
           <AccountCircle />
         </Avatar>
 
