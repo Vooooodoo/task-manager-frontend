@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
   },
   columnsList: {
+    overflowX: 'scroll',
     listStyle: 'none',
     padding: '0',
   },

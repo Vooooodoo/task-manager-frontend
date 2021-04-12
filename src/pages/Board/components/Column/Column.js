@@ -48,11 +48,6 @@ function Column({ id, name }) {
       className={classes.container}
       component="li"
       item
-      xl={2}
-      lg={3}
-      md={4}
-      sm={6}
-      xs={12}
     >
       <Button
         className={classes.nameEditBtn}

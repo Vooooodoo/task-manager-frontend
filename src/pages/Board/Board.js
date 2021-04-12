@@ -88,6 +88,7 @@ function Board() {
               component="ul"
               container
               spacing={3}
+              wrap="nowrap"
             >
               {columns.map((column) => (
                 <Column id={column.id} name={column.name} key={column.id} />
