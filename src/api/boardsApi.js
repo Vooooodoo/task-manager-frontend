@@ -15,9 +15,8 @@ const getUserBoards = async () => {
   return res;
 };
 
-//! add id params
-const getBoard = async () => {
-  const res = await axiosInstance.get('/boards');
+const getBoard = async (boardId) => {
+  const res = await axiosInstance.get(`/boards/${boardId}`);
 
   return res;
 };
