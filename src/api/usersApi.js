@@ -10,5 +10,12 @@ const updateUserInfo = async (firstName, lastName, about) => {
   return res;
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { updateUserInfo };
+const setUserAvatar = async (avatar) => {
+  const res = await axiosInstance.patch('/users/avatar', {
+    avatar,
+  });
+
+  return res;
+};
+
+export { updateUserInfo, setUserAvatar };

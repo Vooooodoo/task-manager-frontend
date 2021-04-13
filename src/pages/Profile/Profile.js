@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 
 import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
+import AvatarSetPopup from './components/AvatarSetPopup/AvatarSetPopup';
 
 import * as usersApi from '../../api/usersApi';
 import { profileValidationSchema } from '../../utils/validation';
@@ -74,9 +75,10 @@ function Profile() {
       <CssBaseline />
       <section className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <input className={classes.fileInput} type="file" name="file" />
           <AccountCircle />
         </Avatar>
+
+        <AvatarSetPopup />
 
         <Typography component="h2" variant="h5">
           {user.firstName}
