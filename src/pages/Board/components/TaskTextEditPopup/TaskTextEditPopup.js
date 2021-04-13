@@ -27,7 +27,7 @@ function TaskTextEditPopup({
 
       const newTasks = columnTasks.map((item) => {
         if (item.id === taskId) {
-          return { ...item, name: trimmedInputValue };
+          return { ...item, text: trimmedInputValue };
         }
 
         return item;
