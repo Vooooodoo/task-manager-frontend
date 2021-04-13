@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useDrag } from 'react-dnd';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -9,8 +10,11 @@ import ColumnDeleteButton from '../ColumnDeleteButton/ColumnDeleteButton';
 import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
+import itemTypes from '../../../../utils/drugAndDrop';
+
 import useStyles from './Column.style';
 
+// eslint-disable-next-line no-unused-vars
 function Column({ id, name }) {
   const classes = useStyles();
 
@@ -27,11 +31,22 @@ function Column({ id, name }) {
   const openColumnNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeColumnNameEditPopup = () => setAnchorEl(null);
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: itemTypes.COLUMN,
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
+
   return (
     <Grid
       className={classes.container}
       component="li"
       item
+      ref={drag}
+      style={{
+        opacity: isDragging ? 0.5 : 1,
+      }}
     >
       <Button
         className={classes.nameEditBtn}

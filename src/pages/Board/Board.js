@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -71,7 +73,7 @@ function Board() {
   }, []);
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       {isLoading ? (
         <CircularProgress color="secondary" />
       ) : (
@@ -110,7 +112,7 @@ function Board() {
           </Container>
         </Container>
       )}
-    </>
+    </DndProvider>
   );
 }
 
