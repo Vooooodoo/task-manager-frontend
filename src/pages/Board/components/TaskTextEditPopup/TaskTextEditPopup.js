@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setColumnTasks } from '../../../../store/reducers/boards';
+import { setBoardColumns } from '../../../../store/reducers/boards';
 
 function TaskTextEditPopup({
-  id, taskId, isOpen, anchorEl, onClose,
+  id, columnId, taskId, isOpen, anchorEl, onClose,
 }) {
-  const columnTasks = useSelector((state) => state.boards.columnTasks);
+  const boardColumns = useSelector((state) => state.boards.boardColumns);
+  const currentColumn = boardColumns.find((item) => item.id === columnId);
+  const columnTasks = currentColumn.Tasks;
   const task = columnTasks.find((item) => item.id === taskId);
   const dispatch = useDispatch();
 
@@ -31,7 +33,15 @@ function TaskTextEditPopup({
         return item;
       });
 
-      dispatch(setColumnTasks(newTasks));
+      const newColumns = boardColumns.map((item) => {
+        if (item.id === columnId) {
+          return { ...item, Tasks: newTasks };
+        }
+
+        return item;
+      });
+
+      dispatch(setBoardColumns(newColumns));
       onClose();
       setInputValue('');
     }

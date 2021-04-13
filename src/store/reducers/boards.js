@@ -6,13 +6,11 @@ const initialState = {
   userBoards: [],
   board: {},
   boardColumns: [],
-  columnTasks: [],
 };
 
 const setUserBoards = createAction(actionTypes.SET_USER_BOARDS);
 const setBoard = createAction(actionTypes.SET_BOARD);
 const setBoardColumns = createAction(actionTypes.SET_BOARD_COLUMNS);
-const setColumnTasks = createAction(actionTypes.SET_COLUMN_TASKS);
 
 const boardsReducer = createReducer(initialState, {
   [setUserBoards]: (state, action) => {
@@ -24,9 +22,6 @@ const boardsReducer = createReducer(initialState, {
   [setBoardColumns]: (state, action) => {
     state.boardColumns = action.payload;
   },
-  [setColumnTasks]: (state, action) => {
-    state.columnTasks = action.payload;
-  },
 });
 
 export {
@@ -34,5 +29,4 @@ export {
   setUserBoards,
   setBoard,
   setBoardColumns,
-  setColumnTasks,
 };

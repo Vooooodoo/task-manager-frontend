@@ -7,7 +7,7 @@ import TaskDeletePopup from '../TaskDeletePopup/TaskDeletePopup';
 
 import useStyles from './TaskDeleteButton.style';
 
-function TaskDeleteButton({ delTaskId }) {
+function TaskDeleteButton({ columnId, delTaskId }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,6 +27,7 @@ function TaskDeleteButton({ delTaskId }) {
 
       <TaskDeletePopup
         id={taskDelPopupId}
+        columnId={columnId}
         delTaskId={delTaskId}
         isOpen={isTaskDelPopupOpen}
         anchorEl={anchorEl}

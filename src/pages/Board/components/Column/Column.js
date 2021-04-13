@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -9,16 +9,14 @@ import ColumnDeleteButton from '../ColumnDeleteButton/ColumnDeleteButton';
 import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
-import * as tasksApi from '../../../../api/tasksApi';
-import { setColumnTasks } from '../../../../store/reducers/boards';
-
 import useStyles from './Column.style';
 
 function Column({ id, name }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  const tasks = useSelector((state) => state.boards.columnTasks);
+  const boardColumns = useSelector((state) => state.boards.boardColumns);
+  const currentColumn = boardColumns.find((item) => item.id === id);
+  const columnTasks = currentColumn.Tasks;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isColumnNameEditPopupOpen = Boolean(anchorEl);
@@ -28,20 +26,6 @@ function Column({ id, name }) {
 
   const openColumnNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeColumnNameEditPopup = () => setAnchorEl(null);
-
-  const getColumnTasks = async () => {
-    try {
-      const columnTasks = await tasksApi.getColumnTasks(id);
-
-      dispatch(setColumnTasks(columnTasks.data));
-    } catch (err) {
-      console.log(err.response.data.message);
-    }
-  };
-
-  React.useEffect(() => {
-    getColumnTasks();
-  }, []);
 
   return (
     <Grid
@@ -73,8 +57,9 @@ function Column({ id, name }) {
         spacing={1}
         direction="column"
       >
-        {tasks.map((task) => (
+        {columnTasks.map((task) => (
           <Task
+            columnId={id}
             taskId={task.id}
             text={task.text}
             key={task.id}

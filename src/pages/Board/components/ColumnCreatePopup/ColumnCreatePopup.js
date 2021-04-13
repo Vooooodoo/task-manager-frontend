@@ -27,7 +27,13 @@ function ColumnCreatePopup({
       try {
         const newColumn = await columnsApi.createColumn(boardId, trimmedInputValue);
 
-        const newColumns = [...columns, newColumn.data];
+        const newColumns = [
+          ...columns,
+          {
+            ...newColumn.data,
+            Tasks: [],
+          },
+        ];
 
         dispatch(setBoardColumns(newColumns));
         onClose();

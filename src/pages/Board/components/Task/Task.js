@@ -8,7 +8,7 @@ import TaskDeleteButton from '../TaskDeleteButton/TaskDeleteButton';
 
 import useStyles from './Task.style';
 
-function Task({ taskId, text }) {
+function Task({ columnId, taskId, text }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,13 +28,14 @@ function Task({ taskId, text }) {
 
       <TaskTextEditPopup
         id={columnNameEditPopupId}
+        columnId={columnId}
         taskId={taskId}
         isOpen={isColumnNameEditPopupOpen}
         anchorEl={anchorEl}
         onClose={closeTaskTextEditPopup}
       />
 
-      <TaskDeleteButton delTaskId={taskId} />
+      <TaskDeleteButton columnId={columnId} delTaskId={taskId} />
     </Grid>
   );
 }

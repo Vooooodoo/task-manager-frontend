@@ -4,13 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setColumnTasks } from '../../../../store/reducers/boards';
+import { setBoardColumns } from '../../../../store/reducers/boards';
 
 function TaskCreatePopup({
   id, columnId, isOpen, anchorEl, onClose,
 }) {
-  const tasks = useSelector((state) => state.boards.columnTasks);
   const dispatch = useDispatch();
+  const boardColumns = useSelector((state) => state.boards.boardColumns);
+  const currentColumn = boardColumns.find((item) => item.id === columnId);
+  const columnTasks = currentColumn.Tasks;
 
   const [inputValue, setInputValue] = React.useState('');
 
@@ -23,9 +25,17 @@ function TaskCreatePopup({
       try {
         const newTask = await tasksApi.createTask(columnId, trimmedInputValue);
 
-        const newTasks = [...tasks, newTask.data];
+        const newTasks = [...columnTasks, newTask.data];
 
-        dispatch(setColumnTasks(newTasks));
+        const newColumns = boardColumns.map((item) => {
+          if (item.id === columnId) {
+            return { ...item, Tasks: newTasks };
+          }
+
+          return item;
+        });
+
+        dispatch(setBoardColumns(newColumns));
         onClose();
         setInputValue('');
       } catch (err) {

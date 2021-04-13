@@ -10,15 +10,6 @@ const createTask = async (columnId, text) => {
   return res;
 };
 
-const getColumnTasks = async (columnId) => {
-  const res = await axiosInstance
-    .get('/tasks', {
-      params: { id: columnId },
-    });
-
-  return res;
-};
-
 const updateTaskText = async (id, text) => {
   const res = await axiosInstance.patch('/tasks', {
     id,
@@ -39,7 +30,6 @@ const removeTask = async (id) => {
 
 export {
   createTask,
-  getColumnTasks,
   updateTaskText,
   removeTask,
 };

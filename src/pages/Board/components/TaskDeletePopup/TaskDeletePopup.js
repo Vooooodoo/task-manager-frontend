@@ -4,21 +4,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
-import { setColumnTasks } from '../../../../store/reducers/boards';
+import { setBoardColumns } from '../../../../store/reducers/boards';
 
 function TaskDeletePopup({
-  id, delTaskId, isOpen, anchorEl, onClose,
+  id, columnId, delTaskId, isOpen, anchorEl, onClose,
 }) {
-  const tasks = useSelector((state) => state.boards.columnTasks);
   const dispatch = useDispatch();
 
-  const deleteTask = async (taskId) => {
+  const boardColumns = useSelector((state) => state.boards.boardColumns);
+  const currentColumn = boardColumns.find((item) => item.id === columnId);
+  const columnTasks = currentColumn.Tasks;
+
+  const deleteTask = async () => {
     try {
-      await tasksApi.removeTask(taskId);
+      await tasksApi.removeTask(delTaskId);
 
-      const newTasks = tasks.filter((task) => task.id !== taskId);
+      const newTasks = columnTasks.filter((task) => task.id !== delTaskId);
 
-      dispatch(setColumnTasks(newTasks));
+      const newColumns = boardColumns.map((item) => {
+        if (item.id === columnId) {
+          return { ...item, Tasks: newTasks };
+        }
+
+        return item;
+      });
+
+      dispatch(setBoardColumns(newColumns));
       onClose();
     } catch (err) {
       console.log(err.response.data.message);
@@ -32,7 +43,7 @@ function TaskDeletePopup({
       anchorEl={anchorEl}
       btnText="Delete card"
       onClose={onClose}
-      onClick={() => deleteTask(delTaskId)}
+      onClick={deleteTask}
     />
   );
 }
