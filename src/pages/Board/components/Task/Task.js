@@ -26,7 +26,7 @@ function Task({ columnId, taskId, text }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: itemTypes.TASK,
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+      isDragging: monitor.isDragging(),
     }),
   }));
 
@@ -40,10 +40,7 @@ function Task({ columnId, taskId, text }) {
         opacity: isDragging ? 0.5 : 1,
       }}
     >
-      <Button
-        className={classes.nameEditBtn}
-        onClick={openTaskTextEditPopup}
-      >
+      <Button className={classes.nameEditBtn} onClick={openTaskTextEditPopup}>
         {text}
       </Button>
 

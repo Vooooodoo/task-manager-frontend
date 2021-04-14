@@ -73,7 +73,7 @@ function Board() {
   }, []);
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <>
       {isLoading ? (
         <CircularProgress color="secondary" />
       ) : (
@@ -104,15 +104,18 @@ function Board() {
               spacing={3}
               wrap="nowrap"
             >
-              {boardColumns.map((column) => (
-                <Column id={column.id} name={column.name} key={column.id} />
-              ))}
+              <DndProvider backend={HTML5Backend}>
+                {boardColumns.map((column) => (
+                  <Column id={column.id} name={column.name} key={column.id} />
+                ))}
+              </DndProvider>
+
               <ColumnCreateButton key="0" />
             </Grid>
           </Container>
         </Container>
       )}
-    </DndProvider>
+    </>
   );
 }
 

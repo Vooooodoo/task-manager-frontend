@@ -1,5 +1,4 @@
 const itemTypes = {
-  COLUMN: 'column',
   TASK: 'task',
 };
 

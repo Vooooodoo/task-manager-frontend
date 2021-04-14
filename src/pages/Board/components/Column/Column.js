@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useDrag } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -31,27 +31,25 @@ function Column({ id, name }) {
   const openColumnNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeColumnNameEditPopup = () => setAnchorEl(null);
 
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: itemTypes.COLUMN,
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: itemTypes.TASK,
+    //! change name
+    drop: () => ({ name: 'Some name' }),
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
     }),
-  }));
+  });
+
+  console.log('options', { canDrop, isOver });
 
   return (
     <Grid
       className={classes.container}
       component="li"
       item
-      ref={drag}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-      }}
     >
-      <Button
-        className={classes.nameEditBtn}
-        onClick={openColumnNameEditPopup}
-      >
+      <Button className={classes.nameEditBtn} onClick={openColumnNameEditPopup}>
         {name}
       </Button>
 
@@ -71,14 +69,10 @@ function Column({ id, name }) {
         container
         spacing={1}
         direction="column"
+        ref={drop}
       >
         {columnTasks.map((task) => (
-          <Task
-            columnId={id}
-            taskId={task.id}
-            text={task.text}
-            key={task.id}
-          />
+          <Task columnId={id} taskId={task.id} text={task.text} key={task.id} />
         ))}
         <TaskCreateButton key="0" columnId={id} />
       </Grid>
