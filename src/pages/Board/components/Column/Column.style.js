@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     backgroundColor: theme.palette.secondary.main,
     borderRadius: '0',
-    marginBottom: theme.spacing(1),
+    marginBottom: '12px',
     '&:hover': {
       backgroundColor: theme.palette.secondary.dark,
       cursor: 'pointer',

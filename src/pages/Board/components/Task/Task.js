@@ -21,11 +21,7 @@ function Task({ columnId, taskId, text }) {
   const closeTaskTextEditPopup = () => setAnchorEl(null);
 
   return (
-    <Grid
-      className={classes.container}
-      component="li"
-      item
-    >
+    <Grid className={classes.container} component="li" item>
       <Button className={classes.nameEditBtn} onClick={openTaskTextEditPopup}>
         {text}
       </Button>
@@ -39,7 +35,10 @@ function Task({ columnId, taskId, text }) {
         onClose={closeTaskTextEditPopup}
       />
 
-      <TaskDeleteButton columnId={columnId} delTaskId={taskId} />
+      <TaskDeleteButton
+        columnId={columnId}
+        delTaskId={taskId}
+      />
     </Grid>
   );
 }

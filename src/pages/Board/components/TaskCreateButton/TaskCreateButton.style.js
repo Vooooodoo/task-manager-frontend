@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     backgroundColor: 'grey',
     borderRadius: '0',
+    marginTop: '-4px',
     transition: theme.customTransition,
     '&:hover': {
       backgroundColor: theme.palette.success.main,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Container, Draggable } from 'react-smooth-dnd';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -12,7 +13,7 @@ import Task from '../Task/Task';
 import useStyles from './Column.style';
 
 // eslint-disable-next-line no-unused-vars
-function Column({ id, name }) {
+function Column({ id, name, onDrop }) {
   const classes = useStyles();
 
   const boardColumns = useSelector((state) => state.boards.boardColumns);
@@ -51,9 +52,13 @@ function Column({ id, name }) {
         spacing={1}
         direction="column"
       >
-        {columnTasks.map((task) => (
-          <Task columnId={id} taskId={task.id} text={task.text} key={task.id} />
-        ))}
+        <Container className={classes.taskContainer} onDrop={onDrop}>
+          {columnTasks.map((task) => (
+            <Draggable key={task.id}>
+              <Task columnId={id} taskId={task.id} text={task.text} />
+            </Draggable>
+          ))}
+        </Container>
 
         <TaskCreateButton key="0" columnId={id} />
       </Grid>

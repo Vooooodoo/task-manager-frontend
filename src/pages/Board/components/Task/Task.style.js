@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.success.dark,
       cursor: 'pointer',
     },
+    width: '288px',
+    margin: '0 auto',
+    marginBottom: theme.spacing(1),
   },
   nameEditBtn: {
     display: 'flex',
