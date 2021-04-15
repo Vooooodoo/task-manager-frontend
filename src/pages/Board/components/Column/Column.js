@@ -52,11 +52,14 @@ function Column({ id, name }) {
     return result;
   };
 
+  const getTaskPayload = (index) => columnTasks[index];
+
   const onTaskDrop = (dropResult) => {
     const { removedIndex, addedIndex } = dropResult;
 
     if (removedIndex !== null || addedIndex !== null) {
       const newTasks = applyDrag(columnTasks, dropResult);
+
       const newColumns = boardColumns.map((item) => {
         if (item.id === id) {
           return { ...item, Tasks: newTasks };
@@ -95,6 +98,7 @@ function Column({ id, name }) {
         <Container
           className={classes.taskContainer}
           onDrop={onTaskDrop}
+          getChildPayload={(index) => getTaskPayload(index)}
           groupName="column"
         >
           {columnTasks.map((task) => (
