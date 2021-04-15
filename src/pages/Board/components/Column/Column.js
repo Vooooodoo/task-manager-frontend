@@ -10,11 +10,11 @@ import ColumnDeleteButton from '../ColumnDeleteButton/ColumnDeleteButton';
 import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
+import applyDrag from '../../../../utils/drugAndDrop';
 import { setBoardColumns } from '../../../../store/reducers/boards';
 
 import useStyles from './Column.style';
 
-// eslint-disable-next-line no-unused-vars
 function Column({ id, name }) {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -33,26 +33,6 @@ function Column({ id, name }) {
   const closeColumnNameEditPopup = () => setAnchorEl(null);
 
   const getTaskPayload = (index) => columnTasks[index];
-
-  const applyDrag = (arr, dragResult) => {
-    const { removedIndex, addedIndex, payload } = dragResult;
-
-    if (removedIndex === null && addedIndex === null) return arr;
-
-    const result = [...arr];
-    let itemToAdd = payload;
-
-    if (removedIndex !== null) {
-      // eslint-disable-next-line prefer-destructuring
-      itemToAdd = result.splice(removedIndex, 1)[0];
-    }
-
-    if (addedIndex !== null) {
-      result.splice(addedIndex, 0, itemToAdd);
-    }
-
-    return result;
-  };
 
   const onTaskDrop = (dropResult) => {
     const { removedIndex, addedIndex } = dropResult;
