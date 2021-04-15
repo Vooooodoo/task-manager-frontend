@@ -32,6 +32,8 @@ function Column({ id, name }) {
   const openColumnNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeColumnNameEditPopup = () => setAnchorEl(null);
 
+  const getTaskPayload = (index) => columnTasks[index];
+
   const applyDrag = (arr, dragResult) => {
     const { removedIndex, addedIndex, payload } = dragResult;
 
@@ -52,17 +54,23 @@ function Column({ id, name }) {
     return result;
   };
 
-  const getTaskPayload = (index) => columnTasks[index];
-
   const onTaskDrop = (dropResult) => {
     const { removedIndex, addedIndex } = dropResult;
 
     if (removedIndex !== null || addedIndex !== null) {
       const newTasks = applyDrag(columnTasks, dropResult);
 
+      const editedTasks = newTasks.map((item) => {
+        if (item.columnId !== id) {
+          return { ...item, columnId: id };
+        }
+
+        return item;
+      });
+
       const newColumns = boardColumns.map((item) => {
         if (item.id === id) {
-          return { ...item, Tasks: newTasks };
+          return { ...item, Tasks: editedTasks };
         }
 
         return item;
