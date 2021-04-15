@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '40px',
     color: 'white',
     backgroundColor: 'grey',
-    borderRadius: '0',
+    borderRadius: theme.borderRadius,
     transition: theme.customTransition,
     '&:hover': {
       backgroundColor: theme.palette.success.main,

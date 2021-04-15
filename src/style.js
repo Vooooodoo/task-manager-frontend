@@ -9,6 +9,7 @@ const theme = createMuiTheme({
   },
   customTransition: '.2s linear',
   iconColor: 'white',
+  borderRadius: '4px',
 });
 
 export default theme;

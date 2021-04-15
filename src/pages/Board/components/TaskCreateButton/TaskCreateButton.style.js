@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     color: 'white',
     backgroundColor: 'grey',
-    borderRadius: '0',
+    borderRadius: theme.borderRadius,
     marginTop: '-4px',
     transition: theme.customTransition,
     '&:hover': {

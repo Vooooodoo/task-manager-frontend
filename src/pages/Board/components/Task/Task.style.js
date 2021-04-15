@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     width: '288px',
     margin: '0 auto',
     marginBottom: theme.spacing(1),
+    borderRadius: theme.borderRadius,
   },
   nameEditBtn: {
     display: 'flex',
