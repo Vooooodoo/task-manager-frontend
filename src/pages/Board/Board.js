@@ -58,14 +58,20 @@ function Board() {
       const columns = await columnsApi.getBoardColumns(boardId);
 
       const sortedColumns = columns.data.map((column) => {
-        column.tasksPos.forEach((item) => {
-          column.Tasks.
-        });
-        const sortedTasks = column.Tasks.map((task) => {
+        const tasks = column.Tasks;
+        const sortedTasks = [];
+        const { tasksPos } = column;
 
-        });
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < tasksPos.length; i++) {
+          tasks.forEach((task) => {
+            if (task.id === tasksPos[i]) {
+              sortedTasks.push(task);
+            }
+          });
+        }
 
-        return column;
+        return { ...column, Tasks: sortedTasks };
       });
 
       dispatch(setBoardColumns(sortedColumns));
