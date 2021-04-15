@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as tasksApi from '../../../../api/tasksApi';
+import * as columnsApi from '../../../../api/columnsApi';
 import { setBoardColumns } from '../../../../store/reducers/boards';
 
-function TaskCreatePopup({
-  id, columnId, isOpen, anchorEl, onClose,
-}) {
+// eslint-disable-next-line object-curly-newline
+function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
   const boardColumns = useSelector((state) => state.boards.boardColumns);
   const currentColumn = boardColumns.find((item) => item.id === columnId);
@@ -26,6 +26,10 @@ function TaskCreatePopup({
         const newTask = await tasksApi.createTask(columnId, trimmedInputValue);
 
         const newTasks = [...columnTasks, newTask.data];
+
+        const tasksPos = newTasks.map((item) => item.id);
+
+        await columnsApi.updateColumnTasksPos(columnId, tasksPos);
 
         const newColumns = boardColumns.map((item) => {
           if (item.id === columnId) {

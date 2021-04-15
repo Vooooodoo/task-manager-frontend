@@ -11,6 +11,7 @@ import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
 import applyDrag from '../../../../utils/drugAndDrop';
+import * as columnsApi from '../../../../api/columnsApi';
 import { setBoardColumns } from '../../../../store/reducers/boards';
 
 import useStyles from './Column.style';
@@ -34,7 +35,7 @@ function Column({ id, name }) {
 
   const getTaskPayload = (index) => columnTasks[index];
 
-  const onTaskDrop = (dropResult) => {
+  const onTaskDrop = async (dropResult) => {
     const { removedIndex, addedIndex } = dropResult;
 
     if (removedIndex !== null || addedIndex !== null) {
@@ -48,9 +49,13 @@ function Column({ id, name }) {
         return item;
       });
 
+      const tasksPos = editedTasks.map((item) => item.id);
+
+      await columnsApi.updateColumnTasksPos(id, tasksPos);
+
       const newColumns = boardColumns.map((item) => {
         if (item.id === id) {
-          return { ...item, Tasks: editedTasks };
+          return { ...item, tasksPos, Tasks: editedTasks };
         }
 
         return item;

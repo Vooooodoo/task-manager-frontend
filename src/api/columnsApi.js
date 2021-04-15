@@ -28,6 +28,15 @@ const updateColumnName = async (id, name) => {
   return res;
 };
 
+const updateColumnTasksPos = async (id, tasksPos) => {
+  const res = await axiosInstance.patch('/columns/tasks-pos', {
+    id,
+    tasksPos,
+  });
+
+  return res;
+};
+
 const removeColumn = async (id) => {
   const res = await axiosInstance
     .delete('/columns', {
@@ -41,5 +50,6 @@ export {
   createColumn,
   getBoardColumns,
   updateColumnName,
+  updateColumnTasksPos,
   removeColumn,
 };

@@ -57,7 +57,18 @@ function Board() {
     try {
       const columns = await columnsApi.getBoardColumns(boardId);
 
-      dispatch(setBoardColumns(columns.data));
+      const sortedColumns = columns.data.map((column) => {
+        column.tasksPos.forEach((item) => {
+          column.Tasks.
+        });
+        const sortedTasks = column.Tasks.map((task) => {
+
+        });
+
+        return column;
+      });
+
+      dispatch(setBoardColumns(sortedColumns));
     } catch (err) {
       console.log(err.response.data.message);
     } finally {
