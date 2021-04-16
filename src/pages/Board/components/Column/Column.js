@@ -51,8 +51,6 @@ function Column({ id, name }) {
 
       const tasksPos = editedTasks.map((item) => item.id);
 
-      await columnsApi.updateColumnTasksPos(id, tasksPos);
-
       const newColumns = boardColumns.map((item) => {
         if (item.id === id) {
           return { ...item, tasksPos, Tasks: editedTasks };
@@ -62,6 +60,8 @@ function Column({ id, name }) {
       });
 
       dispatch(setBoardColumns(newColumns));
+
+      await columnsApi.updateColumnTasksPos(id, tasksPos);
     }
   };
 
