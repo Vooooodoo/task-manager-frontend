@@ -11,6 +11,7 @@ import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import Task from '../Task/Task';
 
 import applyDrag from '../../../../utils/drugAndDrop';
+import * as tasksApi from '../../../../api/tasksApi';
 import * as columnsApi from '../../../../api/columnsApi';
 import { setBoardColumns } from '../../../../store/reducers/boards';
 
@@ -39,29 +40,48 @@ function Column({ id, name }) {
     const { removedIndex, addedIndex } = dropResult;
 
     if (removedIndex !== null || addedIndex !== null) {
+      const droppedTask = dropResult.payload;
       const newTasks = applyDrag(columnTasks, dropResult);
 
-      const editedTasks = newTasks.map((item) => {
-        if (item.columnId !== id) {
-          return { ...item, columnId: id };
-        }
+      if (droppedTask.columnId !== id) {
+        const newTask = await tasksApi.createTask(id, droppedTask.text);
+        const editedTasks = newTasks.map((task) => {
+          if (task.columnId !== newTask.data.columnId) {
+            return newTask.data;
+          }
 
-        return item;
-      });
+          return task;
+        });
 
-      const tasksPos = editedTasks.map((item) => item.id);
+        const tasksPos = editedTasks.map((task) => task.id);
 
-      const newColumns = boardColumns.map((item) => {
-        if (item.id === id) {
-          return { ...item, tasksPos, Tasks: editedTasks };
-        }
+        const newColumns = boardColumns.map((column) => {
+          if (column.id === id) {
+            return { ...column, tasksPos, Tasks: editedTasks };
+          }
 
-        return item;
-      });
+          return column;
+        });
 
-      dispatch(setBoardColumns(newColumns));
+        dispatch(setBoardColumns(newColumns));
 
-      await columnsApi.updateColumnTasksPos(id, tasksPos);
+        await columnsApi.updateColumnTasksPos(id, tasksPos);
+        await tasksApi.removeTask(droppedTask.id);
+      } else {
+        const tasksPos = newTasks.map((item) => item.id);
+
+        const newColumns = boardColumns.map((item) => {
+          if (item.id === id) {
+            return { ...item, tasksPos, Tasks: newTasks };
+          }
+
+          return item;
+        });
+
+        dispatch(setBoardColumns(newColumns));
+
+        await columnsApi.updateColumnTasksPos(id, tasksPos);
+      }
     }
   };
 
@@ -88,20 +108,18 @@ function Column({ id, name }) {
         spacing={1}
         direction="column"
       >
-        {Boolean(columnTasks.length) && (
-          <Container
-            className={classes.taskContainer}
-            onDrop={onTaskDrop}
-            getChildPayload={(index) => getTaskPayload(index)}
-            groupName="column"
-          >
-            {columnTasks.map((task) => (
-              <Draggable key={task.id}>
-                <Task columnId={id} taskId={task.id} text={task.text} />
-              </Draggable>
-            ))}
-          </Container>
-        )}
+        <Container
+          className={classes.taskContainer}
+          onDrop={onTaskDrop}
+          getChildPayload={(index) => getTaskPayload(index)}
+          groupName="column"
+        >
+          {columnTasks.map((task) => (
+            <Draggable key={task.id}>
+              <Task columnId={id} taskId={task.id} text={task.text} />
+            </Draggable>
+          ))}
+        </Container>
 
         <TaskCreateButton key="0" columnId={id} />
       </Grid>
