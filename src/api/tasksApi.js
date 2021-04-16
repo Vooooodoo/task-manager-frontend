@@ -19,6 +19,15 @@ const updateTaskText = async (id, text) => {
   return res;
 };
 
+const updateTaskColumnId = async (id, columnId) => {
+  const res = await axiosInstance.patch('/tasks/column-id', {
+    id,
+    columnId,
+  });
+
+  return res;
+};
+
 const removeTask = async (id) => {
   const res = await axiosInstance
     .delete('/tasks', {
@@ -31,5 +40,6 @@ const removeTask = async (id) => {
 export {
   createTask,
   updateTaskText,
+  updateTaskColumnId,
   removeTask,
 };

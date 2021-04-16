@@ -37,51 +37,29 @@ function Column({ id, name }) {
   const getTaskPayload = (index) => columnTasks[index];
 
   const onTaskDrop = async (dropResult) => {
-    const { removedIndex, addedIndex } = dropResult;
+    const { removedIndex, addedIndex, payload } = dropResult;
 
     if (removedIndex !== null || addedIndex !== null) {
-      const droppedTask = dropResult.payload;
+      const droppedTask = payload;
       const newTasks = applyDrag(columnTasks, dropResult);
 
       if (droppedTask.columnId !== id) {
-        const newTask = await tasksApi.createTask(id, droppedTask.text);
-        const editedTasks = newTasks.map((task) => {
-          if (task.columnId !== newTask.data.columnId) {
-            return newTask.data;
-          }
-
-          return task;
-        });
-
-        const tasksPos = editedTasks.map((task) => task.id);
-
-        const newColumns = boardColumns.map((column) => {
-          if (column.id === id) {
-            return { ...column, tasksPos, Tasks: editedTasks };
-          }
-
-          return column;
-        });
-
-        dispatch(setBoardColumns(newColumns));
-
-        await columnsApi.updateColumnTasksPos(id, tasksPos);
-        await tasksApi.removeTask(droppedTask.id);
-      } else {
-        const tasksPos = newTasks.map((item) => item.id);
-
-        const newColumns = boardColumns.map((item) => {
-          if (item.id === id) {
-            return { ...item, tasksPos, Tasks: newTasks };
-          }
-
-          return item;
-        });
-
-        dispatch(setBoardColumns(newColumns));
-
-        await columnsApi.updateColumnTasksPos(id, tasksPos);
+        await tasksApi.updateTaskColumnId(droppedTask.id, id);
       }
+
+      const tasksPos = newTasks.map((item) => item.id);
+
+      const newColumns = boardColumns.map((item) => {
+        if (item.id === id) {
+          return { ...item, tasksPos, Tasks: newTasks };
+        }
+
+        return item;
+      });
+
+      dispatch(setBoardColumns(newColumns));
+
+      await columnsApi.updateColumnTasksPos(id, tasksPos);
     }
   };
 
