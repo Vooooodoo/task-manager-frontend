@@ -88,18 +88,20 @@ function Column({ id, name }) {
         spacing={1}
         direction="column"
       >
-        <Container
-          className={classes.taskContainer}
-          onDrop={onTaskDrop}
-          getChildPayload={(index) => getTaskPayload(index)}
-          groupName="column"
-        >
-          {columnTasks.map((task) => (
-            <Draggable key={task.id}>
-              <Task columnId={id} taskId={task.id} text={task.text} />
-            </Draggable>
-          ))}
-        </Container>
+        {Boolean(columnTasks.length) && (
+          <Container
+            className={classes.taskContainer}
+            onDrop={onTaskDrop}
+            getChildPayload={(index) => getTaskPayload(index)}
+            groupName="column"
+          >
+            {columnTasks.map((task) => (
+              <Draggable key={task.id}>
+                <Task columnId={id} taskId={task.id} text={task.text} />
+              </Draggable>
+            ))}
+          </Container>
+        )}
 
         <TaskCreateButton key="0" columnId={id} />
       </Grid>
