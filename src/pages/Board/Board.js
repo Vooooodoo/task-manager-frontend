@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -62,13 +63,14 @@ function Board() {
         const sortedTasks = [];
         const { tasksPos } = column;
 
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < tasksPos.length; i++) {
-          tasks.forEach((task) => {
-            if (task.id === tasksPos[i]) {
-              sortedTasks.push(task);
-            }
-          });
+        if (tasksPos) {
+          for (let i = 0; i < tasksPos.length; i++) {
+            tasks.forEach((task) => {
+              if (task.id === tasksPos[i]) {
+                sortedTasks.push(task);
+              }
+            });
+          }
         }
 
         return { ...column, Tasks: sortedTasks };
