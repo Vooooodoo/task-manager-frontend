@@ -42,22 +42,39 @@ function Column({ id, name }) {
     if (removedIndex !== null || addedIndex !== null) {
       const droppedTask = payload;
       const newTasks = applyDrag(columnTasks, dropResult);
-
-      if (droppedTask.columnId !== id) {
-        await tasksApi.updateTaskColumnId(droppedTask.id, id);
-      }
-
       const tasksPos = newTasks.map((item) => item.id);
 
-      const newColumns = boardColumns.map((item) => {
-        if (item.id === id) {
-          return { ...item, tasksPos, Tasks: newTasks };
-        }
+      if (droppedTask.columnId !== id) {
+        const editedTasks = newTasks.map((task) => {
+          if (task.id === droppedTask.id) {
+            return { ...task, columnId: id };
+          }
 
-        return item;
-      });
+          return task;
+        });
 
-      dispatch(setBoardColumns(newColumns));
+        const newColumns = boardColumns.map((item) => {
+          if (item.id === id) {
+            return { ...item, tasksPos, Tasks: editedTasks };
+          }
+
+          return item;
+        });
+
+        dispatch(setBoardColumns(newColumns));
+
+        await tasksApi.updateTaskColumnId(droppedTask.id, id);
+      } else {
+        const newColumns = boardColumns.map((item) => {
+          if (item.id === id) {
+            return { ...item, tasksPos, Tasks: newTasks };
+          }
+
+          return item;
+        });
+
+        dispatch(setBoardColumns(newColumns));
+      }
 
       await columnsApi.updateColumnTasksPos(id, tasksPos);
     }
