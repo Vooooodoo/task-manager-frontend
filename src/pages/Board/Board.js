@@ -2,6 +2,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -121,9 +122,13 @@ function Board() {
               spacing={3}
               wrap="nowrap"
             >
-              {boardColumns.map((column) => (
-                <Column id={column.id} name={column.name} key={column.id} />
-              ))}
+              <DndContainer orientation="horizontal" groupName="board">
+                {boardColumns.map((column) => (
+                  <Draggable key={column.id}>
+                    <Column id={column.id} name={column.name} key={column.id} />
+                  </Draggable>
+                ))}
+              </DndContainer>
 
               <ColumnCreateButton key="0" />
             </Grid>
