@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Draggable } from 'react-smooth-dnd';
+import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -96,28 +96,33 @@ function Column({ id, name }) {
 
       <ColumnDeleteButton delColumnId={id} />
 
-      <Grid
-        className={classes.column}
-        component="ul"
-        container
-        spacing={1}
-        direction="column"
-      >
-        <Container
-          className={classes.taskContainer}
-          onDrop={onTaskDrop}
-          getChildPayload={(index) => getTaskPayload(index)}
-          groupName="column"
-        >
-          {columnTasks.map((task) => (
-            <Draggable key={task.id}>
-              <Task columnId={id} taskId={task.id} text={task.text} />
-            </Draggable>
-          ))}
-        </Container>
+      <DndContainer
+        className={classes.taskContainer}
+        onDrop={onTaskDrop}
+        getChildPayload={(index) => getTaskPayload(index)}
+        groupName="column"
+        render={(ref) => (
+          <Grid
+            className={classes.column}
+            component="ul"
+            container
+            spacing={1}
+            direction="column"
+            ref={ref}
+          >
+            {columnTasks.map((task) => (
+              <Draggable
+                key={task.id}
+                render={() => (
+                  <Task columnId={id} taskId={task.id} text={task.text} />
+                )}
+              />
+            ))}
 
-        <TaskCreateButton key="0" columnId={id} />
-      </Grid>
+            <TaskCreateButton key="0" columnId={id} />
+          </Grid>
+        )}
+      />
     </Grid>
   );
 }
