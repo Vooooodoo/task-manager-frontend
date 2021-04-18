@@ -15,6 +15,7 @@ import BoardNameEditPopup from './components/BoardNameEditPopup/BoardNameEditPop
 import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButton';
 import Column from './components/Column/Column';
 
+import applyDrag from '../../utils/drugAndDrop';
 import * as columnsApi from '../../api/columnsApi';
 import * as boardsApi from '../../api/boardsApi';
 
@@ -42,6 +43,22 @@ function Board() {
 
   const openBoardNameEditPopup = (evt) => setAnchorEl(evt.currentTarget);
   const closeBoardNameEditPopup = () => setAnchorEl(null);
+
+  const onColumnDrop = async (dropResult) => {
+    const { removedIndex, addedIndex } = dropResult;
+
+    if (removedIndex !== null && addedIndex !== null) {
+      const newColumns = applyDrag(boardColumns, dropResult);
+      const columnsPos = newColumns.map((column) => column.id);
+
+      const newBoard = { ...board, columnsPos };
+
+      dispatch(setBoardColumns(newColumns));
+      dispatch(setBoard(newBoard));
+
+      await boardsApi.updateBoardColumnsPos(boardId, columnsPos);
+    }
+  };
 
   const getBoard = async () => {
     try {
@@ -118,6 +135,7 @@ function Board() {
             <DndContainer
               orientation="horizontal"
               groupName="board"
+              onDrop={onColumnDrop}
               render={(ref) => (
                 <Grid
                   className={classes.columnsList}

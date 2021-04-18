@@ -22,7 +22,7 @@ function Column({ id, name }) {
   const dispatch = useDispatch();
 
   const boardColumns = useSelector((state) => state.boards.boardColumns);
-  const currentColumn = boardColumns.find((item) => item.id === id);
+  const currentColumn = boardColumns.find((column) => column.id === id);
   const columnTasks = currentColumn.Tasks;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,7 +42,7 @@ function Column({ id, name }) {
     if (removedIndex !== null || addedIndex !== null) {
       const droppedTask = payload;
       const newTasks = applyDrag(columnTasks, dropResult);
-      const tasksPos = newTasks.map((item) => item.id);
+      const tasksPos = newTasks.map((task) => task.id);
 
       if (droppedTask.columnId !== id) {
         const editedTasks = newTasks.map((task) => {
@@ -53,24 +53,24 @@ function Column({ id, name }) {
           return task;
         });
 
-        const newColumns = boardColumns.map((item) => {
-          if (item.id === id) {
-            return { ...item, tasksPos, Tasks: editedTasks };
+        const newColumns = boardColumns.map((column) => {
+          if (column.id === id) {
+            return { ...column, tasksPos, Tasks: editedTasks };
           }
 
-          return item;
+          return column;
         });
 
         dispatch(setBoardColumns(newColumns));
 
         await tasksApi.updateTaskColumnId(droppedTask.id, id);
       } else {
-        const newColumns = boardColumns.map((item) => {
-          if (item.id === id) {
-            return { ...item, tasksPos, Tasks: newTasks };
+        const newColumns = boardColumns.map((column) => {
+          if (column.id === id) {
+            return { ...column, tasksPos, Tasks: newTasks };
           }
 
-          return item;
+          return column;
         });
 
         dispatch(setBoardColumns(newColumns));
@@ -97,10 +97,9 @@ function Column({ id, name }) {
       <ColumnDeleteButton delColumnId={id} />
 
       <DndContainer
-        className={classes.taskContainer}
+        groupName="column"
         onDrop={onTaskDrop}
         getChildPayload={(index) => getTaskPayload(index)}
-        groupName="column"
         render={(ref) => (
           <Grid
             className={classes.column}

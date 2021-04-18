@@ -30,6 +30,15 @@ const updateBoardName = async (id, name) => {
   return res;
 };
 
+const updateBoardColumnsPos = async (id, columnsPos) => {
+  const res = await axiosInstance.patch('/boards/columns-pos', {
+    id,
+    columnsPos,
+  });
+
+  return res;
+};
+
 const removeBoard = async (id) => {
   const res = await axiosInstance
     .delete('/boards', {
@@ -44,5 +53,6 @@ export {
   getUserBoards,
   getBoard,
   updateBoardName,
+  updateBoardColumnsPos,
   removeBoard,
 };
