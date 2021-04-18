@@ -22,7 +22,7 @@ function AvatarSetPopup({
   const dispatch = useDispatch();
   const [avatarFile, setAvatarFile] = React.useState(null);
 
-  const handleFile = (evt) => {
+  const handleFileUpload = (evt) => {
     const file = evt.target.files[0];
 
     setAvatarFile(file);
@@ -70,7 +70,7 @@ function AvatarSetPopup({
         <input
           type="file"
           name="file"
-          onChange={handleFile}
+          onChange={handleFileUpload}
         />
 
         <Button

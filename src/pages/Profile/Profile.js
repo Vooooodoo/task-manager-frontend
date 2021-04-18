@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
@@ -12,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 
 import TooltipPopup from '../../components/TooltipPopup/TooltipPopup';
+import AvatarSetButton from './components/AvatarSetButton/AvatarSetButton';
 
 import * as usersApi from '../../api/usersApi';
 import { profileValidationSchema } from '../../utils/validation';
@@ -73,8 +73,12 @@ function Profile() {
     <Container component="main" maxWidth="xs" ref={mainEl}>
       <CssBaseline />
       <section className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <AccountCircle />
+        <Avatar
+          className={classes.avatar}
+          alt={`${user.firstName} ${user.lastName}`}
+          src={user.avatar}
+        >
+          <AvatarSetButton />
         </Avatar>
 
         <Typography component="h2" variant="h5">
