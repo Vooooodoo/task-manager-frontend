@@ -115,23 +115,35 @@ function Board() {
               onClose={closeBoardNameEditPopup}
             />
 
-            <Grid
-              className={classes.columnsList}
-              component="ul"
-              container
-              spacing={3}
-              wrap="nowrap"
-            >
-              <DndContainer orientation="horizontal" groupName="board">
-                {boardColumns.map((column) => (
-                  <Draggable key={column.id}>
-                    <Column id={column.id} name={column.name} key={column.id} />
-                  </Draggable>
-                ))}
-              </DndContainer>
+            <DndContainer
+              orientation="horizontal"
+              groupName="board"
+              render={(ref) => (
+                <Grid
+                  className={classes.columnsList}
+                  component="ul"
+                  container
+                  spacing={3}
+                  wrap="nowrap"
+                  ref={ref}
+                >
+                  {boardColumns.map((column) => (
+                    <Draggable
+                      key={column.id}
+                      render={() => (
+                        <Column
+                          id={column.id}
+                          name={column.name}
+                          key={column.id}
+                        />
+                      )}
+                    />
+                  ))}
 
-              <ColumnCreateButton key="0" />
-            </Grid>
+                  <ColumnCreateButton key="0" />
+                </Grid>
+              )}
+            />
           </Container>
         </Container>
       )}
