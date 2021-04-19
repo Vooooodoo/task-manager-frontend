@@ -9,10 +9,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
   },
   columnsList: {
+    display: 'flex',
+    flexWrap: 'nowrap',
     overflowX: 'auto',
     listStyle: 'none',
     padding: '0',
     minHeight: '60vh',
+    margin: '0',
+    maxWidth: 'none',
   },
   column: {
     margin: theme.spacing(1),

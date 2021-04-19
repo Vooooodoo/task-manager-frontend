@@ -6,7 +6,6 @@ import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -132,13 +131,7 @@ function Board() {
               onClose={closeBoardNameEditPopup}
             />
 
-            <Grid
-              className={classes.columnsList}
-              component="ul"
-              container
-              spacing={3}
-              wrap="nowrap"
-            >
+            <Container className={classes.columnsList} component="ul">
               <DndContainer
                 orientation="horizontal"
                 groupName="board"
@@ -157,7 +150,7 @@ function Board() {
               </DndContainer>
 
               <ColumnCreateButton key="0" />
-            </Grid>
+            </Container>
           </Container>
         </Container>
       )}

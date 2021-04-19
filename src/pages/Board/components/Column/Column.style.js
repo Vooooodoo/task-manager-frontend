@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     backgroundClip: 'content-box',
     transition: theme.customTransition,
+    marginRight: theme.spacing(2),
   },
   nameEditBtn: {
     display: 'flex',
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     backgroundColor: theme.palette.secondary.main,
     borderRadius: theme.borderRadius,
-    marginBottom: '12px',
+    marginBottom: theme.spacing(1),
     '&:hover': {
       backgroundColor: theme.palette.secondary.dark,
       cursor: 'pointer',

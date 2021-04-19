@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
 
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 import ColumnNameEditPopup from '../ColumnNameEditPopup/ColumnNameEditPopup';
@@ -81,7 +81,7 @@ function Column({ id, name }) {
   };
 
   return (
-    <Grid className={classes.container} component="li" item>
+    <Box className={classes.container} component="li">
       <Button className={classes.nameEditBtn} onClick={openColumnNameEditPopup}>
         {name}
       </Button>
@@ -96,12 +96,9 @@ function Column({ id, name }) {
 
       <ColumnDeleteButton delColumnId={id} />
 
-      <Grid
+      <Box
         className={classes.column}
         component="ul"
-        container
-        spacing={1}
-        direction="column"
       >
         <DndContainer
           groupName="column"
@@ -116,8 +113,8 @@ function Column({ id, name }) {
         </DndContainer>
 
         <TaskCreateButton key="0" columnId={id} />
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
 }
 

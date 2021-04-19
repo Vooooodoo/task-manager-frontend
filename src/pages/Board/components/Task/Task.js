@@ -1,7 +1,7 @@
 import React from 'react';
 
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 
 import TaskTextEditPopup from '../TaskTextEditPopup/TaskTextEditPopup';
 import TaskDeleteButton from '../TaskDeleteButton/TaskDeleteButton';
@@ -21,7 +21,7 @@ function Task({ columnId, taskId, text }) {
   const closeTaskTextEditPopup = () => setAnchorEl(null);
 
   return (
-    <Grid className={classes.container} component="li" item>
+    <Box className={classes.container} component="li">
       <Button className={classes.nameEditBtn} onClick={openTaskTextEditPopup}>
         {text}
       </Button>
@@ -39,7 +39,7 @@ function Task({ columnId, taskId, text }) {
         columnId={columnId}
         delTaskId={taskId}
       />
-    </Grid>
+    </Box>
   );
 }
 
