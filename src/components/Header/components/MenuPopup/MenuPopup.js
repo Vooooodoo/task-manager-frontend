@@ -20,6 +20,7 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
+    //! clear all states at once
     dispatch(setUser({}));
     dispatch(setUserBoards([]));
     dispatch(setBoard({}));
@@ -45,11 +46,7 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
       onClose={onClose}
     >
       <MenuItem className={classes.routerMenuItem}>
-        <Link
-          className={classes.routerMenuLink}
-          onClick={onClose}
-          to="/main"
-        >
+        <Link className={classes.routerMenuLink} onClick={onClose} to="/main">
           Main
         </Link>
       </MenuItem>
@@ -64,9 +61,17 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
         </Link>
       </MenuItem>
 
-      <MenuItem onClick={handleSignOut}>
-        Sign Out
+      <MenuItem className={classes.routerMenuItem}>
+        <Link
+          className={classes.routerMenuLink}
+          onClick={onClose}
+          to="/admin"
+        >
+          Admin
+        </Link>
       </MenuItem>
+
+      <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
     </Menu>
   );
 }

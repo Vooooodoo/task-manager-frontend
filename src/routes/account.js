@@ -1,10 +1,11 @@
 import Main from '../pages/Main/Main';
 import Board from '../pages/Board/Board';
 import Profile from '../pages/Profile/Profile';
+import Admin from '../pages/Admin/Admin';
 
 const accountRoutes = [
   {
-    path: '/main/',
+    path: '/main',
     component: Main,
   },
   {
@@ -12,8 +13,12 @@ const accountRoutes = [
     component: Board,
   },
   {
-    path: '/profile/',
+    path: '/profile',
     component: Profile,
+  },
+  {
+    path: '/admin',
+    component: Admin,
   },
 ];
 
