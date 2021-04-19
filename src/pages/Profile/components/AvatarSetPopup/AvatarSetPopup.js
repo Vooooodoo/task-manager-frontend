@@ -61,13 +61,9 @@ function AvatarSetPopup({
       }}
       PaperProps={{ className: classes.paper }}
     >
-      <form
-        className={classes.form}
-        encType="multipart/form-data"
-        onSubmit={handleSubmit}
-        noValidate
-      >
+      <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
         <input
+          className={classes.fileInput}
           type="file"
           name="file"
           onChange={handleFileUpload}
@@ -83,7 +79,6 @@ function AvatarSetPopup({
           Confirm
         </Button>
       </form>
-
     </Popover>
   );
 }

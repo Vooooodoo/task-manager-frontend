@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: theme.spacing(30),
     boxSizing: 'border-box',
   },
-  input: {
+  fileInput: {
     marginBottom: theme.spacing(2),
   },
 }));
