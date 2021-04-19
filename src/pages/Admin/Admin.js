@@ -6,7 +6,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import * as usersApi from '../../api/usersApi';
 import { setAllUsers } from '../../store/reducers/users';
 
-// import useStyles from './Admin.style';
+import useStyles from './Admin.style';
 
 const columns = [
   { field: 'roleId', headerName: 'Role ID', width: 100 },
@@ -29,8 +29,9 @@ const columns = [
 ];
 
 function Admin() {
-  // const classes = useStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
+
   const rows = useSelector((state) => state.users.allUsers);
 
   const getAllUsers = async () => {
@@ -48,8 +49,8 @@ function Admin() {
   }, []);
 
   return (
-    <div style={{ height: '70vh', width: '100%' }}>
-      <DataGrid columns={columns} rows={rows} pageSize={5} />
+    <div className={classes.container}>
+      <DataGrid columns={columns} rows={rows} pageSize={5} autoHeight />
     </div>
   );
 }
