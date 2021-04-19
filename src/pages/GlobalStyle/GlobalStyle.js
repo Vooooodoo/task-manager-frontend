@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
   }
+
+  .smooth-dnd-container {
+    min-width: auto;
+  }
 `;
 
 export default GlobalStyle;
