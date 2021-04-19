@@ -6,6 +6,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import { setUser } from '../../../../store/reducers/users';
+import {
+  setUserBoards,
+  setBoard,
+  setBoardColumns,
+} from '../../../../store/reducers/boards';
 import { LOCAL_STORAGE_TOKEN_KEY } from '../../../../config';
 
 import useStyles from './MenuPopup.style';
@@ -16,6 +21,9 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
 
   const handleSignOut = () => {
     dispatch(setUser({}));
+    dispatch(setUserBoards([]));
+    dispatch(setBoard({}));
+    dispatch(setBoardColumns([]));
     localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
     onClose();
   };
