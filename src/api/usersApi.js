@@ -1,5 +1,11 @@
 import axiosInstance from './axiosInstance';
 
+const getAllUsers = async () => {
+  const res = await axiosInstance.get('/users');
+
+  return res;
+};
+
 const updateUserInfo = async (firstName, lastName, about) => {
   const res = await axiosInstance.patch('/users/me', {
     firstName,
@@ -18,4 +24,4 @@ const setUserAvatar = async (avatar) => {
   return res;
 };
 
-export { updateUserInfo, setUserAvatar };
+export { getAllUsers, updateUserInfo, setUserAvatar };

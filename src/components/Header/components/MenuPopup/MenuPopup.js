@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import { setUser } from '../../../../store/reducers/users';
+import { setAllUsers, setUser } from '../../../../store/reducers/users';
 import {
   setUserBoards,
   setBoard,
@@ -19,12 +19,16 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.users.user);
+
   const handleSignOut = () => {
     //! clear all states at once
     dispatch(setUser({}));
+    dispatch(setAllUsers([]));
     dispatch(setUserBoards([]));
     dispatch(setBoard({}));
     dispatch(setBoardColumns([]));
+
     localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
     onClose();
   };
@@ -61,15 +65,17 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
         </Link>
       </MenuItem>
 
-      <MenuItem className={classes.routerMenuItem}>
-        <Link
-          className={classes.routerMenuLink}
-          onClick={onClose}
-          to="/admin"
-        >
-          Admin
-        </Link>
-      </MenuItem>
+      {Boolean(user.roleId) && (
+        <MenuItem className={classes.routerMenuItem}>
+          <Link
+            className={classes.routerMenuLink}
+            onClick={onClose}
+            to="/admin"
+          >
+            Admin
+          </Link>
+        </MenuItem>
+      )}
 
       <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
     </Menu>

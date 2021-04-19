@@ -1,5 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { DataGrid } from '@material-ui/data-grid';
+
+import * as usersApi from '../../api/usersApi';
+import { setAllUsers } from '../../store/reducers/users';
+
 // import useStyles from './Admin.style';
 
 const columns = [
@@ -18,32 +24,31 @@ const columns = [
   {
     field: 'createdAt',
     headerName: 'Registration date',
-    width: 200,
-  },
-];
-
-const rows = [
-  {
-    id: 1,
-    roleId: 1,
-    firstName: 'Roman',
-    lastName: 'Andrukhanenko',
-    createdAt: '11.05.98',
-  },
-  {
-    id: 2,
-    roleId: 0,
-    firstName: 'Albert',
-    lastName: 'Einstein',
-    createdAt: '11.05.05',
+    width: 250,
   },
 ];
 
 function Admin() {
   // const classes = useStyles();
+  const dispatch = useDispatch();
+  const rows = useSelector((state) => state.users.allUsers);
+
+  const getAllUsers = async () => {
+    try {
+      const allUsers = await usersApi.getAllUsers();
+
+      dispatch(setAllUsers(allUsers.data));
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllUsers();
+  }, []);
 
   return (
-    <div style={{ height: '80vh', width: '100%' }}>
+    <div style={{ height: '70vh', width: '100%' }}>
       <DataGrid columns={columns} rows={rows} pageSize={5} />
     </div>
   );
