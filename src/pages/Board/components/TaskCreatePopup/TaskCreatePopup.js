@@ -29,8 +29,6 @@ function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
 
         const tasksPos = newTasks.map((item) => item.id);
 
-        await columnsApi.updateColumnTasksPos(columnId, tasksPos);
-
         const newColumns = boardColumns.map((item) => {
           if (item.id === columnId) {
             return { ...item, Tasks: newTasks };
@@ -42,6 +40,8 @@ function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
         dispatch(setBoardColumns(newColumns));
         onClose();
         setInputValue('');
+
+        await columnsApi.updateColumnTasksPos(columnId, tasksPos);
       } catch (err) {
         console.log(err);
       }

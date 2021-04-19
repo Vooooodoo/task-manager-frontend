@@ -5,13 +5,14 @@ import { useParams } from 'react-router-dom';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as columnsApi from '../../../../api/columnsApi';
-import { setBoardColumns } from '../../../../store/reducers/boards';
+import * as boardsApi from '../../../../api/boardsApi';
+import { setBoard, setBoardColumns } from '../../../../store/reducers/boards';
 
-function ColumnCreatePopup({
-  id, isOpen, anchorEl, onClose,
-}) {
-  const columns = useSelector((state) => state.boards.boardColumns);
+// eslint-disable-next-line object-curly-newline
+function ColumnCreatePopup({ id, isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
+  const board = useSelector((state) => state.boards.board);
+  const columns = useSelector((state) => state.boards.boardColumns);
 
   const routParams = useParams();
   const boardId = Number(routParams.id);
@@ -25,7 +26,10 @@ function ColumnCreatePopup({
 
     if (trimmedInputValue) {
       try {
-        const newColumn = await columnsApi.createColumn(boardId, trimmedInputValue);
+        const newColumn = await columnsApi.createColumn(
+          boardId,
+          trimmedInputValue,
+        );
 
         const newColumns = [
           ...columns,
@@ -35,9 +39,15 @@ function ColumnCreatePopup({
           },
         ];
 
+        const columnsPos = newColumns.map((item) => item.id);
+        const newBoard = { ...board, columnsPos };
+
+        dispatch(setBoard(newBoard));
         dispatch(setBoardColumns(newColumns));
         onClose();
         setInputValue('');
+
+        await boardsApi.updateBoardColumnsPos(boardId, columnsPos);
       } catch (err) {
         console.log(err);
       }

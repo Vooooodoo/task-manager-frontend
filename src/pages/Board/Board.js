@@ -31,6 +31,7 @@ function Board() {
 
   const board = useSelector((state) => state.boards.board);
   const boardColumns = useSelector((state) => state.boards.boardColumns);
+  const boardColumnsPos = board.columnsPos;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);
@@ -75,7 +76,7 @@ function Board() {
     try {
       const columns = await columnsApi.getBoardColumns(boardId);
 
-      const sortedColumns = columns.data.map((column) => {
+      const sortedTasksColumns = columns.data.map((column) => {
         const tasks = column.Tasks;
         const sortedTasks = [];
         const { tasksPos } = column;
@@ -93,7 +94,21 @@ function Board() {
         return { ...column, Tasks: sortedTasks };
       });
 
-      dispatch(setBoardColumns(sortedColumns));
+      if (boardColumnsPos) {
+        const sortedColumns = [];
+
+        for (let i = 0; i < boardColumnsPos.length; i++) {
+          sortedTasksColumns.forEach((column) => {
+            if (column.id === boardColumnsPos[i]) {
+              sortedColumns.push(column);
+            }
+          });
+        }
+
+        dispatch(setBoardColumns(sortedColumns));
+      } else {
+        dispatch(setBoardColumns(sortedTasksColumns));
+      }
     } catch (err) {
       console.log(err.response.data.message);
     } finally {
