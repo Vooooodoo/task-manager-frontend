@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Router from './routes/Router/Router';
 
 import { checkJwt } from './api/authApi';
@@ -51,7 +50,6 @@ function App() {
           <GlobalStyle />
           <Header />
           <Router />
-          <Footer />
         </>
       )}
     </>

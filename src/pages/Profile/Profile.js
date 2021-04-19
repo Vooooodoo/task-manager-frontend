@@ -81,7 +81,7 @@ function Profile() {
           <AvatarSetButton />
         </Avatar>
 
-        <Typography component="h2" variant="h5">
+        <Typography component="h1" variant="h5">
           {user.firstName}
         </Typography>
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import { DataGrid } from '@material-ui/data-grid';
 
 import * as usersApi from '../../api/usersApi';
@@ -49,9 +51,17 @@ function Admin() {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <DataGrid columns={columns} rows={rows} pageSize={5} autoHeight />
-    </div>
+    <Container className={classes.main} component="main" maxWidth="md">
+      <Container component="section" disableGutters>
+        <Typography className={classes.title} component="h1" variant="h2">
+          Users
+        </Typography>
+
+        <div className={classes.container}>
+          <DataGrid columns={columns} rows={rows} pageSize={5} autoHeight />
+        </div>
+      </Container>
+    </Container>
   );
 }
 

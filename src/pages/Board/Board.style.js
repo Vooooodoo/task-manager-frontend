@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'auto',
     listStyle: 'none',
     padding: '0',
-    minHeight: '60vh',
+    minHeight: '70vh',
     margin: '0',
     maxWidth: 'none',
   },
