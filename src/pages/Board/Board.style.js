@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '0',
     minHeight: '60vh',
   },
+  column: {
+    margin: theme.spacing(1),
+  },
   boardNameEditBtn: {
     marginBottom: theme.spacing(2),
     color: 'black',

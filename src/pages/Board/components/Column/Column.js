@@ -96,32 +96,27 @@ function Column({ id, name }) {
 
       <ColumnDeleteButton delColumnId={id} />
 
-      <DndContainer
-        groupName="column"
-        onDrop={onTaskDrop}
-        getChildPayload={(index) => getTaskPayload(index)}
-        render={(ref) => (
-          <Grid
-            className={classes.column}
-            component="ul"
-            container
-            spacing={1}
-            direction="column"
-            ref={ref}
-          >
-            {columnTasks.map((task) => (
-              <Draggable
-                key={task.id}
-                render={() => (
-                  <Task columnId={id} taskId={task.id} text={task.text} />
-                )}
-              />
-            ))}
+      <Grid
+        className={classes.column}
+        component="ul"
+        container
+        spacing={1}
+        direction="column"
+      >
+        <DndContainer
+          groupName="column"
+          onDrop={onTaskDrop}
+          getChildPayload={(index) => getTaskPayload(index)}
+        >
+          {columnTasks.map((task) => (
+            <Draggable key={task.id}>
+              <Task columnId={id} taskId={task.id} text={task.text} />
+            </Draggable>
+          ))}
+        </DndContainer>
 
-            <TaskCreateButton key="0" columnId={id} />
-          </Grid>
-        )}
-      />
+        <TaskCreateButton key="0" columnId={id} />
+      </Grid>
     </Grid>
   );
 }
