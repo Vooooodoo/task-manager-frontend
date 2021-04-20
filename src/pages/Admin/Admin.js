@@ -30,8 +30,7 @@ const columns = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 200,
-    valueGetter:
-      (params) => `
+    valueGetter: (params) => `
         ${params.getValue('firstName') || ''}
         ${params.getValue('lastName') || ''}
       `,
@@ -72,7 +71,12 @@ function Admin() {
         </Typography>
 
         <div className={classes.container}>
-          <DataGrid columns={columns} rows={rows} pageSize={5} autoHeight />
+          <DataGrid
+            columns={columns}
+            rows={rows}
+            pageSize={5}
+            autoHeight
+          />
         </div>
       </Container>
     </Container>
