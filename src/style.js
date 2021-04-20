@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-// add custom variables to the theme global object
+// added custom variables to the theme global object
 const theme = createMuiTheme({
   mainContainerMarginTop: '64px',
   customHover: {

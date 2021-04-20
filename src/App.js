@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Header from './components/Header/Header';
@@ -15,7 +14,6 @@ import GlobalStyle from './pages/GlobalStyle/GlobalStyle';
 
 function App() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [isLoading, setIsLoading] = React.useState(false);
 
   //! where to replace token checker?
@@ -39,7 +37,7 @@ function App() {
 
   React.useEffect(() => {
     checkToken();
-  }, [history]);
+  }, []);
 
   return (
     <>

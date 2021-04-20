@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-// глобальный провайдер объекта theme из библиотеки Material UI,
-// таким образом можно добавить кастомные переменные в этот объект или переопределить дефолтные
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import App from './App';
