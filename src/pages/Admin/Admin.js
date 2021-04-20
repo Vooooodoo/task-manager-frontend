@@ -11,9 +11,21 @@ import { setAllUsers } from '../../store/reducers/users';
 import useStyles from './Admin.style';
 
 const columns = [
-  { field: 'roleId', headerName: 'Role ID', width: 100 },
-  { field: 'firstName', headerName: 'First name', width: 150 },
-  { field: 'lastName', headerName: 'Last name', width: 150 },
+  {
+    field: 'roleId',
+    headerName: 'Role ID',
+    width: 100,
+  },
+  {
+    field: 'firstName',
+    headerName: 'First name',
+    width: 150,
+  },
+  {
+    field: 'lastName',
+    headerName: 'Last name',
+    width: 150,
+  },
   {
     field: 'fullName',
     headerName: 'Full name',
@@ -21,7 +33,10 @@ const columns = [
     sortable: false,
     width: 200,
     valueGetter:
-      (params) => `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
+      (params) => `
+        ${params.getValue('firstName') || ''}
+        ${params.getValue('lastName') || ''}
+      `,
   },
   {
     field: 'createdAt',
