@@ -20,21 +20,17 @@ function AvatarSetPopup({
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const [avatarFile, setAvatarFile] = React.useState(null);
 
-  const handleFileUpload = (evt) => {
-    const file = evt.target.files[0];
-
-    setAvatarFile(file);
-  };
-
-  const { handleSubmit } = useFormik({
-    onSubmit: async () => {
+  const { values, handleSubmit } = useFormik({
+    initialValues: {
+      avatar: null,
+    },
+    onSubmit: async ({ avatar }) => {
       try {
         // eslint-disable-next-line no-undef
         const formData = new FormData();
 
-        formData.append('filedata', avatarFile);
+        formData.append('file', avatar);
 
         const user = await usersApi.updateUserAvatar(formData);
 
@@ -44,6 +40,11 @@ function AvatarSetPopup({
       }
     },
   });
+
+  const handleFileUpload = (evt) => {
+    // eslint-disable-next-line prefer-destructuring
+    values.avatar = evt.target.files[0];
+  };
 
   return (
     <Popover

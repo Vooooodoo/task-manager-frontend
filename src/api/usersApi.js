@@ -17,9 +17,7 @@ const updateUserInfo = async (firstName, lastName, about) => {
 };
 
 const updateUserAvatar = async (avatar) => {
-  const res = await axiosInstance.patch('/users/me/avatar', {
-    avatar,
-  });
+  const res = await axiosInstance.patch('/users/me/avatar', avatar);
 
   return res;
 };
