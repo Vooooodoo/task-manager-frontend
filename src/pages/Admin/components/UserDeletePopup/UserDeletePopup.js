@@ -3,23 +3,23 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ConfirmPopup from '../../../../components/ConfirmPopup/ConfirmPopup';
 
-import * as columnsApi from '../../../../api/columnsApi';
-import { setBoardColumns } from '../../../../store/reducers/boards';
+import * as usersApi from '../../../../api/usersApi';
+import { setAllUsers } from '../../../../store/reducers/users';
 
-function UserDeletePopup({
-  id, delColumnId, isOpen, anchorEl, onClose,
-}) {
-  const columns = useSelector((state) => state.boards.boardColumns);
+// eslint-disable-next-line object-curly-newline
+function UserDeletePopup({ id, delUserId, isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
+
+  const allUsers = useSelector((state) => state.users.allUsers);
 
   const deleteUser = async (userId) => {
     try {
-      await columnsApi.removeColumn(userId);
+      const newUsers = allUsers.filter((user) => user.id !== userId);
 
-      const newColumns = columns.filter((column) => column.id !== userId);
-
-      dispatch(setBoardColumns(newColumns));
+      dispatch(setAllUsers(newUsers));
       onClose();
+
+      await usersApi.removeUser(userId);
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -30,9 +30,9 @@ function UserDeletePopup({
       id={id}
       isOpen={isOpen}
       anchorEl={anchorEl}
-      btnText="Delete list"
+      btnText="Delete user"
       onClose={onClose}
-      onClick={() => deleteUser(delColumnId)}
+      onClick={() => deleteUser(delUserId)}
     />
   );
 }
