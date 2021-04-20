@@ -1,10 +1,12 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { DataGrid } from '@material-ui/data-grid';
 
 import * as usersApi from '../../api/usersApi';
+import { setAllUsers } from '../../store/reducers/users';
 
 import useStyles from './Admin.style';
 
@@ -44,24 +46,29 @@ const columns = [
 
 function Admin() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  const [users, setUsers] = React.useState([]);
+  const rows = useSelector((state) => state.users.allUsers);
 
-  const rows = users;
+  const handleRowDblClick = async (evt) => {
+    const newUsers = rows.filter((user) => user.id !== evt.id);
 
-  const handleRowClick = async (evt) => {
-    const newUsers = users.filter((user) => user.id !== evt.id);
-
-    setUsers(newUsers);
+    dispatch(setAllUsers(newUsers));
 
     await usersApi.removeUser(evt.id);
+  };
+
+  const handleRoleIdCellClick = (evt) => {
+    if (evt.field === 'roleId') {
+      console.log(evt);
+    }
   };
 
   const getAllUsers = async () => {
     try {
       const allUsers = await usersApi.getAllUsers();
 
-      setUsers(allUsers.data);
+      dispatch(setAllUsers(allUsers.data));
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -83,7 +90,8 @@ function Admin() {
             columns={columns}
             rows={rows}
             pageSize={5}
-            onRowDoubleClick={handleRowClick}
+            onCellClick={handleRoleIdCellClick}
+            onRowDoubleClick={handleRowDblClick}
             autoHeight
           />
         </div>

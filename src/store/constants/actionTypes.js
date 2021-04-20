@@ -1,3 +1,4 @@
+export const SET_ALL_USERS = 'SET_ALL_USERS';
 export const SET_USER = 'SET_USER';
 export const SET_USER_BOARDS = 'SET_USER_BOARDS';
 export const SET_BOARD = 'SET_BOARD';
