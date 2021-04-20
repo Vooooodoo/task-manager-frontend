@@ -55,8 +55,8 @@ function Admin() {
   const rows = useSelector((state) => state.users.allUsers);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const isBoardNameEditPopupOpen = Boolean(anchorEl);
-  const boardNameEditPopupId = isBoardNameEditPopupOpen
+  const isRoleIdEditPopupOpen = Boolean(anchorEl);
+  const roleIdEditPopupId = isRoleIdEditPopupOpen
     ? 'simple-popover'
     : undefined;
 
@@ -111,9 +111,9 @@ function Admin() {
           />
 
           <RoleIdEditPopup
-            id={boardNameEditPopupId}
+            id={roleIdEditPopupId}
             userId={clickedUserId}
-            isOpen={isBoardNameEditPopupOpen}
+            isOpen={isRoleIdEditPopupOpen}
             anchorEl={anchorEl}
             onClose={closeRoleIdEditPopup}
           />
