@@ -49,6 +49,14 @@ function Admin() {
 
   const rows = users;
 
+  const handleRowClick = async (evt) => {
+    const newUsers = users.filter((user) => user.id !== evt.id);
+
+    setUsers(newUsers);
+
+    await usersApi.removeUser(evt.id);
+  };
+
   const getAllUsers = async () => {
     try {
       const allUsers = await usersApi.getAllUsers();
@@ -75,6 +83,7 @@ function Admin() {
             columns={columns}
             rows={rows}
             pageSize={5}
+            onRowDoubleClick={handleRowClick}
             autoHeight
           />
         </div>

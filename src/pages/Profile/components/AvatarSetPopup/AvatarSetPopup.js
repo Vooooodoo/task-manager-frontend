@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
+import Popover from '@material-ui/core/Popover';
 
 import * as usersApi from '../../../../api/usersApi';
 import { setUser } from '../../../../store/reducers/users';
@@ -36,7 +36,7 @@ function AvatarSetPopup({
 
         formData.append('filedata', avatarFile);
 
-        const user = await usersApi.setUserAvatar(formData);
+        const user = await usersApi.updateUserAvatar(formData);
 
         dispatch(setUser(user.data));
       } catch (err) {

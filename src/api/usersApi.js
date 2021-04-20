@@ -16,7 +16,7 @@ const updateUserInfo = async (firstName, lastName, about) => {
   return res;
 };
 
-const setUserAvatar = async (avatar) => {
+const updateUserAvatar = async (avatar) => {
   const res = await axiosInstance.patch('/users/me/avatar', {
     avatar,
   });
@@ -24,4 +24,29 @@ const setUserAvatar = async (avatar) => {
   return res;
 };
 
-export { getAllUsers, updateUserInfo, setUserAvatar };
+const updateUserRoleId = async (id, roleId) => {
+  const res = await axiosInstance.patch('/users', {
+    id,
+    roleId,
+  });
+
+  return res;
+};
+
+const removeUser = async (id) => {
+  const res = await axiosInstance.delete('/users', {
+    data: {
+      id,
+    },
+  });
+
+  return res;
+};
+
+export {
+  getAllUsers,
+  updateUserInfo,
+  updateUserAvatar,
+  updateUserRoleId,
+  removeUser,
+};
