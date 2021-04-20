@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import { setAllUsers, setUser } from '../../../../store/reducers/users';
+import { setUser } from '../../../../store/reducers/users';
 import {
   setUserBoards,
   setBoard,
@@ -24,7 +24,6 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
   const handleSignOut = () => {
     //! clear all states at once
     dispatch(setUser({}));
-    dispatch(setAllUsers([]));
     dispatch(setUserBoards([]));
     dispatch(setBoard({}));
     dispatch(setBoardColumns([]));

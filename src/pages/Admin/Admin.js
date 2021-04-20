@@ -1,12 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { DataGrid } from '@material-ui/data-grid';
 
 import * as usersApi from '../../api/usersApi';
-import { setAllUsers } from '../../store/reducers/users';
 
 import useStyles from './Admin.style';
 
@@ -47,15 +45,16 @@ const columns = [
 
 function Admin() {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  const rows = useSelector((state) => state.users.allUsers);
+  const [users, setUsers] = React.useState([]);
+
+  const rows = users;
 
   const getAllUsers = async () => {
     try {
       const allUsers = await usersApi.getAllUsers();
 
-      dispatch(setAllUsers(allUsers.data));
+      setUsers(allUsers.data);
     } catch (err) {
       console.log(err.response.data.message);
     }
