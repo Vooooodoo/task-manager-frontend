@@ -5,6 +5,8 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { DataGrid } from '@material-ui/data-grid';
 
+import RoleIdEditPopup from './components/RoleIdEditPopup/RoleIdEditPopup';
+
 import * as usersApi from '../../api/usersApi';
 import { setAllUsers } from '../../store/reducers/users';
 
@@ -48,7 +50,18 @@ function Admin() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [clickedUserId, setClickedUserId] = React.useState(null);
+
   const rows = useSelector((state) => state.users.allUsers);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const isBoardNameEditPopupOpen = Boolean(anchorEl);
+  const boardNameEditPopupId = isBoardNameEditPopupOpen
+    ? 'simple-popover'
+    : undefined;
+
+  const openRoleIdEditPopup = (evtTarget) => setAnchorEl(evtTarget);
+  const closeRoleIdEditPopup = () => setAnchorEl(null);
 
   const handleRowDblClick = async (evt) => {
     const newUsers = rows.filter((user) => user.id !== evt.id);
@@ -60,7 +73,9 @@ function Admin() {
 
   const handleRoleIdCellClick = (evt) => {
     if (evt.field === 'roleId') {
-      console.log(evt);
+      openRoleIdEditPopup(evt.element);
+
+      setClickedUserId(evt.id);
     }
   };
 
@@ -93,6 +108,14 @@ function Admin() {
             onCellClick={handleRoleIdCellClick}
             onRowDoubleClick={handleRowDblClick}
             autoHeight
+          />
+
+          <RoleIdEditPopup
+            id={boardNameEditPopupId}
+            userId={clickedUserId}
+            isOpen={isBoardNameEditPopupOpen}
+            anchorEl={anchorEl}
+            onClose={closeRoleIdEditPopup}
           />
         </div>
       </Container>

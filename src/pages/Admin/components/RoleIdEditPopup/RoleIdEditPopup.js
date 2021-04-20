@@ -10,8 +10,7 @@ import { setAllUsers } from '../../../../store/reducers/users';
 function RoleIdEditPopup({ id, userId, isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
 
-  const allUsers = useSelector((state) => state.users.sllUsers);
-  const currentUser = allUsers.filter((user) => user.id === userId);
+  const allUsers = useSelector((state) => state.users.allUsers);
 
   const [inputValue, setInputValue] = React.useState('');
 
@@ -44,8 +43,7 @@ function RoleIdEditPopup({ id, userId, isOpen, anchorEl, onClose }) {
       anchorEl={anchorEl}
       onClose={onClose}
       placeholder="Edit role id"
-      btnText="Edit Role Id"
-      defaultValue={currentUser.roleId}
+      btnText="Edit Role"
       onChange={handleInputChange}
       onClick={editRoleId}
     />
