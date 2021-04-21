@@ -64,7 +64,14 @@ function SignUp() {
 
         dispatch(setUser(res.data.userData));
       } catch (err) {
-        setTooltipText(err.response.data.message);
+        const celebrateValidation = err.response.data.validation;
+
+        if (celebrateValidation) {
+          setTooltipText(celebrateValidation.body.message);
+        } else {
+          setTooltipText(err.response.data.message);
+        }
+
         openTooltipPopup();
       }
     },

@@ -27,9 +27,7 @@ function SignIn() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [tooltipText, setTooltipText] = React.useState('');
   const isTooltipPopupOpen = Boolean(anchorEl);
-  const tooltipPopupId = isTooltipPopupOpen
-    ? 'simple-popover'
-    : undefined;
+  const tooltipPopupId = isTooltipPopupOpen ? 'simple-popover' : undefined;
 
   const mainEl = React.useRef(null);
 
@@ -60,7 +58,14 @@ function SignIn() {
 
         dispatch(setUser(res.data.userData));
       } catch (err) {
-        setTooltipText(err.response.data.message);
+        const celebrateValidation = err.response.data.validation;
+
+        if (celebrateValidation) {
+          setTooltipText(celebrateValidation.body.message);
+        } else {
+          setTooltipText(err.response.data.message);
+        }
+
         openTooltipPopup();
       }
     },
@@ -129,10 +134,7 @@ function SignIn() {
             onClick={closeTooltipPopup}
           />
 
-          <RouterLink
-            route="/sign-up"
-            text="Don't have an account? Sign Up"
-          />
+          <RouterLink route="/sign-up" text="Don't have an account? Sign Up" />
         </form>
       </section>
     </Container>
