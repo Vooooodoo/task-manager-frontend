@@ -7,7 +7,7 @@ const getAllUsers = async () => {
 };
 
 const updateUserInfo = async (firstName, lastName, about) => {
-  const res = await axiosInstance.patch('/users/me', {
+  const res = await axiosInstance.patch('/users/me/info', {
     firstName,
     lastName,
     about,
@@ -27,7 +27,7 @@ const updateUserAvatar = async (avatar) => {
 };
 
 const updateUserRoleId = async (id, roleId) => {
-  const res = await axiosInstance.patch('/users', {
+  const res = await axiosInstance.patch('/users/me/role-id', {
     id,
     roleId,
   });
@@ -36,11 +36,7 @@ const updateUserRoleId = async (id, roleId) => {
 };
 
 const removeUser = async (id) => {
-  const res = await axiosInstance.delete('/users', {
-    data: {
-      id,
-    },
-  });
+  const res = await axiosInstance.delete(`/users/${id}`);
 
   return res;
 };
