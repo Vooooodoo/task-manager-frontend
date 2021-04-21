@@ -13,10 +13,6 @@ import Task from '../Task/Task';
 import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import useStyles from './Column.style';
 
-
-
-
-
 function Column({ id, name }) {
   const classes = useStyles();
   const dispatch = useDispatch();

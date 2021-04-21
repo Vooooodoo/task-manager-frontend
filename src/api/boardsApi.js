@@ -37,11 +37,8 @@ const updateBoardColumnsOrder = async (boardId, columnsOrder) => {
   return res;
 };
 
-const removeBoard = async (id) => {
-  const res = await axiosInstance
-    .delete('/boards', {
-      data: { id },
-    });
+const removeBoard = async (boardId) => {
+  const res = await axiosInstance.delete(`/boards/${boardId}`);
 
   return res;
 };

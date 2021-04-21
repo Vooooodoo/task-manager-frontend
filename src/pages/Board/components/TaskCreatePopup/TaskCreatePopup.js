@@ -5,8 +5,6 @@ import * as tasksApi from '../../../../api/tasksApi';
 import InputPopup from '../../../../components/InputPopup/InputPopup';
 import { setBoardColumns } from '../../../../store/reducers/boards';
 
-
-
 // eslint-disable-next-line object-curly-newline
 function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
   const dispatch = useDispatch();
