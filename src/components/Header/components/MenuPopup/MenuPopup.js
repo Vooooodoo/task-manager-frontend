@@ -64,7 +64,7 @@ function MenuPopup({ isOpen, anchorEl, onClose }) {
         </Link>
       </MenuItem>
 
-      {Boolean(user.roleId) && (
+      {user.roleId === 'admin' && (
         <MenuItem className={classes.routerMenuItem}>
           <Link
             className={classes.routerMenuLink}
