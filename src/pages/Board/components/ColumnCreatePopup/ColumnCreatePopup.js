@@ -1,11 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
-import InputPopup from '../../../../components/InputPopup/InputPopup';
-
-import * as columnsApi from '../../../../api/columnsApi';
 import * as boardsApi from '../../../../api/boardsApi';
+import * as columnsApi from '../../../../api/columnsApi';
+import InputPopup from '../../../../components/InputPopup/InputPopup';
 import { setBoard, setBoardColumns } from '../../../../store/reducers/boards';
 
 // eslint-disable-next-line object-curly-newline
@@ -39,15 +37,15 @@ function ColumnCreatePopup({ id, isOpen, anchorEl, onClose }) {
           },
         ];
 
-        const columnsPos = newColumns.map((item) => item.id);
-        const newBoard = { ...board, columnsPos };
+        const columnsOrder = newColumns.map((item) => item.id);
+        const newBoard = { ...board, columnsOrder };
 
         dispatch(setBoard(newBoard));
         dispatch(setBoardColumns(newColumns));
         onClose();
         setInputValue('');
 
-        await boardsApi.updateBoardColumnsPos(boardId, columnsPos);
+        await boardsApi.updateBoardColumnsOrder(boardId, columnsOrder);
       } catch (err) {
         console.log(err);
       }

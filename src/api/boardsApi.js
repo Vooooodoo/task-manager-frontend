@@ -29,10 +29,9 @@ const updateBoardName = async (boardId, name) => {
   return res;
 };
 
-const updateBoardColumnsPos = async (id, columnsPos) => {
-  const res = await axiosInstance.patch('/boards/columns-pos', {
-    id,
-    columnsPos,
+const updateBoardColumnsOrder = async (boardId, columnsOrder) => {
+  const res = await axiosInstance.patch(`/boards/${boardId}/columns-order`, {
+    columnsOrder,
   });
 
   return res;
@@ -52,6 +51,6 @@ export {
   getUserBoards,
   getBoard,
   updateBoardName,
-  updateBoardColumnsPos,
+  updateBoardColumnsOrder,
   removeBoard,
 };

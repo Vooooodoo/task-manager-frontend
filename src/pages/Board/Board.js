@@ -1,26 +1,21 @@
 /* eslint-disable no-plusplus */
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import EditIcon from '@material-ui/icons/Edit';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
-
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-import BoardNameEditPopup from './components/BoardNameEditPopup/BoardNameEditPopup';
-import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButton';
-import Column from './components/Column/Column';
-
-import applyDrag from '../../utils/drugAndDrop';
-import * as columnsApi from '../../api/columnsApi';
 import * as boardsApi from '../../api/boardsApi';
-
+import * as columnsApi from '../../api/columnsApi';
 import { setBoard, setBoardColumns } from '../../store/reducers/boards';
-
+import applyDrag from '../../utils/drugAndDrop';
 import useStyles from './Board.style';
+import BoardNameEditPopup from './components/BoardNameEditPopup/BoardNameEditPopup';
+import Column from './components/Column/Column';
+import ColumnCreateButton from './components/ColumnCreateButton/ColumnCreateButton';
 
 function Board() {
   const classes = useStyles();
@@ -31,7 +26,7 @@ function Board() {
 
   const board = useSelector((state) => state.boards.board);
   const boardColumns = useSelector((state) => state.boards.boardColumns);
-  const boardColumnsPos = board.columnsPos;
+  const boardColumnsOrder = board.columnsOrder;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isBoardNameEditPopupOpen = Boolean(anchorEl);
@@ -49,14 +44,14 @@ function Board() {
 
     if (removedIndex !== null && addedIndex !== null) {
       const newColumns = applyDrag(boardColumns, dropResult);
-      const columnsPos = newColumns.map((column) => column.id);
+      const columnsOrder = newColumns.map((column) => column.id);
 
-      const newBoard = { ...board, columnsPos };
+      const newBoard = { ...board, columnsOrder };
 
       dispatch(setBoardColumns(newColumns));
       dispatch(setBoard(newBoard));
 
-      await boardsApi.updateBoardColumnsPos(boardId, columnsPos);
+      await boardsApi.updateBoardColumnsOrder(boardId, columnsOrder);
     }
   };
 
@@ -79,12 +74,12 @@ function Board() {
       const sortedTasksColumns = columns.data.map((column) => {
         const tasks = column.Tasks;
         const sortedTasks = [];
-        const { tasksPos } = column;
+        const { tasksOrder } = column;
 
-        if (tasksPos) {
-          for (let i = 0; i < tasksPos.length; i++) {
+        if (tasksOrder) {
+          for (let i = 0; i < tasksOrder.length; i++) {
             tasks.forEach((task) => {
-              if (task.id === tasksPos[i]) {
+              if (task.id === tasksOrder[i]) {
                 sortedTasks.push(task);
               }
             });
@@ -94,12 +89,12 @@ function Board() {
         return { ...column, Tasks: sortedTasks };
       });
 
-      if (boardColumnsPos) {
+      if (boardColumnsOrder) {
         const sortedColumns = [];
 
-        for (let i = 0; i < boardColumnsPos.length; i++) {
+        for (let i = 0; i < boardColumnsOrder.length; i++) {
           sortedTasksColumns.forEach((column) => {
-            if (column.id === boardColumnsPos[i]) {
+            if (column.id === boardColumnsOrder[i]) {
               sortedColumns.push(column);
             }
           });

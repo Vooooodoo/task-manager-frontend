@@ -1,21 +1,21 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
-
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-
-import ColumnNameEditPopup from '../ColumnNameEditPopup/ColumnNameEditPopup';
-import ColumnDeleteButton from '../ColumnDeleteButton/ColumnDeleteButton';
-import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
-import Task from '../Task/Task';
-
-import applyDrag from '../../../../utils/drugAndDrop';
-import * as tasksApi from '../../../../api/tasksApi';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container as DndContainer, Draggable } from 'react-smooth-dnd';
 import * as columnsApi from '../../../../api/columnsApi';
+import * as tasksApi from '../../../../api/tasksApi';
 import { setBoardColumns } from '../../../../store/reducers/boards';
-
+import applyDrag from '../../../../utils/drugAndDrop';
+import ColumnDeleteButton from '../ColumnDeleteButton/ColumnDeleteButton';
+import ColumnNameEditPopup from '../ColumnNameEditPopup/ColumnNameEditPopup';
+import Task from '../Task/Task';
+import TaskCreateButton from '../TaskCreateButton/TaskCreateButton';
 import useStyles from './Column.style';
+
+
+
+
 
 function Column({ id, name }) {
   const classes = useStyles();
@@ -42,7 +42,7 @@ function Column({ id, name }) {
     if (removedIndex !== null || addedIndex !== null) {
       const droppedTask = payload;
       const newTasks = applyDrag(columnTasks, dropResult);
-      const tasksPos = newTasks.map((task) => task.id);
+      const tasksOrder = newTasks.map((task) => task.id);
 
       if (droppedTask.columnId !== id) {
         const editedTasks = newTasks.map((task) => {
@@ -55,7 +55,7 @@ function Column({ id, name }) {
 
         const newColumns = boardColumns.map((column) => {
           if (column.id === id) {
-            return { ...column, tasksPos, Tasks: editedTasks };
+            return { ...column, tasksOrder, Tasks: editedTasks };
           }
 
           return column;
@@ -67,7 +67,7 @@ function Column({ id, name }) {
       } else {
         const newColumns = boardColumns.map((column) => {
           if (column.id === id) {
-            return { ...column, tasksPos, Tasks: newTasks };
+            return { ...column, tasksOrder, Tasks: newTasks };
           }
 
           return column;
@@ -76,7 +76,7 @@ function Column({ id, name }) {
         dispatch(setBoardColumns(newColumns));
       }
 
-      await columnsApi.updateColumnTasksPos(id, tasksPos);
+      await columnsApi.updateColumnTasksOrder(id, tasksOrder);
     }
   };
 

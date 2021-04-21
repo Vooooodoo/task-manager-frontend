@@ -28,10 +28,10 @@ const updateColumnName = async (id, name) => {
   return res;
 };
 
-const updateColumnTasksPos = async (id, tasksPos) => {
+const updateColumnTasksOrder = async (id, tasksOrder) => {
   const res = await axiosInstance.patch('/columns/tasks-pos', {
     id,
-    tasksPos,
+    tasksOrder,
   });
 
   return res;
@@ -47,9 +47,10 @@ const removeColumn = async (id) => {
 };
 
 export {
-  createColumn,
-  getBoardColumns,
-  updateColumnName,
-  updateColumnTasksPos,
-  removeColumn,
+    createColumn,
+    getBoardColumns,
+    updateColumnName,
+    updateColumnTasksOrder,
+    removeColumn,
 };
+

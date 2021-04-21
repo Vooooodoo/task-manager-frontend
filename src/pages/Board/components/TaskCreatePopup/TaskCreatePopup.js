@@ -1,11 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import InputPopup from '../../../../components/InputPopup/InputPopup';
-
-import * as tasksApi from '../../../../api/tasksApi';
+import { useDispatch, useSelector } from 'react-redux';
 import * as columnsApi from '../../../../api/columnsApi';
+import * as tasksApi from '../../../../api/tasksApi';
+import InputPopup from '../../../../components/InputPopup/InputPopup';
 import { setBoardColumns } from '../../../../store/reducers/boards';
+
+
 
 // eslint-disable-next-line object-curly-newline
 function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
@@ -27,7 +27,7 @@ function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
 
         const newTasks = [...columnTasks, newTask.data];
 
-        const tasksPos = newTasks.map((item) => item.id);
+        const tasksOrder = newTasks.map((item) => item.id);
 
         const newColumns = boardColumns.map((item) => {
           if (item.id === columnId) {
@@ -41,7 +41,7 @@ function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
         onClose();
         setInputValue('');
 
-        await columnsApi.updateColumnTasksPos(columnId, tasksPos);
+        await columnsApi.updateColumnTasksOrder(columnId, tasksOrder);
       } catch (err) {
         console.log(err);
       }
