@@ -21,9 +21,8 @@ const getBoard = async (boardId) => {
   return res;
 };
 
-const updateBoardName = async (id, name) => {
-  const res = await axiosInstance.patch('/boards', {
-    id,
+const updateBoardName = async (boardId, name) => {
+  const res = await axiosInstance.patch(`/boards/${boardId}`, {
     name,
   });
 
