@@ -18,8 +18,7 @@ const getBoardColumns = async (boardId) => {
 };
 
 const updateColumnName = async (id, name) => {
-  const res = await axiosInstance.patch('/columns', {
-    id,
+  const res = await axiosInstance.patch(`/columns/${id}`, {
     name,
   });
 
@@ -27,8 +26,7 @@ const updateColumnName = async (id, name) => {
 };
 
 const updateColumnTasksOrder = async (id, tasksOrder) => {
-  const res = await axiosInstance.patch('/columns/tasks-pos', {
-    id,
+  const res = await axiosInstance.patch(`/columns/${id}/tasks-order`, {
     tasksOrder,
   });
 
@@ -36,9 +34,7 @@ const updateColumnTasksOrder = async (id, tasksOrder) => {
 };
 
 const removeColumn = async (id) => {
-  const res = await axiosInstance.delete('/columns', {
-    data: { id },
-  });
+  const res = await axiosInstance.delete(`/columns/${id}`);
 
   return res;
 };

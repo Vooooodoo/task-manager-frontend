@@ -41,7 +41,7 @@ function TaskCreatePopup({ id, columnId, isOpen, anchorEl, onClose }) {
 
         await columnsApi.updateColumnTasksOrder(columnId, tasksOrder);
       } catch (err) {
-        console.log(err);
+        console.log(err.response.data.message);
       }
     }
   };
