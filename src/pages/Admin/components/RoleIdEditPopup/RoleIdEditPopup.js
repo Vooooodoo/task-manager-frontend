@@ -39,7 +39,7 @@ function RoleIdEditPopup({ id, userId, isOpen, anchorEl, onClose }) {
   return (
     <InputPopup
       id={id}
-      type="number"
+      type="text"
       isOpen={isOpen}
       anchorEl={anchorEl}
       onClose={onClose}

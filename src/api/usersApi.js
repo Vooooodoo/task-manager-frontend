@@ -27,8 +27,7 @@ const updateUserAvatar = async (avatar) => {
 };
 
 const updateUserRoleId = async (id, roleId) => {
-  const res = await axiosInstance.patch('/users/me/role-id', {
-    id,
+  const res = await axiosInstance.patch(`/users/${id}/role-id`, {
     roleId,
   });
 

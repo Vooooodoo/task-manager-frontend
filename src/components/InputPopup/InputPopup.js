@@ -13,7 +13,6 @@ function InputPopup({
   isOpen,
   anchorEl,
   onClose,
-  type,
   placeholder,
   btnText,
   defaultValue,
@@ -44,7 +43,7 @@ function InputPopup({
     >
       <TextField
         className={classes.input}
-        type={type}
+        type="text"
         autoFocus
         inputProps={{
           maxLength: validationConsts.BOARD_NAME_MAX_LENGTH,
@@ -73,7 +72,6 @@ function InputPopup({
 }
 
 InputPopup.defaultProps = {
-  type: 'text',
   anchVertPos: 'center',
   anchHorPos: 'center',
   transVertPos: 'center',
