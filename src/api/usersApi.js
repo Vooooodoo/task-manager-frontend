@@ -17,7 +17,11 @@ const updateUserInfo = async (firstName, lastName, about) => {
 };
 
 const updateUserAvatar = async (avatar) => {
-  const res = await axiosInstance.patch('/users/me/avatar', avatar);
+  const res = await axiosInstance.post('/users/me/avatar', avatar, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
   return res;
 };

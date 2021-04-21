@@ -51,9 +51,7 @@ function Profile() {
       firstName: user.firstName,
       lastName: user.lastName,
       //! feels like a not the best solution
-      about: user.about === null
-        ? ''
-        : user.about,
+      about: user.about === null ? '' : user.about,
     },
     profileValidationSchema,
     // eslint-disable-next-line object-curly-newline

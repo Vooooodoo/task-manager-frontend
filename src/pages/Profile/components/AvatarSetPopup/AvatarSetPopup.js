@@ -18,7 +18,6 @@ function AvatarSetPopup({
   onClick,
 }) {
   const classes = useStyles();
-
   const dispatch = useDispatch();
 
   const { values, handleSubmit } = useFormik({
@@ -36,7 +35,7 @@ function AvatarSetPopup({
 
         dispatch(setUser(user.data));
       } catch (err) {
-        console.log(err.response.data.message);
+        console.log(err.response);
       }
     },
   });
@@ -62,7 +61,10 @@ function AvatarSetPopup({
       }}
       PaperProps={{ className: classes.paper }}
     >
-      <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <input
           className={classes.fileInput}
           type="file"
