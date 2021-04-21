@@ -11,8 +11,7 @@ const createTask = async (columnId, text) => {
 };
 
 const updateTaskText = async (id, text) => {
-  const res = await axiosInstance.patch('/tasks', {
-    id,
+  const res = await axiosInstance.patch(`/tasks/${id}`, {
     text,
   });
 
@@ -20,8 +19,7 @@ const updateTaskText = async (id, text) => {
 };
 
 const updateTaskColumnId = async (id, columnId) => {
-  const res = await axiosInstance.patch('/tasks/column-id', {
-    id,
+  const res = await axiosInstance.patch(`/tasks/${id}/column-id`, {
     columnId,
   });
 
@@ -29,10 +27,7 @@ const updateTaskColumnId = async (id, columnId) => {
 };
 
 const removeTask = async (id) => {
-  const res = await axiosInstance
-    .delete('/tasks', {
-      data: { id },
-    });
+  const res = await axiosInstance.delete(`/tasks/${id}`);
 
   return res;
 };
