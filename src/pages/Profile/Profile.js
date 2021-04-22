@@ -50,7 +50,6 @@ function Profile() {
     initialValues: {
       firstName: user.firstName,
       lastName: user.lastName,
-      //! feels like a not the best solution
       about: user.about === null ? '' : user.about,
     },
     profileValidationSchema,
@@ -60,8 +59,18 @@ function Profile() {
         const res = await usersApi.updateUserInfo(firstName, lastName, about);
 
         dispatch(setUser(res.data));
+
+        setTooltipText('User updated successfully.');
+        openTooltipPopup();
       } catch (err) {
-        setTooltipText(err.response.data.message);
+        const celebrateValidation = err.response.data.validation;
+
+        if (celebrateValidation) {
+          setTooltipText(celebrateValidation.body.message);
+        } else {
+          setTooltipText(err.response.data.message);
+        }
+
         openTooltipPopup();
       }
     },
