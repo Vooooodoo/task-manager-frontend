@@ -44,17 +44,17 @@ function InputPopup({
       <TextField
         className={classes.input}
         type="text"
-        autoFocus
+        variant="outlined"
+        color="secondary"
+        size="small"
+        autoComplete="off"
         inputProps={{
           maxLength: validationConsts.BOARD_NAME_MAX_LENGTH,
         }}
-        variant="outlined"
-        color="secondary"
         placeholder={placeholder}
-        size="small"
-        autoComplete="off"
-        fullWidth
         defaultValue={defaultValue}
+        autoFocus
+        fullWidth
         onChange={onChange}
       />
 

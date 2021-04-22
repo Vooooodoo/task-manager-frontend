@@ -4,6 +4,7 @@ export const TEXTAREA_INPUT_MAX_LENGTH = 400;
 export const PASSWORD_INPUT_MIN_LENGTH = 8;
 export const BOARD_NAME_MAX_LENGTH = 20;
 export const INPUT_NAME_PATTERN = /^[a-zA-Zs-]+$/;
+export const INPUT_ROLE_ID_PATTERN = /^(admin|user)$/;
 
 export const INPUT_REQUIRED_VALIDATION_TEXT = 'Required.';
 export const INPUT_MIN_LENGTH_VALIDATION_TEXT = 'Too short.';

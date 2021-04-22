@@ -5,6 +5,7 @@ import InputPopup from '../../../../components/InputPopup/InputPopup';
 
 import * as usersApi from '../../../../api/usersApi';
 import { setAllUsers } from '../../../../store/reducers/users';
+import * as validationConstants from '../../../../utils/constants';
 
 // eslint-disable-next-line object-curly-newline
 function RoleIdEditPopup({ id, userId, isOpen, anchorEl, onClose }) {
@@ -14,12 +15,15 @@ function RoleIdEditPopup({ id, userId, isOpen, anchorEl, onClose }) {
 
   const [inputValue, setInputValue] = React.useState('');
 
-  const handleInputChange = (evt) => setInputValue(evt.target.value);
+  const handleInputChange = (evt) => {
+    setInputValue(evt.target.value);
+  };
 
   const editRoleId = async () => {
     const trimmedInputValue = inputValue.trim();
+    const regExp = validationConstants.INPUT_ROLE_ID_PATTERN;
 
-    if (trimmedInputValue) {
+    if (trimmedInputValue && regExp.test(trimmedInputValue)) {
       const newUsers = allUsers.map((user) => {
         if (user.id === userId) {
           return { ...user, roleId: trimmedInputValue };
