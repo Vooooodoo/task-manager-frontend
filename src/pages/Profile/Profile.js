@@ -50,6 +50,7 @@ function Profile() {
     initialValues: {
       firstName: user.firstName,
       lastName: user.lastName,
+      //! feels like a not the best solution
       about: user.about === null ? '' : user.about,
     },
     profileValidationSchema,
